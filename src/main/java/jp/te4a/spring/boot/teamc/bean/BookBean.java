@@ -3,7 +3,7 @@ package jp.te4a.spring.boot.teamc.bean;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.*; 
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "books") // 対応するDBのテーブルを指定
