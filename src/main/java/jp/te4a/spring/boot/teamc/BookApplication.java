@@ -1,13 +1,14 @@
-package com.example.demo;
+package jp.te4a.spring.boot.teamc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+//SpringBootのメインクラス
 @SpringBootApplication
-public class DemoApplication {
+public class BookApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+		SpringApplication.run(BookApplication.class, args);
 	}
 
 }
