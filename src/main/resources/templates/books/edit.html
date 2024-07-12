@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>書籍登録一覧画面</title>
+    <title>備品登録一覧画面</title>
     <link rel="stylesheet" href="../../static/css/style.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
 </head>
@@ -10,27 +10,83 @@
     <form th:action="@{/books/edit}" th:object="${bookForm}" method="post">
         <table class="table table-striped talbe-bordered table-condensed">
             <tr>
-                <td>タイトル:</td>
+                <td>管理番号:</td>
                 <td>
                     <input type="text" name="title" th:field="*{title}" th:errorclass="error-input" />
                     <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>
-                <td>著者:</td>
+                <td>品名:</td>
                 <td>
                     <input type="text" name="writer" th:field="*{writer}" th:errorclass="error-input" />
                     <span th:if="${#fields.hasErrors('writer')}" th:errors="*{writer}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>
-                <td>出版社:</td>
+                <td>型番:</td>
                 <td>
                     <input type="text" name="publisher" th:field="*{publisher}" />
                 </td>
             </tr>
             <tr>
-                <td>価格:</td>
+                <td>メーカー:</td>
+                <td>
+                    <input type="text" name="price" th:field="*{price}" th:errorclass="error-input" />
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-messages">error!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>購入日:</td>
+                <td>
+                    <input type="text" name="price" th:field="*{price}" th:errorclass="error-input" />
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-messages">error!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>耐用年数:</td>
+                <td>
+                    <input type="text" name="price" th:field="*{price}" th:errorclass="error-input" />
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-messages">error!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>減価償却:</td>
+                <td>
+                    <input type="text" name="price" th:field="*{price}" th:errorclass="error-input" />
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-messages">error!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>使用不可:</td>
+                <td>
+                    <input type="text" name="price" th:field="*{price}" th:errorclass="error-input" />
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-messages">error!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>貸出可能:</td>
+                <td>
+                    <input type="text" name="price" th:field="*{price}" th:errorclass="error-input" />
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-messages">error!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>設置場所:</td>
+                <td>
+                    <input type="text" name="price" th:field="*{price}" th:errorclass="error-input" />
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-messages">error!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>使用期限:</td>
+                <td>
+                    <input type="text" name="price" th:field="*{price}" th:errorclass="error-input" />
+                    <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-messages">error!</span>
+                </td>
+            </tr>
+            <tr>
+                <td>仕様:</td>
                 <td>
                     <input type="text" name="price" th:field="*{price}" th:errorclass="error-input" />
                     <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error-messages">error!</span>
