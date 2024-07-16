@@ -17,31 +17,31 @@ public class ToolBean {
     //一覧表示DB
     
     @Column(nullable = false) // NOT NULL制約
-    private char kanricode;  //管理コード
+    private char[] managementcode;  //管理コード
     @Id // フィールドを主キーとしてマーク
     @GeneratedValue(strategy = GenerationType.IDENTITY) // データベースによって自動インクリメント
     @Column(nullable = false) // NOT NULL制約
-    private int kanribangou; //管理番号
+    private int managementNo; //管理番号
     @Column(nullable = false) // NOT NULL制約
-    private String hinmei; //品名
+    private String productName; //品名
     @Column(nullable = false) // NOT NULL制約
-    private String kataban; //型番
+    private String modelNumber; //型番
     @Column(nullable = false) // NOT NULL制約
     private String maker; //メーカー
     @Column(nullable = false) // NOT NULL制約
-    private String kounyubi; //購入日 yyyy-mm-dd
+    private Date purchaseDate; //購入日 yyyy-mm-dd
     @Column(nullable = false) // NOT NULL制約
-    private String taiyounensuu; //耐用年数
+    private int serviceLife; //耐用年数
     @Column(nullable = false) // NOT NULL制約
-    private Integer genkasyoukyaku; //減価償却
+    private int depreciation; //減価償却
     @Column(nullable = false) // NOT NULL制約
-    private boolean siyouhuka; //使用不可
+    private boolean usageProhibited; //使用不可
     @Column(nullable = false) // NOT NULL制約
-    private boolean kasidasikanou; //貸出可能
+    private boolean availableForRent; //貸出可能
     @Column(nullable = false) // NOT NULL制約
-    private boolean settibasyo; //設置場所 0=本社 1=仙台 2=埼玉 3=新潟　4=大阪
+    private String installationLocation; //設置場所 0=本社 1=仙台 2=埼玉 3=新潟　4=大阪
     @Column(nullable = false) // NOT NULL制約
-    private String siyoukigen; //使用期限
+    private Date exprationDate; //使用期限
     @Column(nullable = false) // NOT NULL制約
-    private String siyou; //仕様
+    private String specification; //仕様
 }

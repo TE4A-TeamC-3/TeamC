@@ -2,6 +2,9 @@ package jp.te4a.spring.boot.teamc.form;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.sql.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,29 +17,29 @@ public class ToolForm {
 
 
     @NotNull
-    private char kanricode;  //管理コード
+    private char[] managementcode;  //管理コード
     @NotNull
-    private int kanribangou; //管理番号
+    private int managementNo; //管理番号
     @NotNull
-    private String hinmei; //品名
+    private String productName; //品名
     @NotNull
-    private String kataban; //型番
+    private String modelNumber; //型番
     @NotNull
     private String maker; //メーカー
     @NotNull
-    private String kounyubi; //購入日 yyyy-mm-dd
+    private Date purchaseDate; //購入日 yyyy-mm-dd
     @NotNull
-    private String taiyounensuu; //耐用年数
+    private int serviceLife; //耐用年数
     @NotNull
-    private Integer genkasyoukyaku; //減価償却
+    private int depreciation; //減価償却
     @NotNull
-    private boolean siyouhuka; //使用不可
+    private boolean usageProhibited; //使用不可
     @NotNull
-    private boolean kasidasikanou; //貸出可能
+    private boolean availableForRent; //貸出可能
     @NotNull
-    private boolean settibasyo; //設置場所 0=本社 1=仙台 2=埼玉 3=新潟　4=大阪
+    private String installationLocation; //設置場所 0=本社 1=仙台 2=埼玉 3=新潟　4=大阪
     @NotNull
-    private String siyoukigen; //使用期限
+    private Date exprationDate; //使用期限
     @NotNull
-    private String siyou; //仕様
+    private String specification; //仕様
 }
