@@ -1,9 +1,9 @@
-package jp.te4a.spring.boot.myapp13_1.bean;
+package jp.te4a.spring.boot.myapp10;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import jakarta.persistence.*; 
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "books") // 対応するDBのテーブルを指定
