@@ -1,12 +1,12 @@
-package jp.te4a.mybootapp6;
+package jp.te4a.spring.boot.myapp10;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-//@SpringBootTest(classes = Mybootapp6Application.class)
-class Mybootapp6ApplicationTests {
+@SpringBootTest(classes = BookApplication.class)
+class DemoApplicationTests {
 
-    //@Test
+    @Test
     void contextLoads() {
     }
 
