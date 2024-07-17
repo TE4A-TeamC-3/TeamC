@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="users")
+@Table(name="usercode")
 //ユーザ名、パスワードを持つDB用ユーザクラス(DAO)
 public class UserBean {
     //主キー

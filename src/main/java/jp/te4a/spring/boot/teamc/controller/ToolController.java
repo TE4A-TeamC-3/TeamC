@@ -18,7 +18,7 @@ import jp.te4a.spring.boot.teamc.service.ToolService;
 
 //HTTPアクセス(URL)の対応を記述
 @Controller
-@RequestMapping("tools")// /boosにアクセスされた時のコントローラ
+@RequestMapping("tools")// /toolsにアクセスされた時のコントローラ
 public class ToolController {
     @Autowired
     ToolService toolService;

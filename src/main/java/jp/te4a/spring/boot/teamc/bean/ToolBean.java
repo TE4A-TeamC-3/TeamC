@@ -9,7 +9,7 @@ import java.sql.Date;
 import jakarta.persistence.*; 
 
 @Entity
-@Table(name = "books") // 対応するDBのテーブルを指定
+@Table(name = "listDisplayCode") // 対応するDBのテーブルを指定
 @Data
 @AllArgsConstructor
 @NoArgsConstructor // 引数なしコンストラクタを自動生成
