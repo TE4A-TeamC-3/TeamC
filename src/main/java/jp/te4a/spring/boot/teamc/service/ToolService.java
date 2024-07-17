@@ -36,8 +36,8 @@ public class ToolService {
         return toolForm;
     }
 
-    public void delete(int kanribangou) {
-        toolRepository.deleteById(kanribangou);
+    public void delete(int managementNo) {
+        toolRepository.deleteById(managementNo);
     }    
 
     //取得処理(全件)
@@ -53,8 +53,8 @@ public class ToolService {
         }
     
     //取得処理(1件)
-    public ToolForm findOne(int kanribangou) {
-        Optional<ToolBean> opt = toolRepository.findById(kanribangou);
+    public ToolForm findOne(int managementNo) {
+        Optional<ToolBean> opt = toolRepository.findById(managementNo);
         ToolForm toolForm = new ToolForm();
         opt.ifPresent(tool -> {
             BeanUtils.copyProperties(opt.get(), toolForm);
