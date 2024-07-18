@@ -39,6 +39,13 @@
                 </td>
             </tr>
             <tr>
+                <td>管理番号:</td>
+                <td>
+                    <input type="text" name="managementNo" th:field="*{managementNo}" th:errorclass="error-input" />
+                    <span th:if="${#fields.hasErrors('managementNo')}" th:errors="*{managementNo}" class="error-messages">error!</span>
+                </td>
+            </tr>
+            <tr>
                 <td>品名:</td>
                 <td>
                     <input type="text" name="productName" th:field="*{productName}" th:errorclass="error-input" />

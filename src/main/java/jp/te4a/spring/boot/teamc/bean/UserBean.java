@@ -22,4 +22,5 @@ public class UserBean {
     //パスワード(Json出力しない)
     @JsonIgnore
     private String password;
+    private String role; //ADMIN, USER
 }

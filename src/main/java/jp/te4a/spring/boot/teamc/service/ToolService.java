@@ -36,8 +36,8 @@ public class ToolService {
         return toolForm;
     }
 
-    public void delete(int managementNo) {
-        toolRepository.deleteById(managementNo);
+    public void delete(int id) {
+        toolRepository.deleteById(id);
     }    
 
     //取得処理(全件)
@@ -53,8 +53,8 @@ public class ToolService {
         }
     
     //取得処理(1件)
-    public ToolForm findOne(int managementNo) {
-        Optional<ToolBean> opt = toolRepository.findById(managementNo);
+    public ToolForm findOne(int id) {
+        Optional<ToolBean> opt = toolRepository.findById(id);
         ToolForm toolForm = new ToolForm();
         opt.ifPresent(tool -> {
             BeanUtils.copyProperties(opt.get(), toolForm);
@@ -62,9 +62,10 @@ public class ToolService {
         return toolForm;
     }
     
+    //検索条件にあったレコードを取得
     public List<ToolBean> findByKeyword(String keyword) {
         // ToolRepositoryを使ってデータベースからキーワードに一致するツールを検索する
-        return toolRepository.findByTitleContainingIgnoreCase(keyword);
+        return toolRepository.findContainingIgnoreCase(keyword);
     }
     
 }

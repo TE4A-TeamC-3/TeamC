@@ -15,7 +15,8 @@ import jp.te4a.spring.boot.teamc.validate.Writer;
 @NoArgsConstructor
 public class ToolForm {
 
-
+    @NotNull
+    private int id;//主キー　
     @NotNull
     private String managementcode;  //管理コード
     @NotNull

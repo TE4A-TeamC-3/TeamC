@@ -17,6 +17,17 @@
                     <input type="text" name="password" th:field="*{password}" th:errorclass="error-input"/>
                     <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-messages">error!</span>
                 </td></tr>
+                <tr>
+                    <td>権限:</td>
+                    <td>
+                    <select name="role" th:field="*{managementcode}" th:errorclass="error-input">
+                        <option value="">選択してください</option> <!-- 初期の選択肢 -->
+                        <option value="ADMIN">管理者</option> <!-- 権限の候補1 -->
+                        <option value="USER">一般</option> <!-- 権限の候補2 -->
+                    </select>
+                    <span th:if="${#fields.hasErrors('managementcode')}" th:errors="*{managementcode}" class="error-messages">error!</span>
+                    </td>
+                </tr>
             </table>
             <input type="submit" value="作成"/>
             <a href="loginForm.html">戻る</a>

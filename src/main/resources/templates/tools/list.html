@@ -44,6 +44,13 @@
                 </td>
             </tr>
             <tr>
+                <td>管理番号:</td>
+                <td>
+                    <input type="text" name="managementNo" th:field="*{managementNo}" th:errorclass="error-input" />
+                    <span th:if="${#fields.hasErrors('managementNo')}" th:errors="*{managementNo}" class="error-messages">error!</span>
+                </td>
+            </tr>
+            <tr>
                 <td>品名:</td>
                 <td>
                     <input type="text" name="productName" th:field="*{productName}" th:errorclass="error-input" />
@@ -67,7 +74,7 @@
             <tr>
                 <td>購入日:</td>
                 <td>
-                    <input type="text" name="purchaseDate" th:field="*{purchaseDate}" th:errorclass="error-input" />
+                    <input type="date" name="purchaseDate" th:field="*{purchaseDate}" th:errorclass="error-input" />
                     <span th:if="${#fields.hasErrors('purchaseDate')}" th:errors="*{purchaseDate}" class="error-messages">error!</span>
                 </td>
             </tr>
@@ -123,7 +130,7 @@
             <tr>
                 <td>使用期限:</td>
                 <td>
-                    <input type="text" name="exprationDate" th:field="*{exprationDate}" th:errorclass="error-input" />
+                    <input type="date" name="exprationDate" th:field="*{exprationDate}" th:errorclass="error-input" />
                     <span th:if="${#fields.hasErrors('exprationDate')}" th:errors="*{exprationDate}" class="error-messages">error!</span>
                 </td>
             </tr>
@@ -153,6 +160,7 @@
         <thead>
             <tr>
                 <th>管理コード</th>
+                <th>管理番号</th>
                 <th>品名</th>
                 <th>型番</th>
                 <th>メーカー</th>
@@ -171,6 +179,7 @@
             <!-- 備品一覧の表示 -->
             <tr th:each="tool : ${tools}" th:if="${not #lists.isEmpty(tools)}">
                 <td th:text="${tool.managementcode}"></td>
+                <td th:text="${tool.managementNo}"></td>
                 <td th:text="${tool.productName}"></td>
                 <td th:text="${tool.modelNumber}"></td>
                 <td th:text="${tool.maker}"></td>
@@ -200,6 +209,7 @@
             <!-- 検索結果の表示 -->
             <tr th:each="result : ${searchResults}" th:if="${not #lists.isEmpty(searchResults)}">
                 <td th:text="${result.managementcode}"></td>
+                <td th:text="${result.managementNo}"></td>
                 <td th:text="${result.productName}"></td>
                 <td th:text="${result.modelNumber}"></td>
                 <td th:text="${result.maker}"></td>
