@@ -17,7 +17,7 @@ public class ToolForm {
 
 
     @NotNull
-    private char[] managementcode;  //管理コード
+    private String managementcode;  //管理コード
     @NotNull
     private int managementNo; //管理番号
     @NotNull

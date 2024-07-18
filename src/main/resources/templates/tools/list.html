@@ -11,7 +11,7 @@
         <span sec:authentication="principal.user.username">duke</span>さんログイン中。
     </p>
     <form th:action="@{/logout}" method="post"><input type="submit" class="btn btn-default btn-xs" value="ログアウト" /></form>
-
+    <h2>備品登録</h2>
     <form th:action="@{/tools/create}" th:object="${toolForm}" method="post">
         <table class="table table-striped talbe-bordered table-condensed">
             <tr>
@@ -138,38 +138,100 @@
         <input type="submit" value="作成">
     </form>
     <hr />
-    <table>
-        <tr th:each="tool : ${tools}">
-            <td th:text="${tool.managementcode}">MC</td>
-            <td th:text="${tool.managementNo}">000002</td>
-            <td th:text="${tool.productName}">ラックマウントサーバ</td>
-            <td th:text="${tool.modelNumber}">PowerEdge R220ラックサーバ</td>
-            <td th:text="${tool.maker}">DELL</td>
-            <td th:text="${#dates.format(tool.purchaseDate, 'yyyy-MM-dd')}">2016/5/26</td>
-            <td th:text="${tool.serviceLife}">5</td>
-            <td th:text="${tool.depreciation}">終了</td>
-            <td>
-                <input type="checkbox" th:checked="${tool.usageProhibited}" disabled> 不可
-            </td>
-            <td>
-                <input type="checkbox" th:checked="${tool.availableForRent}" disabled> 可能
-            </td>
-            <td th:text="${tool.installationLocation}">仙台</td>
-            <td th:text="${#dates.format(tool.expirationDate, 'yyyy-MM-dd')}">2019/7/1</td>
-            <td th:text="${tool.specification}">インテル🄬 Xeon🄬プロセッサーE3-1200 v3</td>
-            <td>
-                <form th:action="@{/tools/edit}" method="post">
-                    <input type="submit" name="form" value="編集" />
-                    <input type="hidden" name="managementNo" th:value="${tool.managementNo}" />
-                </form>
-            </td>
-            <td>
-                <form th:action="@{/tools/delete}" method="post">
-                    <input type="submit" name="form" value="削除" />
-                    <input type="hidden" name="managementNo" th:value="${tool.managementNo}" />
-                </form>
-            </td>
-        </tr>
+
+    <h2>備品検索</h2>
+    
+    <form th:action="@{/tools/search}" method="get">
+        <label>キーワード:</label>
+        <input type="text" name="keyword" />
+        <button type="submit" class="btn btn-info">検索</button>
+    </form>
+
+    <h2>備品一覧および検索結果</h2>
+    
+    <table class="table table-striped table-bordered table-condensed">
+        <thead>
+            <tr>
+                <th>管理コード</th>
+                <th>品名</th>
+                <th>型番</th>
+                <th>メーカー</th>
+                <th>購入日</th>
+                <th>耐用年数</th>
+                <th>減価償却</th>
+                <th>使用不可</th>
+                <th>貸出可能</th>
+                <th>設置場所</th>
+                <th>使用期限</th>
+                <th>仕様</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 備品一覧の表示 -->
+            <tr th:each="tool : ${tools}" th:if="${not #lists.isEmpty(tools)}">
+                <td th:text="${tool.managementcode}"></td>
+                <td th:text="${tool.productName}"></td>
+                <td th:text="${tool.modelNumber}"></td>
+                <td th:text="${tool.maker}"></td>
+                <td th:text="${#dates.format(tool.purchaseDate, 'yyyy-MM-dd')}"></td>
+                <td th:text="${tool.serviceLife}"></td>
+                <td th:text="${tool.depreciation}"></td>
+                <td th:text="${tool.usageProhibited} ? '不可' : '可能'"></td>
+                <td th:text="${tool.availableForRent} ? '可能' : '不可'"></td>
+                <td>
+                    <span th:each="location : ${tool.installationLocation}">
+                        <span th:text="${location}"></span>
+                        <span th:if="${!#strings.endsWith(iterator.index, #numbers.sequence('1', '4'))}">,</span>
+                    </span>
+                </td>
+                <td th:text="${#dates.format(tool.expirationDate, 'yyyy-MM-dd')}"></td>
+                <td th:text="${tool.specification}"></td>
+                <td>
+                    <form th:action="@{/tools/edit}" method="post">
+                        <button type="submit" class="btn btn-primary" name="form" th:value="${tool.managementNo}">編集</button>
+                    </form>
+                    <form th:action="@{/tools/delete(param.managementNo=${tool.managementNo})}" method="post">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</button>
+                    </form>
+                </td>
+            </tr>
+
+            <!-- 検索結果の表示 -->
+            <tr th:each="result : ${searchResults}" th:if="${not #lists.isEmpty(searchResults)}">
+                <td th:text="${result.managementcode}"></td>
+                <td th:text="${result.productName}"></td>
+                <td th:text="${result.modelNumber}"></td>
+                <td th:text="${result.maker}"></td>
+                <td th:text="${#dates.format(result.purchaseDate, 'yyyy-MM-dd')}"></td>
+                <td th:text="${result.serviceLife}"></td>
+                <td th:text="${result.depreciation}"></td>
+                <td th:text="${result.usageProhibited} ? '不可' : '可能'"></td>
+                <td th:text="${result.availableForRent} ? '可能' : '不可'"></td>
+                <td>
+                    <span th:each="location : ${result.installationLocation}">
+                        <span th:text="${location}"></span>
+                        <span th:if="${!#strings.endsWith(iterator.index, #numbers.sequence('1', '4'))}">,</span>
+                    </span>
+                </td>
+                <td th:text="${#dates.format(result.expirationDate, 'yyyy-MM-dd')}"></td>
+                <td th:text="${result.specification}"></td>
+                <td>
+                    <form th:action="@{/tools/edit}" method="post">
+                        <button type="submit" class="btn btn-primary" name="form" th:value="${result.managementNo}">編集</button>
+                    </form>
+                    <form th:action="@{/tools/delete(param.managementNo=${result.managementNo})}" method="post">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</button>
+                    </form>
+                </td>
+            </tr>
+
+            <!-- 備品も検索結果もない場合の表示 -->
+            <tr th:if="${#lists.isEmpty(tools) and #lists.isEmpty(searchResults)}">
+                <td colspan="13">該当するデータがありません。</td>
+            </tr>
+        </tbody>
     </table>
+    <hr />
 </body>
 </html>

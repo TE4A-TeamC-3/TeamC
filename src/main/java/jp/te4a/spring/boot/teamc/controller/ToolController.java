@@ -86,3 +86,51 @@ public class ToolController {
             return "tools/list"; // 検索結果を表示するテンプレート（list.html）を指定
         }
 }
+
+
+
+/*
+データベース操作 Controller 
+@RestController
+@RequestMapping("/api/tools")
+public class ToolController {
+    private final ToolRepository toolRepository;
+
+    @Autowired
+    public ToolController(ToolRepository toolRepository) {
+        this.toolRepository = toolRepository;
+    }
+
+    @GetMapping("/search")
+    public List<ToolBean> searchTools(
+        @RequestParam(required = false) String managementCode,
+        @RequestParam(required = false) String productName,
+        @RequestParam(required = false) String modelNumber,
+        @RequestParam(required = false) String maker,
+        @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate purchaseDate,
+        @RequestParam(required = false) Integer serviceLife,
+        @RequestParam(required = false) Integer depreciation,
+        @RequestParam(required = false) Boolean usageProhibited,
+        @RequestParam(required = false) Boolean availableForRent,
+        @RequestParam(required = false) String installationLocation,
+        @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate expirationDate,
+        @RequestParam(required = false) String specification
+    ) {
+        return toolRepository.findByCriteria(
+            managementCode,
+            productName,
+            modelNumber,
+            maker,
+            purchaseDate,
+            serviceLife,
+            depreciation,
+            usageProhibited,
+            availableForRent,
+            installationLocation,
+            expirationDate,
+            specification
+        );
+    }
+}
+
+*/
