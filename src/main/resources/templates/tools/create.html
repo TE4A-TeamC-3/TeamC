@@ -7,9 +7,9 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
 </head>
 <body>
-    <form th:action="@{/tools/edit}" th:object="${toolForm}" method="post">
+    <form th:action="@{/tools/create}" th:object="${toolForm}" method="post">
         <table class="table table-striped talbe-bordered table-condensed">
-            <h2>備品編集</h2>
+            <h2>備品登録</h2>
             <tr>
                 <td>管理コード:</td>
                 <td>
@@ -140,7 +140,7 @@
         </table>
         <input type="hidden" name="managementNo" th:value="${param.managementNo[0]}" />
         <input type="submit" name="goToTop" value="戻る" />
-        <input type="submit" value="更新" />
+        <input type="submit" value="新規登録" />
     </form>
 </body>
 </html>

@@ -25,10 +25,28 @@ public class LoginUserDetailsService implements UserDetailsService {  // 修正:
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<UserBean> opt = userRepository.findById(username);
         UserBean userBean = opt.orElseThrow(() -> new UsernameNotFoundException("The requested user is not found."));
-        return new LoginUserDetails(userBean, true, true, true, getAuthorities(userBean));  // 修正: userBeam -> user
+        return new org.springframework.security.core.userdetails.User(
+                userBean.getUsername(),
+                userBean.getPassword(),
+                getAuthorities(userBean)
+        );
+    }
+
+    private Collection<GrantedAuthority> getAuthorities(UserBean userBean) {
+        String role = userBean.getRole();
+        if ("ADMIN".equals(role)) {
+            return AuthorityUtils.createAuthorityList("ROLE_ADMIN", "ROLE_USER");
+        } else if ("USER".equals(role)) {
+            return AuthorityUtils.createAuthorityList("ROLE_USER");
+        } else {
+            throw new IllegalArgumentException("Invalid role: " + role);
+        }
+    }
+}
+        /*return new LoginUserDetails(userBean, true, true, true, getAuthorities(userBean));  // 修正: userBeam -> user
     }
 
     private Collection<GrantedAuthority> getAuthorities(UserBean userBean) {
         return AuthorityUtils.createAuthorityList("ROLE_USER");
     }
-}
+}*/

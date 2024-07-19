@@ -20,12 +20,12 @@
                 <tr>
                     <td>権限:</td>
                     <td>
-                    <select name="role" th:field="*{managementcode}" th:errorclass="error-input">
+                    <select name="role" th:field="*{role}" th:errorclass="error-input">
                         <option value="">選択してください</option> <!-- 初期の選択肢 -->
                         <option value="ADMIN">管理者</option> <!-- 権限の候補1 -->
                         <option value="USER">一般</option> <!-- 権限の候補2 -->
                     </select>
-                    <span th:if="${#fields.hasErrors('managementcode')}" th:errors="*{managementcode}" class="error-messages">error!</span>
+                    <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="error-messages">error!</span>
                     </td>
                 </tr>
             </table>
