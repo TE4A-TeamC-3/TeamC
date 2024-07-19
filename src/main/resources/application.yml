@@ -1,30 +1,30 @@
-##spring:
-  ##datasource:
-    ##url: jdbc:mysql://35.78.154.17:3306/teamkadai10db?useSSL=false
-    ##username: ec2-user
-    ##password: te4ateamc
-    ##driver-class-name: com.mysql.cj.jdbc.Driver
-
-  ##jpa:
-    ##hibernate:
-      ##ddl-auto: update
-      ##properties:
-        ##hibernate:
-          ##dialect: org.hibernate.dialect.MySQL8Dialect
-          ##id:
-            ##new_generator_mappings: false
-    ##show-sql: true
-    ##properties:
-      ##hibernate:
-        ##format_sql: true
-    ##defer-datasource-initialization: true
-
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/testdb?useSSL=false
-    username: root
-    password: password
+    url: jdbc:mysql://35.78.154.17:3306/teamkadai10db?useSSL=false
+    username: ec2-user
+    password: te4ateamc
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
   jpa:
     hibernate:
       ddl-auto: update
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.MySQL8Dialect
+          id:
+            new_generator_mappings: false
     show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    defer-datasource-initialization: true
+
+##spring:
+  ##datasource:
+    ##url: jdbc:mysql://localhost:3306/testdb?useSSL=false
+    ##username: root
+    ##password: password
+  ##jpa:
+    ##hibernate:
+      ##ddl-auto: update
+    ##show-sql: true
