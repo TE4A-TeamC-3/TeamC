@@ -13,7 +13,7 @@
     <form th:action="@{/logout}" method="post"><input type="submit" class="btn btn-default btn-xs" value="ログアウト" /></form>
     <h2>
         <form th:action="@{/tools/create}" method="post">
-            <button type="submit" class="bbtn btn-info" name="form" th:value="${result.managementNo}">新規登録</button>
+            <button type="submit" class="bbtn btn-info" name="form" th:value="${result.id}">新規登録</button>
         </form>
     </h2>
 
@@ -165,9 +165,9 @@
                 <td th:text="${tool.specification}"></td>
                 <td>
                     <form th:action="@{/tools/edit}" method="post">
-                        <button type="submit" class="btn btn-primary" name="form" th:value="${tool.managementNo}">編集</button>
+                        <button type="submit" class="btn btn-primary" name="form" th:value="${tool.id}">編集</button>
                     </form>
-                    <form th:action="@{/tools/delete(param.managementNo=${tool.managementNo})}" method="post">
+                    <form th:action="@{/tools/delete(param.id=${tool.id})}" method="post">
                         <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</button>
                     </form>
                 </td>
@@ -195,9 +195,9 @@
                 <td th:text="${result.specification}"></td>
                 <td>
                     <form th:action="@{/tools/edit}" method="post">
-                        <button type="submit" class="btn btn-primary" name="form" th:value="${result.managementNo}">編集</button>
+                        <button type="submit" class="btn btn-primary" name="form" th:value="${result.id}">編集</button>
                     </form>
-                    <form th:action="@{/tools/delete(param.managementNo=${result.managementNo})}" method="post">
+                    <form th:action="@{/tools/delete(param.id=${result.id})}" method="post">
                         <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</button>
                     </form>
                 </td>

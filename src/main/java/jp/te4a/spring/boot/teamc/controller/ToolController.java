@@ -49,17 +49,17 @@ public class ToolController {
 
     // /tools/ceditにパラメータformを含むPOST要求
     @PostMapping(path="edit", params="form")
-    String editForm(@RequestParam int managementNo, ToolForm form){
-        ToolForm toolForm = toolService.findOne(managementNo);
+    String editForm(@RequestParam int id, ToolForm form){
+        ToolForm toolForm = toolService.findOne(id);
         BeanUtils.copyProperties(toolForm, form);
         return "tools/edit";
     }
 
     // /tools/にPOST要求
     @PostMapping(path="edit")
-    String edit(@RequestParam int managementNo, @Validated ToolForm form, BindingResult result , Model model){
+    String edit(@RequestParam int id, @Validated ToolForm form, BindingResult result , Model model){
         if(result.hasErrors()){
-            return editForm(managementNo, form);
+            return editForm(id, form);
         }
         
         toolService.update(form);
@@ -68,8 +68,8 @@ public class ToolController {
 
     // /tools/deleteにPOST要求
     @PostMapping(path="delete")
-    String edit(@RequestParam int managementNo){
-        toolService.delete(managementNo);
+    String edit(@RequestParam int id){
+        toolService.delete(id);
         return "redirect:/tools";
     }
 
