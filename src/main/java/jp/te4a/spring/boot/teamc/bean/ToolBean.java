@@ -22,7 +22,7 @@ public class ToolBean {
     @Column(name = "managementcode", nullable = false) // カラム名を指定し、NOT NULL制約
     private String managementcode;  //管理コード
     
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // データベースによって自動インクリメント
+    //@GeneratedValue(strategy = GenerationType.IDENTITY) // データベースによって自動インクリメント
     @Column(name = "managementNo", nullable = false) // カラム名を指定し、NOT NULL制約
     private int managementNo; //管理番号
     
