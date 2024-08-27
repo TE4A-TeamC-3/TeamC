@@ -3,6 +3,7 @@ package jp.te4a.spring.boot.teamc.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +42,7 @@ public class ToolService {
     }    
 
     //取得処理(全件)
-    public List<ToolForm> findAll() {
+    public List<ToolForm> findAll() {//受け取り側がない
         List<ToolBean> beanList = toolRepository.findAll();
         List<ToolForm> formList = new ArrayList<ToolForm>();
         for(ToolBean toolBean: beanList) {
