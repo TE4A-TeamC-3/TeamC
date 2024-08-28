@@ -1,4 +1,4 @@
-package jp.te4a.spring.boot.teamc.validate;
+/*package jp.te4a.spring.boot.teamc.validate;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
@@ -19,4 +19,4 @@ public class WriterValidator implements ConstraintValidator<Writer, String>{
         System.out.println(in.equals(ok));
         return in.equals(ok);
     }
-}
+}*/

@@ -9,7 +9,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.validation.constraints.*;
-import jp.te4a.spring.boot.teamc.validate.Writer;
+//import jp.te4a.spring.boot.teamc.validate.Writer;
 
 @Data
 @NoArgsConstructor

@@ -1,4 +1,4 @@
-package jp.te4a.spring.boot.teamc.validate;
+/*package jp.te4a.spring.boot.teamc.validate;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -29,4 +29,4 @@ public @interface Writer {
     //Payloadクラスを継承したClassオブジェクトを得る
     //(戻り値とする)メソッドpayload()、デフォルト値は空のクラス
     Class<? extends Payload>[] payload() default {};
-}
+}*/
