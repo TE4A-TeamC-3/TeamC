@@ -55,7 +55,7 @@ public class SecurityConfig {
                 // ログイン失敗時URL
                 .failureUrl("/loginForm?error")
                 // ログイン成功時URL
-                .defaultSuccessUrl("/books", true)
+                .defaultSuccessUrl("/tools", true)
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .permitAll()
