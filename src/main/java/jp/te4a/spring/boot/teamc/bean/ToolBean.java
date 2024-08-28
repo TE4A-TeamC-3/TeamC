@@ -8,7 +8,7 @@ import java.sql.Date;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "list_display_code") // 対応するDBのテーブル名を指定
+@Table(name = "listDisplayCode") // 対応するDBのテーブル名を指定
 @Data
 @AllArgsConstructor
 @NoArgsConstructor // 引数なしコンストラクタを自動生成
