@@ -10,10 +10,8 @@ import lombok.NoArgsConstructor;
 //画面用ユーザクラス
 public class UserForm {
     @NotNull
-    @Size(min=6, max=12)
     private String username;
 
-    @Size(min=6, max=12)
     private String password;
 
     private String role; //ADMIN, USER
