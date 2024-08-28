@@ -64,9 +64,9 @@ public class ToolService {
     }
     
     //検索条件にあったレコードを取得
-    public List<ToolBean> findByKeyword(String keyword) {
+   /* public List<ToolBean> findByKeyword(String keyword) {
         // ToolRepositoryを使ってデータベースからキーワードに一致するツールを検索する
         return toolRepository.findContainingIgnoreCase(keyword);
-    }
+    }*/
     
 }

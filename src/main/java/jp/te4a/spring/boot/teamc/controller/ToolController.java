@@ -80,12 +80,12 @@ public class ToolController {
     }
 
     // 検索機能の追加
-    @PostMapping(path = "search")
+   /*  @PostMapping(path = "search")
     String search(@RequestParam String keyword, Model model) {
         // 検索キーワードを使ってToolServiceで検索を実行し、結果を表示する
         model.addAttribute("tools", toolService.findByKeyword(keyword));
         return "tools/list"; // 検索結果を表示するテンプレート（list.html）を指定
-    }
+    }*/
     
 
 }

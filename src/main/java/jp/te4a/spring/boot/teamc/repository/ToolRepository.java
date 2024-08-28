@@ -17,7 +17,7 @@ public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
 
         //一件取得　途中
         //@Query
-        List<ToolBean> findOne();
+       /*  List<ToolBean> findOne();
 
         //全件取得
         @Query("SELECT X FROM listDisplayCode")
@@ -52,6 +52,6 @@ public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
                 @Param("specification") String specification
         );
 
-        List<ToolBean> findContainingIgnoreCase(String keyword);//検索用
+        List<ToolBean> findContainingIgnoreCase(String keyword);//検索用*/
     
 }
