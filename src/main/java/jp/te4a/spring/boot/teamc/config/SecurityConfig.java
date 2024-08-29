@@ -41,6 +41,8 @@ public class SecurityConfig {
                 .requestMatchers("/users").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN") // ADMINロールのみアクセス可
                 .requestMatchers("/user/**").hasRole("USER") // USERロールのみアクセス可
+                //tools/listの権限を付与して
+                .requestMatchers("/tools/list").permitAll()
                 .requestMatchers(HttpMethod.POST, "/tools/create").hasRole("ADMIN") // POSTメソッドの/tools/createに対してADMINロールを要求
                 .requestMatchers(HttpMethod.POST, "/tools/delete").hasRole("ADMIN") // POSTメソッドの/tools/deleteに対してADMINロールを要求
                 .requestMatchers(HttpMethod.POST, "/tools/edit").hasRole("ADMIN") // POSTメソッドの/tools/editに対してADMINロールを要求
