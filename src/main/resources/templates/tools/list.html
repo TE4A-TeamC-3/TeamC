@@ -9,7 +9,7 @@
 <body>
     <p>ログイン成功</p>
     <p>管理者用</p>
-    <!--<p>
+    <p>
         <span sec:authentication="principal.user.username">duke</span>さんログイン中。
     </p>
     <form th:action="@{/logout}" method="post"><input type="submit" class="btn btn-default btn-xs" value="ログアウト" /></form>
@@ -44,9 +44,9 @@
                         <option value="15">マウスパッド</option>
                         <option value="16">ケーブル管理ツール</option>
                         <option value="17">ソフトウェアⅠ</option>
-                        <option value="18">ソフトウェアⅡ</option>-->
+                        <option value="18">ソフトウェアⅡ</option>
                         <!-- 必要に応じて他の管理コードの候補を追加 -->
-                    <!--</select>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -144,9 +144,9 @@
                 <th>操作</th>
             </tr>
         </thead>
-        <tbody>-->
+        <tbody>
             <!-- 備品一覧の表示 -->
-            <!--<tr th:each="tool : ${tools}" th:if="${not #lists.isEmpty(tools)}">
+            <tr th:each="tool : ${tools}" th:if="${not #lists.isEmpty(tools)}">
                 <td th:text="${tool.managementcode}"></td>
                 <td th:text="${tool.managementNo}"></td>
                 <td th:text="${tool.productName}"></td>
@@ -173,10 +173,10 @@
                         <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</button>
                     </form>
                 </td>
-            </tr>-->
+            </tr>
 
             <!-- 検索結果の表示 -->
-            <!--<tr th:each="result : ${searchResults}" th:if="${not #lists.isEmpty(searchResults)}">
+            <tr th:each="result : ${searchResults}" th:if="${not #lists.isEmpty(searchResults)}">
                 <td th:text="${result.managementcode}"></td>
                 <td th:text="${result.managementNo}"></td>
                 <td th:text="${result.productName}"></td>
@@ -203,15 +203,15 @@
                         <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</button>
                     </form>
                 </td>
-            </tr>-->
+            </tr>
 
             <!-- 備品も検索結果もない場合の表示 -->
-            <!--<tr th:if="${#lists.isEmpty(tools) and #lists.isEmpty(searchResults)}">
+            <tr th:if="${#lists.isEmpty(tools) and #lists.isEmpty(searchResults)}">
                 <td colspan="13">該当するデータがありません。</td>
             </tr>
         </tbody>
     </table>
-    <hr />-->
+    <hr />
 </body>
 </html>
 
