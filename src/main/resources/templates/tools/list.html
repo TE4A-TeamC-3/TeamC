@@ -19,7 +19,7 @@
         </form>
     </h2>
 
-    <h2>備品検索</h2>
+    <!--<h2>備品検索</h2>
     <form th:action="@{/tools/search}" method="get">
         <table class="table table-striped table-bordered table-condensed">
             <tr>
@@ -44,9 +44,9 @@
                         <option value="15">マウスパッド</option>
                         <option value="16">ケーブル管理ツール</option>
                         <option value="17">ソフトウェアⅠ</option>
-                        <option value="18">ソフトウェアⅡ</option>
+                        <option value="18">ソフトウェアⅡ</option>-->
                         <!-- 必要に応じて他の管理コードの候補を追加 -->
-                    </select>
+                   <!-- </select>
                 </td>
             </tr>
             <tr>
@@ -121,7 +121,7 @@
                 </td>
             </tr>
         </table>
-    </form>
+    </form>-->
 
     <h2>備品一覧および検索結果</h2>
     
@@ -176,7 +176,7 @@
             </tr>
 
             <!-- 検索結果の表示 -->
-            <tr th:each="result : ${searchResults}" th:if="${not #lists.isEmpty(searchResults)}">
+            <!--<tr th:each="result : ${searchResults}" th:if="${not #lists.isEmpty(searchResults)}">
                 <td th:text="${result.managementcode}"></td>
                 <td th:text="${result.managementNo}"></td>
                 <td th:text="${result.productName}"></td>
@@ -203,12 +203,12 @@
                         <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</button>
                     </form>
                 </td>
-            </tr>
+            </tr>-->
 
             <!-- 備品も検索結果もない場合の表示 -->
-            <tr th:if="${#lists.isEmpty(tools) and #lists.isEmpty(searchResults)}">
+            <!--<tr th:if="${#lists.isEmpty(tools) and #lists.isEmpty(searchResults)}">
                 <td colspan="13">該当するデータがありません。</td>
-            </tr>
+            </tr>-->
         </tbody>
     </table>
     <hr />
