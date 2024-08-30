@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>備品編集画面</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+</head>
+<body>
+    <form th:action="@{/tools/search}" th:object="${toolForm}" method="post">
+        <table class="table table-striped table-bordered table-condensed">
+            <h2>備品検索</h2>
+            <tr>
+                <td>管理コード:</td>
+                <td>
+                    <select name="managementcode">
+                        <option value="">選択してください</option>
+                        <option value="1">マウス</option>
+                        <option value="2">キーボード</option>
+                        <option value="3">モニター</option>
+                        <option value="4">プリンター</option>
+                        <option value="5">スキャナー</option>
+                        <option value="6">サーバー</option>
+                        <option value="7">外付けハードドライブ</option>
+                        <option value="8">USBハブ</option>
+                        <option value="9">webカメラ</option>
+                        <option value="10">ヘッドセット</option>
+                        <option value="11">ドッキングステーション</option>
+                        <option value="12">リーダー/ライター</option>
+                        <option value="13">電源タップ</option>
+                        <option value="14">モニターアーム</option>
+                        <option value="15">マウスパッド</option>
+                        <option value="16">ケーブル管理ツール</option>
+                        <option value="17">ソフトウェアⅠ</option>
+                        <option value="18">ソフトウェアⅡ</option>
+                        <!-- 必要に応じて他の管理コードの候補を追加 -->
+                   </select>
+                </td>
+            </tr>
+            <tr>
+                <td>管理番号:</td>
+                <td><input type="text" name="managementNo" /></td>
+            </tr>
+            <tr>
+                <td>品名:</td>
+                <td><input type="text" name="productName" /></td>
+            </tr>
+            <tr>
+                <td>メーカー:</td>
+                <td><input type="text" name="maker" /></td>
+            </tr>
+            <tr>
+                <td>購入日:</td>
+                <td><input type="date" name="purchaseDate" /></td>
+            </tr>
+            <tr>
+                <td>耐用年数:</td>
+                <td>
+                    <select name="serviceLife">
+                        <option value="">機器の種類を選択してください</option>
+                        <option value="1">PC</option>
+                        <option value="2">PC以外の電子計算機</option>
+                        <option value="3">レジスター</option>
+                        <option value="4">プリンター、ファクシミリ</option>
+                        <option value="5">ソフトウェア（3年）</option>
+                        <option value="6">ソフトウェア（5年）</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>減価償却:</td>
+                <td><input type="text" name="depreciation" /></td>
+            </tr>
+            <tr>
+                <td>使用不可:</td>
+                <td>
+                    <label><input type="radio" name="usageProhibited" value="true" /> 不可</label>
+                    <label><input type="radio" name="usageProhibited" value="false" /> 可能</label>
+                </td>
+            </tr>
+            <tr>
+                <td>貸出可能:</td>
+                <td>
+                    <label><input type="radio" name="avaliableForRent" value="true" /> 可能</label>
+                    <label><input type="radio" name="avaliableForRent" value="false" /> 不可</label>
+                </td>
+            </tr>
+            <tr>
+                <td>設置場所:</td>
+                <td>
+                    <label><input type="checkbox" name="installationLocation" value="0" /> 本社</label>
+                    <label><input type="checkbox" name="installationLocation" value="1" /> 仙台</label>
+                    <label><input type="checkbox" name="installationLocation" value="2" /> 埼玉</label>
+                    <label><input type="checkbox" name="installationLocation" value="3" /> 新潟</label>
+                    <label><input type="checkbox" name="installationLocation" value="4" /> 大阪</label>
+                </td>
+            </tr>
+            <tr>
+                <td>使用期限:</td>
+                <td><input type="date" name="expirationDate" /></td>
+            </tr>
+            <tr>
+                <td>仕様:</td>
+                <td><input type="text" name="specification" /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" class="btn btn-info">検索</button>
+                </td>
+            </tr>
+            </table>
+    <h2>検索結果</h2>
+    <table class="table table-striped table-bordered table-condensed">
+        <thead>
+            <tr>
+                <th>管理コード</th>
+                <th>管理番号</th>
+                <th>品名</th>
+                <th>型番</th>
+                <th>メーカー</th>
+                <th>購入日</th>
+                <th>耐用年数</th>
+                <th>減価償却</th>
+                <th>使用不可</th>
+                <th>貸出可能</th>
+                <th>設置場所</th>
+                <th>使用期限</th>
+                <th>仕様</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 検索結果の表示 -->
+            <tr th:each="result : ${searchResults}" th:if="${not #lists.isEmpty(searchResults)}">
+                <td th:text="${result.managementcode}"></td>
+                <td th:text="${result.managementNo}"></td>
+                <td th:text="${result.productName}"></td>
+                <td th:text="${result.modelNumber}"></td>
+                <td th:text="${result.maker}"></td>
+                <td th:text="${#dates.format(result.purchaseDate, 'yyyy-MM-dd')}"></td>
+                <td th:text="${result.serviceLife}"></td>
+                <td th:text="${result.depreciation}"></td>
+                <td th:text="${result.usageProhibited} ? '不可' : '可能'"></td>
+                <td th:text="${result.availableForRent} ? '可能' : '不可'"></td>
+                <td>
+                    <span th:each="location : ${result.installationLocation}">
+                        <span th:text="${location}"></span>
+                        <span th:if="${!#strings.endsWith(iterator.index, #numbers.sequence('1', '4'))}">,</span>
+                    </span>
+                </td>
+                <td th:text="${#dates.format(result.expirationDate, 'yyyy-MM-dd')}"></td>
+                <td th:text="${result.specification}"></td>
+                <td>
+                    <form th:action="@{/tools/edit}" method="post">
+                        <button type="submit" class="btn btn-primary" name="form" th:value="${result.id}">編集</button>
+                    </form>
+                    <form th:action="@{/tools/delete(param.id=${result.id})}" method="post">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</button>
+                    </form>
+                </td>
+            </tr>
+
+            <!-- 検索結果もない場合の表示 -->
+            <tr th:if="${#lists.isEmpty(searchResults)}">
+                <td colspan="13">該当するデータがありません。</td>
+            </tr>
+        </tbody>
+        </table>
+    </form>
+</body>
+</html>
