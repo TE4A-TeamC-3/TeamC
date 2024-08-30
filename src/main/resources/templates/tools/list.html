@@ -9,7 +9,7 @@
 <body>
     <p>ログイン成功</p>
     <p>管理者用</p>
-    <p>
+    <!--<p>
         <span sec:authentication="principal.user.username">duke</span>さんログイン中。
     </p>
     <form th:action="@{/logout}" method="post"><input type="submit" class="btn btn-default btn-xs" value="ログアウト" /></form>
@@ -19,7 +19,7 @@
         </form>
     </h2>
 
-    <!--<h2>備品検索</h2>
+    <h2>備品検索</h2>
     <form th:action="@{/tools/search}" method="get">
         <table class="table table-striped table-bordered table-condensed">
             <tr>
@@ -121,7 +121,7 @@
                 </td>
             </tr>
         </table>
-    </form>-->
+    </form>
 
     <h2>備品一覧および検索結果</h2>
     
@@ -144,9 +144,9 @@
                 <th>操作</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody>-->
             <!-- 備品一覧の表示 -->
-            <tr th:each="tool : ${tools}" th:if="${not #lists.isEmpty(tools)}">
+            <!--<tr th:each="tool : ${tools}" th:if="${not #lists.isEmpty(tools)}">
                 <td th:text="${tool.managementcode}"></td>
                 <td th:text="${tool.managementNo}"></td>
                 <td th:text="${tool.productName}"></td>
@@ -173,7 +173,7 @@
                         <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</button>
                     </form>
                 </td>
-            </tr>
+            </tr>-->
 
             <!-- 検索結果の表示 -->
             <!--<tr th:each="result : ${searchResults}" th:if="${not #lists.isEmpty(searchResults)}">
@@ -208,10 +208,10 @@
             <!-- 備品も検索結果もない場合の表示 -->
             <!--<tr th:if="${#lists.isEmpty(tools) and #lists.isEmpty(searchResults)}">
                 <td colspan="13">該当するデータがありません。</td>
-            </tr>-->
+            </tr>
         </tbody>
     </table>
-    <hr />
+    <hr />-->
 </body>
 </html>
 
