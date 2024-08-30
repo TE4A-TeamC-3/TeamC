@@ -9,6 +9,7 @@ import jp.te4a.spring.boot.teamc.bean.ToolBean;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
@@ -17,10 +18,10 @@ public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
 
         //一件取得　途中
         //@Query
-        List<ToolBean> findOne();
+        Optional<ToolBean> findById(int id);
 
         //全件取得
-        @Query("SELECT X FROM listDisplayCode")
+        //@Query("SELECT x FROM toolBean t")
         List<ToolBean> findAll();
 
         //条件検索

@@ -1,6 +1,7 @@
 package jp.te4a.spring.boot.teamc.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +43,7 @@ public class ToolService {
     }    
 
     //取得処理(全件)
-    public List<ToolForm> findAll() {//受け取り側がない
+    /*public List<ToolForm> findAll() {//受け取り側がない
         List<ToolBean> beanList = toolRepository.findAll();
         List<ToolForm> formList = new ArrayList<ToolForm>();
         for(ToolBean toolBean: beanList) {
@@ -51,7 +52,23 @@ public class ToolService {
             formList.add(toolForm);
         }
             return formList;
+        }*/
+        public List<ToolForm> findAll() {
+            List<ToolBean> beanList = toolRepository.findAll();
+            // 通常はfindAllがnullを返すことはないが、安全策としてチェックする
+            if (beanList == null) {
+                beanList = Collections.emptyList();
+            }
+        
+            List<ToolForm> formList = new ArrayList<>();
+            for (ToolBean toolBean : beanList) {
+                ToolForm toolForm = new ToolForm();
+                BeanUtils.copyProperties(toolBean, toolForm);
+                formList.add(toolForm);
+            }
+            return formList;
         }
+        
     
     //取得処理(1件)
     public ToolForm findOne(int id) {
