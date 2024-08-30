@@ -44,7 +44,7 @@
         </thead>
         <tbody>
             <!-- 備品一覧の表示 -->
-            <tr th:each="tool : ${tools}" th:if="${not #lists.isEmpty(tools)}">
+            <tr th:each="tool : ${tools}" >
                 <td th:text="${tool.managementcode}">0</td>
                 <td th:text="${tool.managementNo}">0</td>
                 <td th:text="${tool.productName}">test</td>
