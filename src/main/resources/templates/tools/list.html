@@ -45,24 +45,24 @@
         <tbody>
             <!-- 備品一覧の表示 -->
             <tr th:each="tool : ${tools}" th:if="${not #lists.isEmpty(tools)}">
-                <td th:text="${tool.managementcode}"></td>
-                <td th:text="${tool.managementNo}"></td>
-                <td th:text="${tool.productName}"></td>
-                <td th:text="${tool.modelNumber}"></td>
-                <td th:text="${tool.maker}"></td>
-                <td th:text="${#dates.format(tool.purchaseDate, 'yyyy-MM-dd')}"></td>
-                <td th:text="${tool.serviceLife}"></td>
-                <td th:text="${tool.depreciation}"></td>
-                <td th:text="${tool.usageProhibited} ? '不可' : '可能'"></td>
-                <td th:text="${tool.availableForRent} ? '可能' : '不可'"></td>
+                <td th:text="${tool.managementcode}">0</td>
+                <td th:text="${tool.managementNo}">0</td>
+                <td th:text="${tool.productName}">test</td>
+                <td th:text="${tool.modelNumber}">0</td>
+                <td th:text="${tool.maker}">a</td>
+                <td th:text="${#dates.format(tool.purchaseDate, 'yyyy-MM-dd')}">2000-10-10</td>
+                <td th:text="${tool.serviceLife}">a</td>
+                <td th:text="${tool.depreciation}">a</td>
+                <td th:text="${tool.usageProhibited} ? '不可' : '可能'">true</td>
+                <td th:text="${tool.availableForRent} ? '可能' : '不可'">true</td>
                 <td>
                     <span th:each="location : ${tool.installationLocation}">
                         <span th:text="${location}"></span>
-                        <span th:if="${!#strings.endsWith(iterator.index, #numbers.sequence('1', '4'))}">,</span>
+                        <span th:if="${!#strings.endsWith(iterator.index, #numbers.sequence('1', '4'))}">1</span>
                     </span>
                 </td>
-                <td th:text="${#dates.format(tool.expirationDate, 'yyyy-MM-dd')}"></td>
-                <td th:text="${tool.specification}"></td>
+                <td th:text="${#dates.format(tool.expirationDate, 'yyyy-MM-dd')}">2000-10-10</td>
+                <td th:text="${tool.specification}">a</td>
                 <td>
                     <form th:action="@{/tools/edit}" method="post">
                         <button type="submit" class="btn btn-primary" name="form" th:value="${tool.id}">編集</button>
