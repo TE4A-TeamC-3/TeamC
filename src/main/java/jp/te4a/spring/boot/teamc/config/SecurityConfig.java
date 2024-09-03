@@ -40,8 +40,8 @@ public class SecurityConfig {
                 .requestMatchers("/webjars/**", "/css/**").permitAll()
                 .requestMatchers("/loginForm").permitAll()
                 .requestMatchers("/users").permitAll()
-                .requestMatchers("/admin/**").hasRole("ADMIN") // ADMINロールのみアクセス可
-                .requestMatchers("/user/**").hasRole("USER") // USERロールのみアクセス可
+                //.requestMatchers("/admin/**").hasRole("ADMIN") // ADMINロールのみアクセス可
+                //.requestMatchers("/user/**").hasRole("USER") // USERロールのみアクセス可
                 //toolsの権限を付与して
                 .requestMatchers("/tools").permitAll()
                 .requestMatchers("/tools/search").permitAll()
