@@ -1,11 +1,16 @@
 package jp.te4a.spring.boot.teamc.bean;
 
+import java.sql.Date;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.sql.Date;
-import jakarta.persistence.*;
 
 @Entity
 @Table(name = "listDisplayCode") // 対応するDBのテーブル名を指定
@@ -53,7 +58,7 @@ public class ToolBean {
     @Column(name = "installationLocation") // カラム名を指定し、NOT NULL制約
     private String installationLocation; //設置場所 0=本社 1=仙台 2=埼玉 3=新潟　4=大阪
     
-    @Column(name = "expiration_date") // カラム名を指定し、NOT NULL制約
+    @Column(name = "expirationDate") // カラム名を指定し、NOT NULL制約
     private Date expirationDate; //使用期限
     
     @Column(name = "specification") // カラム名を指定し、NOT NULL制約

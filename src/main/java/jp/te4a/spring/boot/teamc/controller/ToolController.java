@@ -1,5 +1,8 @@
 package jp.te4a.spring.boot.teamc.controller;
 
+import java.util.List;
+
+//import org.hibernate.mapping.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,13 +19,14 @@ import jp.te4a.spring.boot.teamc.form.ToolForm;
 import jp.te4a.spring.boot.teamc.service.ToolService;
 
 
+
 //HTTPアクセス(URL)の対応を記述
 @Controller
 @RequestMapping("tools")// /toolsにアクセスされた時のコントローラ
 public class ToolController {
     @Autowired
     ToolService toolService;
-    
+
     @ModelAttribute //戻り値は、各コントローラ処理の前に自動でModelに追加される
     ToolForm setUpForm(){
         return new ToolForm();
@@ -31,8 +35,10 @@ public class ToolController {
     // /toolsにGET要求
     @GetMapping
     String list(Model model){
-        model.addAttribute("tools", toolService.findAll());
-        return "tools/list";
+        List<ToolForm> toolForms = toolService.findAll();
+        model.addAttribute("tools", toolForms);
+        return "tools";
+        //return "tools/list";
     }
 
     // /tools/createにPOST要求
@@ -80,14 +86,10 @@ public class ToolController {
     }
 
     // 検索機能の追加
-   /*  @PostMapping(path = "search")
-    String search(@RequestParam String keyword, Model model) {
-        // 検索キーワードを使ってToolServiceで検索を実行し、結果を表示する
-        model.addAttribute("tools", toolService.findByKeyword(keyword));
-        return "tools/list"; // 検索結果を表示するテンプレート（list.html）を指定
-    }*/
-    
-
+    @GetMapping("search")
+    public String search(@RequestParam("keyword") String keyword, Model model) {
+        List<ToolForm> tools = toolService.searchByProductName(keyword);
+        model.addAttribute("tools", tools);
+        return "tools/search"; // 検索結果を表示するテンプレート
+    }
 }
-
-

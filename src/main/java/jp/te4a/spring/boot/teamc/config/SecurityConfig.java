@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
 import jp.te4a.spring.boot.teamc.service.LoginUserDetailsService;
 
 
@@ -41,13 +42,13 @@ public class SecurityConfig {
                 .requestMatchers("/users").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN") // ADMINロールのみアクセス可
                 .requestMatchers("/user/**").hasRole("USER") // USERロールのみアクセス可
-                //tools/listの権限を付与して
+                //toolsの権限を付与して
                 .requestMatchers("/tools").permitAll()
                 .requestMatchers("/tools/search").permitAll()
                 .requestMatchers(HttpMethod.POST, "/tools/create").hasRole("ADMIN") // POSTメソッドの/tools/createに対してADMINロールを要求
                 .requestMatchers(HttpMethod.POST, "/tools/delete").hasRole("ADMIN") // POSTメソッドの/tools/deleteに対してADMINロールを要求
                 .requestMatchers(HttpMethod.POST, "/tools/edit").hasRole("ADMIN") // POSTメソッドの/tools/editに対してADMINロールを要求
-                .requestMatchers("/users/create").permitAll()
+                //.requestMatchers("/users/create").permitAll()
                 .anyRequest().authenticated() // 上記以外は認証が必要
             )
             .formLogin((login) -> login

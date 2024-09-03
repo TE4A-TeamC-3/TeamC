@@ -1,5 +1,9 @@
 package jp.te4a.spring.boot.teamc.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.el.stream.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,4 +31,30 @@ public class UserService {
         userRepository.save(userBean);
         return userForm;
     }
+
+    //取得処理(全件)
+    public List<UserForm> findAll() {
+        List<UserBean> beanList = userRepository.findAll();
+        List<UserForm> formList = new ArrayList<UserForm>();
+        for(UserBean userBean: beanList) {
+            UserForm userForm = new UserForm();
+            BeanUtils.copyProperties(userBean, userForm);
+            formList.add(userForm);
+        }
+            return formList;
+    }
+    
+    //取得処理(1件)
+    public UserForm findOne(Integer userNo) {
+        Optional<UserBean> opt = UserRepository.findById(userNo);
+        UserForm userForm = new UserForm();
+        opt.ifPresent(book -> {
+            BeanUtils.copyProperties(opt.get(), userForm);
+        });
+        return userForm;
+    }
+
+    public void delete(Integer userNo) {
+        userRepository.deleteById(userNo);
+    } 
 }

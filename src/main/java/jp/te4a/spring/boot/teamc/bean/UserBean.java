@@ -1,9 +1,10 @@
 package jp.te4a.spring.boot.teamc.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ import lombok.NoArgsConstructor;
 public class UserBean {
     //主キー
     @Id
+    private int userNo;
     private String username;
 
     //パスワード(Json出力しない)

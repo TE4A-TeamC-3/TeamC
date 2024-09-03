@@ -1,15 +1,15 @@
 package jp.te4a.spring.boot.teamc.repository;
 
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import jp.te4a.spring.boot.teamc.bean.ToolBean;
-
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
@@ -22,6 +22,7 @@ public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
 
         //全件取得
         //@Query("SELECT x FROM toolBean t")
+        @Override
         List<ToolBean> findAll();
 
         // 条件検索

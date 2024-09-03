@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.te4a.spring.boot.teamc.form.UserForm;
 import jp.te4a.spring.boot.teamc.service.UserService;
@@ -28,6 +29,7 @@ public class UserController {
     
     @GetMapping
     String list(Model model) {
+        model.addAttribute("users", userService.findAll());
         return "users/add"; // users/add.html
     }
 
@@ -37,6 +39,13 @@ public class UserController {
             return list(model);
         }
         userService.create(form);
+        return "redirect:/users";
+    }
+
+    // /users/deleteにPOST要求
+    @PostMapping(path="delete")
+    String edit(@RequestParam Integer userNo){
+        userService.delete(userNo);
         return "redirect:/users";
     }
 }

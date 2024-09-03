@@ -74,16 +74,20 @@ public class ToolService {
     public ToolForm findOne(int id) {
         Optional<ToolBean> opt = toolRepository.findById(id);
         ToolForm toolForm = new ToolForm();
-        opt.ifPresent(tool -> {
-            BeanUtils.copyProperties(opt.get(), toolForm);
-        });
+        opt.ifPresent(toolBean -> BeanUtils.copyProperties(toolBean, toolForm));
         return toolForm;
     }
     
-    //検索条件にあったレコードを取得
-   /* public List<ToolBean> findByKeyword(String keyword) {
-        // ToolRepositoryを使ってデータベースからキーワードに一致するツールを検索する
-        return toolRepository.findContainingIgnoreCase(keyword);
-    }*/
+    // 検索機能
+    public List<ToolForm> searchByProductName(String keyword) {
+        List<ToolBean> toolBeans = toolRepository.findByProductNameContainingIgnoreCase(keyword);
+        List<ToolForm> toolForms = new ArrayList<>();
+        for (ToolBean toolBean : toolBeans) {
+            ToolForm toolForm = new ToolForm();
+            BeanUtils.copyProperties(toolBean, toolForm);
+            toolForms.add(toolForm);
+        }
+        return toolForms;
+    }
     
 }
