@@ -1,7 +1,8 @@
 package jp.te4a.spring.boot.teamc.repository;
 
 
-import org.apache.el.stream.Optional;
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import jp.te4a.spring.boot.teamc.bean.UserBean;

@@ -37,8 +37,7 @@ public class ToolController {
     String list(Model model){
         List<ToolForm> toolForms = toolService.findAll();
         model.addAttribute("tools", toolForms);
-        return "tools";
-        //return "tools/list";
+        return "tools/list";
     }
 
     // /tools/createにPOST要求

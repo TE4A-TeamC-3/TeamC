@@ -16,7 +16,7 @@ public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
         //@Query("SELECT X FROM BookBean X ORDER BY X.title") // JPQLクエリを記述
         //List<ToolBean> findAllOrderByTitle(); // メソッド名
 
-        //一件取得　途中
+        //一件取得 途中
         //@Query
         Optional<ToolBean> findById(int id);
 
