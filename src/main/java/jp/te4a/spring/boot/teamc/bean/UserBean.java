@@ -21,7 +21,7 @@ public class UserBean {
     //主キー
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userNo;
+    private Integer userNo;
     private String username;
 
     //パスワード(Json出力しない)

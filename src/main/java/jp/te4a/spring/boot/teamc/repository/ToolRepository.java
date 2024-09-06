@@ -2,7 +2,6 @@ package jp.te4a.spring.boot.teamc.repository;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,7 +17,7 @@ public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
 
         //一件取得 途中
         //@Query
-        Optional<ToolBean> findById(int id);
+        //Optional<ToolBean> findById(int id);
 
         //全件取得
         //@Query("SELECT x FROM toolBean t")

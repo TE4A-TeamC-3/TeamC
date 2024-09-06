@@ -1,6 +1,5 @@
 package jp.te4a.spring.boot.teamc.form;
 
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -8,8 +7,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 //画面用ユーザクラス
 public class UserForm {
-    @NotNull
-    private int userNo;
+    //@NotNull
+    private Integer userNo;
     private String username;
 
     private String password;

@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.te4a.spring.boot.teamc.form.UserForm;
 import jp.te4a.spring.boot.teamc.service.UserService;
@@ -27,6 +26,23 @@ public class UserController {
         return new UserForm();
     }
     
+    @GetMapping
+    String list(Model model) {
+        return "users/add";
+    }
+    
+    @PostMapping(path = "create")
+    String create(@Validated UserForm form, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return list(model);
+        }
+        userService.create(form);
+        return "redirect:/users";
+    }
+        
+        
+
+    /*
     @GetMapping
     String list(Model model) {
         model.addAttribute("users", userService.findAll());
@@ -47,5 +63,5 @@ public class UserController {
     String edit(@RequestParam Integer userNo){
         userService.delete(userNo);
         return "redirect:/users";
-    }
+    }*/
 }

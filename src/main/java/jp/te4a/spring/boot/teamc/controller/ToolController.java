@@ -48,7 +48,7 @@ public class ToolController {
         }
         
         toolService.create(form);
-        return "redirect:/tools";
+        return "redirect:/tools/create/create";
     }
     
 
@@ -68,7 +68,7 @@ public class ToolController {
         }
         
         toolService.update(form);
-        return "redirect:/tools";
+        return "redirect:/tools/list";
     }
 
     // /tools/deleteにPOST要求

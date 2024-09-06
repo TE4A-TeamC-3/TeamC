@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import jp.te4a.spring.boot.teamc.bean.UserBean;
 import jp.te4a.spring.boot.teamc.repository.UserRepository;
+import jp.te4a.spring.boot.teamc.security.LoginUserDetails;
 
 @Service
 public class LoginUserDetailsService implements UserDetailsService {
@@ -20,7 +21,19 @@ public class LoginUserDetailsService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
 
+    // ユーザ名を指定してDBからユーザ情報取得 認証用
     @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<UserBean> opt = userRepository.findByUserName(username);
+        UserBean userBean = opt.orElseThrow(() -> new UsernameNotFoundException("The requested user is not found."));
+        return new LoginUserDetails(userBean, true, true, true, getAuthorities(userBean));  // 修正: userBeam -> user
+    }
+
+    private Collection<GrantedAuthority> getAuthorities(UserBean userBean) {
+        return AuthorityUtils.createAuthorityList("ROLE_USER");
+    }
+
+    /*@Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<UserBean> opt = userRepository.findByUsername(username);
         UserBean userBean = opt.orElseThrow(() -> new UsernameNotFoundException("The requested user is not found."));
@@ -40,5 +53,5 @@ public class LoginUserDetailsService implements UserDetailsService {
         } else {
             throw new IllegalArgumentException("Invalid role: " + role);
         }
-    }
+    }*/
 }

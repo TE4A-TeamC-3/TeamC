@@ -1,8 +1,5 @@
 package jp.te4a.spring.boot.teamc.service;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,6 +28,7 @@ public class UserService {
         return userForm;
     }
 
+    /*
     //取得処理(全件)
     public List<UserForm> findAll() {
         List<UserBean> beanList = userRepository.findAll();
@@ -59,5 +57,6 @@ public class UserService {
 
     public void delete(Integer userNo) {
         userRepository.deleteById(userNo);
-    } 
+    }
+    */
 }
