@@ -22,7 +22,7 @@ public class UserBean {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userNo;
-    private String username;
+    private String userName;
 
     //パスワード(Json出力しない)
     @JsonIgnore
