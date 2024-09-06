@@ -23,25 +23,10 @@ public class LoginUserDetailsService implements UserDetailsService {
 
     // ユーザ名を指定してDBからユーザ情報取得 認証用
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserBean> opt = userRepository.findByUserName(username);
+    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+        Optional<UserBean> opt = userRepository.findByUserName(userName);
         UserBean userBean = opt.orElseThrow(() -> new UsernameNotFoundException("The requested user is not found."));
         return new LoginUserDetails(userBean, true, true, true, getAuthorities(userBean));  // 修正: userBeam -> user
-    }
-
-    private Collection<GrantedAuthority> getAuthorities(UserBean userBean) {
-        return AuthorityUtils.createAuthorityList("ROLE_USER");
-    }
-
-    /*@Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<UserBean> opt = userRepository.findByUsername(username);
-        UserBean userBean = opt.orElseThrow(() -> new UsernameNotFoundException("The requested user is not found."));
-        return new org.springframework.security.core.userdetails.User(
-                userBean.getUsername(),
-                userBean.getPassword(),
-                getAuthorities(userBean)
-        );
     }
 
     private Collection<GrantedAuthority> getAuthorities(UserBean userBean) {
@@ -53,5 +38,16 @@ public class LoginUserDetailsService implements UserDetailsService {
         } else {
             throw new IllegalArgumentException("Invalid role: " + role);
         }
+    }    
+    /*@Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<UserBean> opt = userRepository.findByUsername(username);
+        UserBean userBean = opt.orElseThrow(() -> new UsernameNotFoundException("The requested user is not found."));
+        return new org.springframework.security.core.userdetails.User(
+                userBean.getUsername(),
+                userBean.getPassword(),
+                getAuthorities(userBean)
+        );
+    }
     }*/
 }

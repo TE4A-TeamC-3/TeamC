@@ -28,10 +28,10 @@ public class UserService {
         return userForm;
     }
 
-    
+
 
     /*
-    //取得処理(全件)
+    //全件取得
     public List<UserForm> findAll() {
         List<UserBean> beanList = userRepository.findAll();
         List<UserForm> formList = beanList.stream().map(userBean -> {
@@ -42,20 +42,15 @@ public class UserService {
         return formList;
     }
 
-    
-    //取得処理(1件)
+    //1件取得
     public UserForm findOne(Integer userNo) {
-        Optional<UserBean> opt = userRepository.findById(userNo);  // 修正箇所
-        UserForm userForm = new UserForm();
-        opt.ifPresent(user -> {
-            BeanUtils.copyProperties(user, userForm);  // 修正：opt.get() を使わずに user を直接使う
-        });
-        return opt.map(user -> {
-            BeanUtils.copyProperties(user, userForm);
+        Optional<UserBean> opt = userRepository.findById(userNo);
+        return opt.map(userBean -> {
+            UserForm userForm = new UserForm();
+            BeanUtils.copyProperties(userBean, userForm);
             return userForm;
-        }).orElse(null);  // 該当するユーザがいない場合は null を返す
+        }).orElse(null); // 該当するユーザがいない場合は null を返す
     }
-
 
     public void delete(Integer userNo) {
         userRepository.deleteById(userNo);

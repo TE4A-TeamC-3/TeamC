@@ -20,7 +20,7 @@ import lombok.NoArgsConstructor;
 public class UserBean {
     //主キー
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer userNo;
     private String userName;
 

@@ -39,8 +39,10 @@ public class UserController {
         userService.create(form);
         return "redirect:/users";
     }
-        
-        
+}
+
+/**
+ *
 
     /*
     @GetMapping
@@ -59,9 +61,10 @@ public class UserController {
     }
 
     // /users/deleteにPOST要求
+    // ユーザー削除用のメソッド
     @PostMapping(path="delete")
-    String edit(@RequestParam Integer userNo){
+    String delete(@RequestParam Integer userNo){
         userService.delete(userNo);
         return "redirect:/users";
+    }
     }*/
-}
