@@ -57,7 +57,7 @@ public class ToolController {
     String editForm(@RequestParam int id, ToolForm form){
         ToolForm toolForm = toolService.findOne(id);
         BeanUtils.copyProperties(toolForm, form);
-        return "tools/edit";
+        return "tools/edit/edit";
     }
 
     // /tools/にPOST要求
@@ -89,6 +89,6 @@ public class ToolController {
     public String search(@RequestParam("keyword") String keyword, Model model) {
         List<ToolForm> tools = toolService.searchByProductName(keyword);
         model.addAttribute("tools", tools);
-        return "tools/search"; // 検索結果を表示するテンプレート
+        return "tools/search/search"; // 検索結果を表示するテンプレート
     }
 }

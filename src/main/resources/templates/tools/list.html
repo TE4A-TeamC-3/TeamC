@@ -11,12 +11,12 @@
     <p>管理者用</p>
     <form th:action="@{/logout}" method="post"><input type="submit" class="btn btn-default btn-xs" value="ログアウト" /></form>
     <h2>
-        <form th:action="@{/tools/create}" method="post">
+        <form th:action="@{/tools/create/create}" method="post">
             <button type="submit" class="bbtn btn-info" name="form">新規登録</button>
         </form>
     </h2>
     <h2>
-        <form th:action="@{/tools/search}" method="post">
+        <form th:action="@{/tools/search/search}" method="post">
             <button type="submit" class="bbtn btn-info" name="form">備品検索</button>
             <!--th:value="${result.id}"-->
         </form>
@@ -64,7 +64,7 @@
                 <td th:text="${#dates.format(tool.expirationDate, 'yyyy-MM-dd')}">2000-10-10</td>
                 <td th:text="${tool.specification}">a</td>
                 <td>
-                    <form th:action="@{/tools/edit}" method="post">
+                    <form th:action="@{/tools/edit/edit}" method="post">
                         <button type="submit" class="btn btn-primary" name="form" th:value="${tool.id}">編集</button>
                     </form>
                     <form th:action="@{/tools/delete(param.id=${tool.id})}" method="post">

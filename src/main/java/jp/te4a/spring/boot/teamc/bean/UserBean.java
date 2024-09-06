@@ -3,6 +3,8 @@ package jp.te4a.spring.boot.teamc.bean;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -18,6 +20,7 @@ import lombok.NoArgsConstructor;
 public class UserBean {
     //主キー
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userNo;
     private String username;
 

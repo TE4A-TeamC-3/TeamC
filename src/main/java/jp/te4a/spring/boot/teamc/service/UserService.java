@@ -1,6 +1,5 @@
 package jp.te4a.spring.boot.teamc.service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,15 +18,15 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public UserForm create(UserForm userForm) {
-        //ユーザ作成時にパスワードをエンコードする{
-        userForm.setPassword(new BCryptPasswordEncoder().encode(userForm.getPassword()));
+    private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); // ここで一度だけインスタンス化
 
-        //画面用ユーザ情報(Form) → DB用ユーザ情報(Bean)
+    public UserForm create(UserForm userForm) {
+        // パスワードをエンコードする
+        userForm.setPassword(passwordEncoder.encode(userForm.getPassword()));
+
         UserBean userBean = new UserBean();
         BeanUtils.copyProperties(userForm, userBean);
 
-        //ユーザをDBに追加
         userRepository.save(userBean);
         return userForm;
     }
@@ -35,14 +34,14 @@ public class UserService {
     //取得処理(全件)
     public List<UserForm> findAll() {
         List<UserBean> beanList = userRepository.findAll();
-        List<UserForm> formList = new ArrayList<UserForm>();
-        for(UserBean userBean: beanList) {
+        List<UserForm> formList = beanList.stream().map(userBean -> {
             UserForm userForm = new UserForm();
             BeanUtils.copyProperties(userBean, userForm);
-            formList.add(userForm);
-        }
-            return formList;
-    }
+            return userForm;
+        }).toList();
+    return formList;
+}
+
     
     //取得処理(1件)
     public UserForm findOne(Integer userNo) {
@@ -51,8 +50,11 @@ public class UserService {
         opt.ifPresent(user -> {
             BeanUtils.copyProperties(user, userForm);  // 修正：opt.get() を使わずに user を直接使う
         });
-    return userForm;
-}
+        return opt.map(user -> {
+            BeanUtils.copyProperties(user, userForm);
+            return userForm;
+        }).orElse(null);  // 該当するユーザがいない場合は null を返す
+    }
 
 
     public void delete(Integer userNo) {
