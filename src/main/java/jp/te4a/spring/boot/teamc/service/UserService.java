@@ -2,8 +2,8 @@ package jp.te4a.spring.boot.teamc.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import org.apache.el.stream.Optional;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -46,13 +46,14 @@ public class UserService {
     
     //取得処理(1件)
     public UserForm findOne(Integer userNo) {
-        Optional<UserBean> opt = UserRepository.findById(userNo);
+        Optional<UserBean> opt = userRepository.findById(userNo);  // 修正箇所
         UserForm userForm = new UserForm();
-        opt.ifPresent(book -> {
-            BeanUtils.copyProperties(opt.get(), userForm);
+        opt.ifPresent(user -> {
+            BeanUtils.copyProperties(user, userForm);  // 修正：opt.get() を使わずに user を直接使う
         });
-        return userForm;
-    }
+    return userForm;
+}
+
 
     public void delete(Integer userNo) {
         userRepository.deleteById(userNo);
