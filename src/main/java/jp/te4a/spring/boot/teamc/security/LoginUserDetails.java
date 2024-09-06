@@ -1,6 +1,7 @@
 package jp.te4a.spring.boot.teamc.security;
 
 import java.util.Collection;
+
 //import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -18,7 +19,7 @@ public class LoginUserDetails extends User{
     private final UserBean user;
 
     // 認証ユーザ作成(コンストラクタ)
-    public LoginUserDetails(UserBean userBean, 
+    public LoginUserDetails(UserBean userBean,
         boolean accontNonExpried, // アカウント無効
         boolean credenttialsNonExpired, // 認証無効
         boolean accountNonLocked, // ロック状態を設定可能(今回は該当なしtrue)

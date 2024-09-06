@@ -39,8 +39,8 @@ public class UserService {
             BeanUtils.copyProperties(userBean, userForm);
             return userForm;
         }).toList();
-    return formList;
-}
+        return formList;
+    }
 
     
     //取得処理(1件)
