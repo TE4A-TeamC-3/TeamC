@@ -23,8 +23,8 @@ public class LoginUserDetailsService implements UserDetailsService {
 
     // ユーザ名を指定してDBからユーザ情報取得 認証用
     @Override
-    public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        Optional<UserBean> opt = userRepository.findByUserName(userName);
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<UserBean> opt = userRepository.findByUserName(username);
         UserBean userBean = opt.orElseThrow(() -> new UsernameNotFoundException("The requested user is not found."));
         return new LoginUserDetails(userBean, true, true, true, getAuthorities(userBean));  // 修正: userBeam -> user
     }

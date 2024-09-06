@@ -24,7 +24,7 @@ public class LoginUserDetails extends User{
         boolean credenttialsNonExpired, // 認証無効
         boolean accountNonLocked, // ロック状態を設定可能(今回は該当なしtrue)
         Collection<GrantedAuthority> authorities){ // 認証情報は呼び出し時にリストで設定
-        super(userBean.getUserName(), userBean.getPassword(),true,true,true,true,authorities);
+        super(userBean.getUsername(), userBean.getPassword(),true,true,true,true,authorities);
         this.user = userBean;
     }
 }
