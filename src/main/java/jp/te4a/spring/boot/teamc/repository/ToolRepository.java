@@ -22,8 +22,8 @@ public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
 
         //全件取得
         //@Query("SELECT x FROM toolBean t")
-        @Override
-        List<ToolBean> findAll();
+        //@Override
+        //List<ToolBean> findAll();
 
         // 条件検索
         @Query("SELECT t FROM ToolBean t WHERE " +
