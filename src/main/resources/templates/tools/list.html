@@ -50,7 +50,7 @@
                 <td th:text="${tool.productName}">test</td>
                 <td th:text="${tool.modelNumber}">0</td>
                 <td th:text="${tool.maker}">a</td>
-                <td th:text="${#dates.format(tool.purchaseDate, 'yyyy-MM-dd')}">2000-10-10</td>
+                <td th:text="${tool.purchaseDate}">2000-10-10</td>
                 <td th:text="${tool.serviceLife}">a</td>
                 <td th:text="${tool.depreciation}">a</td>
                 <td th:text="${tool.usageProhibited} ? '不可' : '可能'">true</td>
