@@ -61,7 +61,7 @@
                         <span th:if="${!#strings.endsWith(iterator.index, #numbers.sequence('1', '4'))}">1</span>
                     </span>
                 </td>
-                <td th:text="${#dates.format(tool.expirationDate, 'yyyy-MM-dd')}">2000-10-10</td>
+                <td th:text="${tool.expirationDate}">2000-10-10</td>
                 <td th:text="${tool.specification}">a</td>
                 <td>
                     <form th:action="@{/tools/edit/edit}" method="post">
