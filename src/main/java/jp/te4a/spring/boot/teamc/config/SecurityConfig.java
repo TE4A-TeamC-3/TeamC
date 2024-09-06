@@ -3,7 +3,6 @@ package jp.te4a.spring.boot.teamc.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -45,9 +44,12 @@ public class SecurityConfig {
                 //toolsの権限を付与して
                 .requestMatchers("/tools").permitAll()
                 .requestMatchers("/tools/search").permitAll()
-                .requestMatchers(HttpMethod.POST, "/tools/create").hasRole("ADMIN") // POSTメソッドの/tools/createに対してADMINロールを要求
-                .requestMatchers(HttpMethod.POST, "/tools/delete").hasRole("ADMIN") // POSTメソッドの/tools/deleteに対してADMINロールを要求
-                .requestMatchers(HttpMethod.POST, "/tools/edit").hasRole("ADMIN") // POSTメソッドの/tools/editに対してADMINロールを要求
+                .requestMatchers("/tools/create").permitAll()
+                .requestMatchers("/tools/delete").permitAll()
+                .requestMatchers("/tools/edit").permitAll()
+                //.requestMatchers(HttpMethod.POST, "/tools/create").hasRole("ADMIN") // POSTメソッドの/tools/createに対してADMINロールを要求
+                //.requestMatchers(HttpMethod.POST, "/tools/delete").hasRole("ADMIN") // POSTメソッドの/tools/deleteに対してADMINロールを要求
+                //.requestMatchers(HttpMethod.POST, "/tools/edit").hasRole("ADMIN") // POSTメソッドの/tools/editに対してADMINロールを要求
                 //.requestMatchers("/users/create").permitAll()
                 .anyRequest().authenticated() // 上記以外は認証が必要
             )
