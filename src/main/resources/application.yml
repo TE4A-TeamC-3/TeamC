@@ -1,5 +1,5 @@
-spring.main.banner-mode=off:
-logging.level.org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener=error:
+# spring.main.banner-mode=off:
+# logging.level.org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener=error:
 
 spring:
   datasource:
@@ -8,10 +8,10 @@ spring:
     password: te4ateamc
     driver-class-name: com.mysql.cj.jdbc.Driver
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.MySQL8Dialect
-        '[hibernate.id.new_generator_mappings]': false
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.MySQL8Dialect
+#        '[hibernate.id.new_generator_mappings]': false

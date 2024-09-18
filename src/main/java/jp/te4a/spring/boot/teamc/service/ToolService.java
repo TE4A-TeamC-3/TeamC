@@ -61,6 +61,14 @@ public class ToolService {
             //if (beanList == null) {
                 //beanList = Collections.emptyList();
             //}
+
+            ToolBean bean = new ToolBean();
+            bean.setManagementcode("MC");
+            bean.setManagementNo(6);
+            bean.setProductName("説明テスト登録A01");
+
+            toolRepository.save(bean);
+
             System.out.println("message_ToolService_findAll_64:" + beanList.size());
 
             List<ToolForm> formList = new ArrayList<>();
