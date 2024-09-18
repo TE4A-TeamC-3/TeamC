@@ -1,7 +1,6 @@
 package jp.te4a.spring.boot.teamc.service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,22 +24,25 @@ public class ToolService {
     //追加処理 データはtoolFormで扱う　Repositoryを使うときはtoolBeanに入れる
     public ToolForm create(ToolForm toolForm) {
         ToolBean toolBean = new ToolBean();
-        BeanUtils.copyProperties(toolForm, toolBean);
+        BeanUtils.copyProperties(toolForm, toolBean);//toolBeanにtoolFormをコピーする
         toolRepository.save(toolBean);
+        System.out.println("ToolService_create");
         return toolForm;
     }
-    
+
     //更新処理
     public ToolForm update(ToolForm toolForm){
         ToolBean toolBean = new ToolBean();
         BeanUtils.copyProperties(toolForm, toolBean);
         toolRepository.save(toolBean);
+        System.out.println("ToolService_update");
         return toolForm;
     }
 
     public void delete(int id) {
         toolRepository.deleteById(id);
-    }    
+        System.out.println("ToolService_delete");
+    }
 
     //取得処理(全件)
     /*public List<ToolForm> findAll() {//受け取り側がない
@@ -56,16 +58,18 @@ public class ToolService {
         public List<ToolForm> findAll() {
             List<ToolBean> beanList = toolRepository.findAll();
             // 通常はfindAllがnullを返すことはないが、安全策としてチェックする
-            if (beanList == null) {
-                beanList = Collections.emptyList();
-            }
-            
+            //if (beanList == null) {
+                //beanList = Collections.emptyList();
+            //}
+            System.out.println("message_ToolService_findAll_64");
+
             List<ToolForm> formList = new ArrayList<>();
             for (ToolBean toolBean : beanList) {
                 ToolForm toolForm = new ToolForm();
                 BeanUtils.copyProperties(toolBean, toolForm);
                 formList.add(toolForm);
             }
+            System.out.println("message_ToolService_findAll");
             return formList;
         }
         
@@ -75,6 +79,7 @@ public class ToolService {
         Optional<ToolBean> opt = toolRepository.findById(id);
         ToolForm toolForm = new ToolForm();
         opt.ifPresent(toolBean -> BeanUtils.copyProperties(toolBean, toolForm));
+        System.out.println("message_ToolService_findOne");
         return toolForm;
     }
     
@@ -87,6 +92,7 @@ public class ToolService {
             BeanUtils.copyProperties(toolBean, toolForm);
             toolForms.add(toolForm);
         }
+        System.out.println("message_ToolService_searchByProductName");
         return toolForms;
     }
     

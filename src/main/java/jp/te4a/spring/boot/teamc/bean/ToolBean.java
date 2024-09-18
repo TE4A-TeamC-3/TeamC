@@ -13,7 +13,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "listDisplayCode") // 対応するDBのテーブル名を指定
+@Table(name="listDisplayCode") // 対応するDBのテーブル名を指定
 @Data
 @AllArgsConstructor
 @NoArgsConstructor // 引数なしコンストラクタを自動生成

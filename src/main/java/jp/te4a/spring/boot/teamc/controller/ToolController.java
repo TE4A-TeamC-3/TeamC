@@ -7,8 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
+//import org.springframework.validation.BindingResult;
+//import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,8 +27,9 @@ public class ToolController {
     @Autowired
     ToolService toolService;
 
-    @ModelAttribute //戻り値は、各コントローラ処理の前に自動でModelに追加される
+    @ModelAttribute //toolsFormを返す
     ToolForm setUpForm(){
+        System.out.println("message_ToolController_setUpForm");
         return new ToolForm();
     }
     
@@ -38,50 +39,64 @@ public class ToolController {
         //List<ToolForm> toolForms = toolService.findAll();
         ToolForm toolForms = toolService.findOne(1);
         model.addAttribute("tools", toolForms);
+        System.out.println("message_ToolController_toolsGet要求");
         return "tools/list";
     }
 
     // /tools/createにPOST要求
     @PostMapping(path="create")
-    String create(@Validated ToolForm form, BindingResult result , Model model){
-        if(result.hasErrors()){
-            return list(model);
-        }
-        
+    String create(ToolForm form, Model model) {
         toolService.create(form);
-        return "redirect:/tools/create/create";
+        System.out.println("message_ToolController_create");
+        return "redirect:/tools";
     }
-    
+    //String create(@Validated ToolForm form, BindingResult result , Model model){
+        //if(result.hasErrors()){
+        //    return list(model);
+        //}
+        
+        //toolService.create(form);
+        //return "redirect:/tools";
+    //}
 
-    // /tools/ceditにパラメータformを含むPOST要求
+    // /tools/editにパラメータformを含むPOST要求
     @PostMapping(path="edit", params="form")
     String editForm(@RequestParam int id, ToolForm form){
         ToolForm toolForm = toolService.findOne(id);
         BeanUtils.copyProperties(toolForm, form);
-        return "tools/edit/edit";
+        System.out.println("message_ToolController_編集用form取得");
+        return "tools/edit";
     }
 
     // /tools/にPOST要求
     @PostMapping(path="edit")
-    String edit(@RequestParam int id, @Validated ToolForm form, BindingResult result , Model model){
-        if(result.hasErrors()){
-            return editForm(id, form);
-        }
-        
+    String edit(@RequestParam int id, ToolForm form, Model model) {
         toolService.update(form);
-        return "redirect:/tools/list";
+        System.out.println("message_ToolController_編集終了後toolsに返す");
+        return "redirect:/tools";
     }
+    ///String edit(@RequestParam int id, @Validated ToolForm form, BindingResult result , Model model){
+    //String edit(Model model){
+        //if(result.hasErrors()){
+        //    return editForm(id, form);
+        //}
+        
+        //toolService.update(form);
+        //return "redirect:/tools";
+    //}
 
     // /tools/deleteにPOST要求
     @PostMapping(path="delete")
     String edit(@RequestParam int id){
         toolService.delete(id);
+        System.out.println("message_ToolController_delete");
         return "redirect:/tools";
     }
 
     // /tools/editにパラメータgoToTopを含むPOST要求
     @PostMapping(path="edit",params="goToTop")
     String goToTop(){
+        System.out.println("message_ToolController_list.htmlに戻る");
         return "redirect:/tools";
     }
 
@@ -90,6 +105,7 @@ public class ToolController {
     public String search(@RequestParam("keyword") String keyword, Model model) {
         List<ToolForm> tools = toolService.searchByProductName(keyword);
         model.addAttribute("tools", tools);
-        return "tools/search/search"; // 検索結果を表示するテンプレート
+        System.out.println("message_ToolController_keyword");
+        return "tools/search"; // 検索結果を表示するテンプレート
     }
 }
