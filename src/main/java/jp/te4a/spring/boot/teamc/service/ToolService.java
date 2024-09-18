@@ -61,7 +61,7 @@ public class ToolService {
             //if (beanList == null) {
                 //beanList = Collections.emptyList();
             //}
-            System.out.println("message_ToolService_findAll_64");
+            System.out.println("message_ToolService_findAll_64:" + beanList.size());
 
             List<ToolForm> formList = new ArrayList<>();
             for (ToolBean toolBean : beanList) {
