@@ -69,7 +69,7 @@ public class ToolService {
                 BeanUtils.copyProperties(toolBean, toolForm);
                 formList.add(toolForm);
             }
-            System.out.println("message_ToolService_findAll");
+            System.out.println("message_ToolService_findAll:" + formList.size());
             return formList;
         }
         
