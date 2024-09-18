@@ -36,8 +36,8 @@ public class ToolController {
     // /toolsにGET要求
     @GetMapping
     String list(Model model){
-        //List<ToolForm> toolForms = toolService.findAll();
-        ToolForm toolForms = toolService.findOne(1);
+        List<ToolForm> toolForms = toolService.findAll();
+        //ToolForm toolForms = toolService.findOne(1);
         model.addAttribute("tools", toolForms);
         System.out.println("message_ToolController_toolsGet要求");
         return "tools/list";
