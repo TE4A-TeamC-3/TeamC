@@ -39,6 +39,7 @@ public class SecurityConfig {
                 .requestMatchers("/webjars/**", "/css/**").permitAll()
                 .requestMatchers("/loginForm").permitAll()
                 .requestMatchers("/users").permitAll()
+                //.requestMatchers("/users/create").permitAll()
                 //.requestMatchers("/admin/**").hasRole("ADMIN") // ADMINロールのみアクセス可
                 //.requestMatchers("/user/**").hasRole("USER") // USERロールのみアクセス可
                 //toolsの権限を付与して
@@ -50,7 +51,6 @@ public class SecurityConfig {
                 //.requestMatchers(HttpMethod.POST, "/tools/create").hasRole("ADMIN") // POSTメソッドの/tools/createに対してADMINロールを要求
                 //.requestMatchers(HttpMethod.POST, "/tools/delete").hasRole("ADMIN") // POSTメソッドの/tools/deleteに対してADMINロールを要求
                 //.requestMatchers(HttpMethod.POST, "/tools/edit").hasRole("ADMIN") // POSTメソッドの/tools/editに対してADMINロールを要求
-                //.requestMatchers("/users/create").permitAll()
                 .anyRequest().authenticated() // 上記以外は認証が必要
             )
             .formLogin((login) -> login
