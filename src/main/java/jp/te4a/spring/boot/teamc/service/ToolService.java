@@ -66,6 +66,9 @@ public class ToolService {
             bean.setManagementcode("MC");
             bean.setManagementNo(6);
             bean.setProductName("説明テスト登録A01");
+            java.util.Date jDate = new java.util.Date();
+            java.sql.Date date = (java.sql.Date) jDate;
+            bean.setExpirationDate(date);
 
             toolRepository.save(bean);
 
