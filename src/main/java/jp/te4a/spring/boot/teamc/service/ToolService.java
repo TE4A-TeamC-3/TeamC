@@ -62,16 +62,16 @@ public class ToolService {
                 //beanList = Collections.emptyList();
             //}
 
-            ToolBean bean = new ToolBean();
-            bean.setManagementcode("MC");
-            bean.setManagementNo(6);
-            bean.setProductName("説明テスト登録A01");
+            // ToolBean bean = new ToolBean();
+            // bean.setManagementcode("MC");
+            // bean.setManagementNo(6);
+            // bean.setProductName("説明テスト登録A01");
 
-            String strDate = "2018-6-29";
-            java.sql.Date date = java.sql.Date.valueOf(strDate);
-            bean.setExpirationDate(date);
+            // String strDate = "2018-6-29";
+            // java.sql.Date date = java.sql.Date.valueOf(strDate);
+            // bean.setExpirationDate(date);
 
-            toolRepository.save(bean);
+            // toolRepository.save(bean);
 
             System.out.println("message_ToolService_findAll_64:" + beanList.size());
 
