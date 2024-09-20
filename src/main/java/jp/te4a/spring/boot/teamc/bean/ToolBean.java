@@ -59,7 +59,7 @@ public class ToolBean {
     private String installationLocation; //設置場所 0=本社 1=仙台 2=埼玉 3=新潟　4=大阪
     
     @Column(name = "expirationDate") // カラム名を指定し、NOT NULL制約
-    private Date expirationDate; //使用期限
+    private Date expirationDate; //貸出期限
     
     @Column(name = "specification") // カラム名を指定し、NOT NULL制約
     private String specification; //仕様

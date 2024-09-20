@@ -3,7 +3,7 @@ package jp.te4a.spring.boot.teamc.form;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Date
+@Data
 @NoArgsConstructor
 //画面用ユーザクラス
 public class UserForm {
@@ -14,4 +14,5 @@ public class UserForm {
     private String password;
 
     private String role; //ADMIN, USER
+
 }

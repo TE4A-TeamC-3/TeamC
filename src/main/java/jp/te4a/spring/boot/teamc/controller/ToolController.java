@@ -42,7 +42,14 @@ public class ToolController {
         System.out.println("message_ToolController_toolsGet要求");
         return "tools/list";
     }
-
+    // /tools/createにパラメータformを含むPOST要求
+    @PostMapping(path="create", params="form")
+    String createForm(@RequestParam int id, ToolForm form){
+        ToolForm toolForm = toolService.findOne(id);
+        BeanUtils.copyProperties(toolForm, form);
+        System.out.println("message_ToolController_作成用form取得");
+        return "tools/create";
+    }
     // /tools/createにPOST要求
     @PostMapping(path="create")
     String create(ToolForm form, Model model) {
@@ -50,14 +57,6 @@ public class ToolController {
         System.out.println("message_ToolController_create");
         return "redirect:/tools";
     }
-    //String create(@Validated ToolForm form, BindingResult result , Model model){
-        //if(result.hasErrors()){
-        //    return list(model);
-        //}
-        
-        //toolService.create(form);
-        //return "redirect:/tools";
-    //}
 
     // /tools/editにパラメータformを含むPOST要求
     @PostMapping(path="edit", params="form")
@@ -67,7 +66,6 @@ public class ToolController {
         System.out.println("message_ToolController_編集用form取得");
         return "tools/edit";
     }
-
     // /tools/にPOST要求
     @PostMapping(path="edit")
     String edit(@RequestParam int id, ToolForm form, Model model) {
@@ -75,15 +73,6 @@ public class ToolController {
         System.out.println("message_ToolController_編集終了後toolsに返す");
         return "redirect:/tools";
     }
-    ///String edit(@RequestParam int id, @Validated ToolForm form, BindingResult result , Model model){
-    //String edit(Model model){
-        //if(result.hasErrors()){
-        //    return editForm(id, form);
-        //}
-        
-        //toolService.update(form);
-        //return "redirect:/tools";
-    //}
 
     // /tools/deleteにPOST要求
     @PostMapping(path="delete")
@@ -93,13 +82,14 @@ public class ToolController {
         return "redirect:/tools";
     }
 
-    // /tools/editにパラメータgoToTopを含むPOST要求
-    @PostMapping(path="edit",params="goToTop")
-    String goToTop(){
-        System.out.println("message_ToolController_list.htmlに戻る");
-        return "redirect:/tools";
-    }
-
+    // /tools/searchにパラメータformを含むPOST要求
+    @PostMapping(path="search", params="form")
+    String searchForm(@RequestParam int id, ToolForm form){
+    ToolForm toolForm = toolService.findOne(id);
+    BeanUtils.copyProperties(toolForm, form);
+    System.out.println("message_ToolController_検索用form取得");
+    return "tools/search";
+}
     // 検索機能の追加
     @GetMapping("search")
     public String search(@RequestParam("keyword") String keyword, Model model) {
@@ -107,5 +97,24 @@ public class ToolController {
         model.addAttribute("tools", tools);
         System.out.println("message_ToolController_keyword");
         return "tools/search"; // 検索結果を表示するテンプレート
+    }
+
+    // /tools/createにパラメータgoToTopを含むPOST要求
+    @PostMapping(path="create",params="goToTop")
+    String goToTop1(){
+        System.out.println("作成画面からmessage_ToolController_list.htmlに戻る");
+        return "redirect:/tools";
+    }
+    // /tools/editにパラメータgoToTopを含むPOST要求
+    @PostMapping(path="edit",params="goToTop")
+    String goToTop2(){
+        System.out.println("編集画面からmessage_ToolController_list.htmlに戻る");
+        return "redirect:/tools";
+    }
+    // /tools/searchにパラメータgoToTopを含むPOST要求
+    @PostMapping(path="search",params="goToTop")
+    String goToTop3(){
+        System.out.println("編集画面からmessage_ToolController_list.htmlに戻る");
+        return "redirect:/tools";
     }
 }

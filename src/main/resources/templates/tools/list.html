@@ -13,6 +13,11 @@
         <input type="submit" class="btn btn-default btn-xs" value="ログアウト" />
     </form>
     <h2>
+        <form th:action="@{/users/add}" method="post">
+            <button type="submit" class="bbtn btn-info" name="form">ユーザー管理</button>
+        </form>
+    </h2>
+    <h2>
         <form th:action="@{/tools/create}" method="post">
             <button type="submit" class="bbtn btn-info" name="form">新規登録</button>
         </form>
@@ -39,7 +44,7 @@
                 <th>使用不可</th>
                 <th>貸出可能</th>
                 <th>設置場所</th>
-                <th>使用期限</th>
+                <th>貸出期限</th>
                 <th>仕様</th>
                 <th>操作</th>
             </tr>
