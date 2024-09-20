@@ -1,6 +1,7 @@
 package jp.te4a.spring.boot.teamc.form;
 
 import lombok.Data;
+import java.util.Date;
 import lombok.NoArgsConstructor;
 
 @Date
