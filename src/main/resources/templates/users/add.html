@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>ユーザー登録画面</title>
+        <link rel="stylesheet" type="text/css" href="../../static/css/style.css" th:href="@{/css/stylecss}"/>
+    </head>
+    <body>
+        <form th:action="@{/users/create}" th:object="${userForm}" method="post">
+            <table>
+                <tr><td>ユーザーID：</td><td>
+                    <input type="text" name="username" th:field="*{username}" th:errorclass="error-input"/>
+                    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-messages">error!</span>
+                </td></tr>
+                <tr><td>パスワード：</td><td>
+                    <input type="text" name="password" th:field="*{password}" th:errorclass="error-input"/>
+                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-messages">error!</span>
+                </td></tr>
+                <tr>
+                    <td>権限:</td>
+                    <td>
+                    <select name="role" th:field="*{role}" th:errorclass="error-input">
+                        <option value="">選択してください</option> <!-- 初期の選択肢 -->
+                        <option value="ADMIN">管理者</option> <!-- 権限の候補1 -->
+                        <option value="USER">一般</option> <!-- 権限の候補2 -->
+                    </select>
+                    <span th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="error-messages">error!</span>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="作成"/>
+            <a href="loginForm.html">戻る</a>
+        </form>
+
+        <!--
+            <h2>ユーザー一覧</h2>
+        <table class="table table-striped table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>ユーザー名</th>
+                    <th>パスワード</th>
+                    <th>権限</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="user : ${usercode}">
+                    <td th:text="${user.userNo}">0</td>
+                    <td th:text="${user.username}">testadmin</td>
+                    <td th:text="${user.password}">testadmin</td>
+                    <td th:text="${user.role}">admin</td>
+                    <td>
+                        <form th:action="@{/user/delete}" method="post" style="display:inline;">
+                            <input type="submit" name="form" value="削除" class="btn btn-danger btn-xs" onclick="return confirm('本当に削除しますか？');"/>
+                            <input type="hidden" name="userNo" th:value="${user.userNo}"/>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        -->
+        
+
+    </body>
+</html>
+
+<!--<!DOCTYPE html>
+
+<html xmlns="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>ユーザー登録画面</title>
+        <link rel="stylesheet" type="text/css" href="../../static/css/style.css" th:href="@{/css/stylecss}"/>
+    </head>
+    <body>
+        <form th:action="@{/users/create}" th:object="${userForm}" method="post">
+            <table>
+                <tr><td>ユーザーID：</td><td>
+                    <input type="text" name="username" th:field="*{username}" th:errorclass="error-input"/>
+                    <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}" class="error-messages">error!</span>
+                </td></tr>
+                <tr><td>パスワード：</td><td>
+                    <input type="text" name="password" th:field="*{password}" th:errorclass="error-input"/>
+                    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error-messages">error!</span>
+                </td></tr>
+            </table>
+            <input type="submit" value="作成"/>
+            <a href="loginForm.html">戻る</a>
+        </form>
+    </body>
+</html>-->
