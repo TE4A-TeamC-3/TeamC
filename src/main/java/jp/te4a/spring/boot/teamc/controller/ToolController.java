@@ -91,13 +91,13 @@ public class ToolController {
     return "tools/search";
 }
     // 検索機能の追加
-    @GetMapping("search")
+   /*  @GetMapping("search")
     public String search(@RequestParam("keyword") String keyword, Model model) {
         List<ToolForm> tools = toolService.searchByProductName(keyword);
         model.addAttribute("tools", tools);
         System.out.println("message_ToolController_keyword");
         return "tools/search"; // 検索結果を表示するテンプレート
-    }
+    }*/
 
     // /tools/createにパラメータgoToTopを含むPOST要求
     @PostMapping(path="create",params="goToTop")
