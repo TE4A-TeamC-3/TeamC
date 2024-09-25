@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name="usercode")
-//ユーザ名、パスワードを持つDB用ユーザクラス(DAO)
+//ユーザ名、パスワードを持つDB用ユーザクラス
 public class UserBean {
     //主キー
     @Id

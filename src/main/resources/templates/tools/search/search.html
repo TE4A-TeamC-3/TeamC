@@ -67,10 +67,10 @@
                     </select>
                 </td>
             </tr>
-            <tr>
+            <!--<tr>
                 <td>減価償却:</td>
                 <td><input type="text" name="depreciation" /></td>
-            </tr>
+            </tr>-->
             <tr>
                 <td>使用不可:</td>
                 <td>
@@ -88,12 +88,14 @@
             <tr>
                 <td>設置場所:</td>
                 <td>
-                    <label><input type="checkbox" name="installationLocation" value="0" /> 本社</label>
-                    <label><input type="checkbox" name="installationLocation" value="1" /> 仙台</label>
-                    <label><input type="checkbox" name="installationLocation" value="2" /> 埼玉</label>
-                    <label><input type="checkbox" name="installationLocation" value="3" /> 新潟</label>
-                    <label><input type="checkbox" name="installationLocation" value="4" /> 大阪</label>
+                    <label><input type="radio" th:field="*{installationLocation}" value="本社" /> 本社</label>
+                    <label><input type="radio" th:field="*{installationLocation}" value="仙台" /> 仙台</label>
+                    <label><input type="radio" th:field="*{installationLocation}" value="埼玉" /> 埼玉</label>
+                    <label><input type="radio" th:field="*{installationLocation}" value="新潟" /> 新潟</label>
+                    <label><input type="radio" th:field="*{installationLocation}" value="大阪" /> 大阪</label>
+                    <span th:if="${#fields.hasErrors('installationLocation')}" th:errors="*{installationLocation}" class="error-messages">error!</span>
                 </td>
+                
             </tr>
             <tr>
                 <td>使用期限:</td>
@@ -122,9 +124,9 @@
                 <th>耐用年数</th>
                 <th>減価償却</th>
                 <th>使用不可</th>
-                <th>貸出可能</th>
+                <th>貸出状況</th>
                 <th>設置場所</th>
-                <th>使用期限</th>
+                <th>貸出期限</th>
                 <th>仕様</th>
                 <th>操作</th>
             </tr>
@@ -140,7 +142,7 @@
                 <td th:text="${#dates.format(result.purchaseDate, 'yyyy-MM-dd')}"></td>
                 <td th:text="${result.serviceLife}"></td>
                 <td th:text="${result.depreciation}"></td>
-                <td th:text="${result.usageProhibited} ? '不可' : '可能'"></td>
+                <td th:text="${result.usageProhibited} ? '可能' : '不可'"></td>
                 <td th:text="${result.availableForRent} ? '可能' : '不可'"></td>
                 <td>
                     <span th:each="location : ${result.installationLocation}">
