@@ -44,16 +44,16 @@ public class ToolBean {
     private Date purchaseDate; //購入日 yyyy-mm-dd
     
     @Column(name = "serviceLife") // NOT NULL制約
-    private int serviceLife; //耐用年数
+    private String serviceLife; //耐用年数
     
     //@Column(name = "depreciation")
     //private String depreciation; //減価償却
     
     @Column(name = "usageProhibited") //NOT NULL制約
-    private int usageProhibited; //使用不可
+    private boolean usageProhibited; //使用不可
     
     @Column(name = "availableForRent") //NOT NULL制約
-    private int availableForRent; //貸出状況
+    private boolean availableForRent; //貸出状況
     
     @Column(name = "installationLocation") //NOT NULL制約
     private String installationLocation; //設置場所 本社 仙台 埼玉 新潟 大阪

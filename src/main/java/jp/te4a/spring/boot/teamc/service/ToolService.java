@@ -96,7 +96,7 @@ public class ToolService {
     }
     
     // 検索機能
-    public List<ToolForm> searchByProductName(String keyword) {
+   /*  public List<ToolForm> searchByProductName(String keyword) {
         List<ToolBean> toolBeans = toolRepository.findByProductNameContainingIgnoreCase(keyword);
         List<ToolForm> toolForms = new ArrayList<>();
         for (ToolBean toolBean : toolBeans) {
@@ -106,6 +106,6 @@ public class ToolService {
         }
         System.out.println("message_ToolService_searchByProductName");
         return toolForms;
-    }
+    }*/
     
 }

@@ -16,11 +16,11 @@ public class ToolForm {
     private String modelNumber; //型番
     private String maker; //メーカー
     private Date purchaseDate; //購入日 yyyy-mm-dd
-    private int serviceLife; //耐用年数
+    private String serviceLife; //耐用年数
     //private int depreciation; //減価償却
-    private int usageProhibited; //使用不可
-    private int availableForRent; //貸出状況
-    private String installationLocation; //設置場所 0=本社 1=仙台 2=埼玉 3=新潟　4=大阪
+    private boolean usageProhibited; //使用不可
+    private boolean availableForRent; //貸出状況
+    private String installationLocation; //設置場所 本社 仙台 埼玉 新潟 大阪
     private Date exprationDate; //貸出期限
     private String specification; //仕様
 }
