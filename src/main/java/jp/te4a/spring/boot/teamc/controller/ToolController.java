@@ -48,7 +48,7 @@ public class ToolController {
         ToolForm toolForm = toolService.findOne(id);
         BeanUtils.copyProperties(toolForm, form);
         System.out.println("message_ToolController_作成用form取得");
-        return "tools/create";
+        return "tools/create/create";
     }
     // /tools/createにPOST要求
     @PostMapping(path="create")
@@ -64,7 +64,7 @@ public class ToolController {
         ToolForm toolForm = toolService.findOne(id);
         BeanUtils.copyProperties(toolForm, form);
         System.out.println("message_ToolController_編集用form取得");
-        return "tools/edit";
+        return "tools/edit/edit";
     }
     // /tools/にPOST要求
     @PostMapping(path="edit")
@@ -88,7 +88,7 @@ public class ToolController {
     ToolForm toolForm = toolService.findOne(id);
     BeanUtils.copyProperties(toolForm, form);
     System.out.println("message_ToolController_検索用form取得");
-    return "tools/search";
+    return "tools/search/search";
 }
     // 検索機能の追加
    /*  @GetMapping("search")

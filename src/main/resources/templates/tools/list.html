@@ -58,26 +58,24 @@
                 <td th:text="${tool.modelNumber}">ModelA</td>
                 <td th:text="${tool.maker}">MakerA</td>
                 <td th:text="${tool.purchaseDate}">2000-10-10</td>
-                <td>
+                <!--<td>
                     <span th:if="${tool.serviceLife == '1'}">4</span>
                     <span th:if="${tool.serviceLife == '2'}">5</span>
                     <span th:if="${tool.serviceLife == '3'}">3</span>
                     <span th:if="${tool.serviceLife == '4'}">5</span>
                     <span th:if="${tool.serviceLife == '5'}">3</span>
                     <span th:if="${tool.serviceLife == '6'}">5</span>
-                </td>
-                <td th:text="${tool.usageProhibited} ? '可能' : '不可'">1</td>
-                <td th:text="${tool.availableForRent} ? '可能' : '不可'">1</td>
-                <td>
-                    <span th:each="location : ${tool.installationLocation}">
-                        <span th:text="${location}">本社</span>
-                    </span>
-                </td>
-                <td th:text="${tool.expirationDate}">2000-10-10</td>
+                </td>-->
+                <td th:text="${tool.serviceLife}"></td>
+                <td th:text="${tool.usageProhibited ? '不可' : '可能'}"></td>
+                <td th:text="${tool.availableForRent ? '可能' : '不可'}"></td>
+
+                <td th:text="${tool.installationLocation}">本社</td>
+                <td th:text="${#dates.format(tool.expirationDate, 'yyyy-MM-dd')}">2000-10-10</td>
                 <td th:text="${tool.specification}">なし</td>
                 <td>
                     <form th:action="@{/tools/edit}" method="post">
-                        <button type="submit" class="btn btn-primary" name="form" th:value="${tool.id}">編集</button>
+                        <button type="submit" class="btn btn-primary" name="id" th:value="${tool.id}">編集</button>
                     </form>
                     <form th:action="@{/tools/delete(param.id=${tool.id})}" method="post">
                         <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</button>
