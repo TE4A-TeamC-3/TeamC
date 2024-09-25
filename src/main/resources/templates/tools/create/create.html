@@ -250,7 +250,7 @@
                 </td>
             </tr>
             <tr>
-                <td>貸出可能:</td>
+                <td>貸出状況:</td>
                 <td>
                     <label><input type="radio" th:field="*{avaliableForRent}" value="true" /> 可能</label>
                     <label><input type="radio" th:field="*{avaliableForRent}" value="false" /> 不可</label>
@@ -260,16 +260,17 @@
             <tr>
                 <td>設置場所:</td>
                 <td>
-                    <label><input type="checkbox" th:field="*{installationLocation}" value="0" /> 本社</label>
-                    <label><input type="checkbox" th:field="*{installationLocation}" value="1" /> 仙台</label>
-                    <label><input type="checkbox" th:field="*{installationLocation}" value="2" /> 埼玉</label>
-                    <label><input type="checkbox" th:field="*{installationLocation}" value="3" /> 新潟</label>
-                    <label><input type="checkbox" th:field="*{installationLocation}" value="4" /> 大阪</label>
+                    <label><input type="radio" th:field="*{installationLocation}" value="本社" /> 本社</label>
+                    <label><input type="radio" th:field="*{installationLocation}" value="仙台" /> 仙台</label>
+                    <label><input type="radio" th:field="*{installationLocation}" value="埼玉" /> 埼玉</label>
+                    <label><input type="radio" th:field="*{installationLocation}" value="新潟" /> 新潟</label>
+                    <label><input type="radio" th:field="*{installationLocation}" value="大阪" /> 大阪</label>
                     <span th:if="${#fields.hasErrors('installationLocation')}" th:errors="*{installationLocation}" class="error-messages">error!</span>
                 </td>
+                
             </tr>
             <tr>
-                <td>使用期限:</td>
+                <td>貸出期限:</td>
                 <td>
                     <input type="date" th:field="*{exprationDate}" class="form-control"/>
                     <span th:if="${#fields.hasErrors('exprationDate')}" th:errors="*{exprationDate}" class="error-messages">error!</span>

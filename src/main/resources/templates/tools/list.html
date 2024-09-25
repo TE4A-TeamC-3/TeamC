@@ -42,7 +42,7 @@
                 <th>耐用年数</th>
                 <th>減価償却</th>
                 <th>使用不可</th>
-                <th>貸出可能</th>
+                <th>貸出状況</th>
                 <th>設置場所</th>
                 <th>貸出期限</th>
                 <th>仕様</th>
@@ -52,24 +52,29 @@
         <tbody>
             <!-- 備品一覧の表示 -->
             <tr th:each="tool : ${tools}" >
-                <td th:text="${tool.managementcode}">0</td>
+                <td th:text="${tool.managementcode}">マウス</td>
                 <td th:text="${tool.managementNo}">0</td>
-                <td th:text="${tool.productName}">test</td>
-                <td th:text="${tool.modelNumber}">0</td>
-                <td th:text="${tool.maker}">a</td>
+                <td th:text="${tool.productName}">ProductA</td>
+                <td th:text="${tool.modelNumber}">ModelA</td>
+                <td th:text="${tool.maker}">MakerA</td>
                 <td th:text="${tool.purchaseDate}">2000-10-10</td>
-                <td th:text="${tool.serviceLife}">a</td>
-                <td th:text="${tool.depreciation}">a</td>
-                <td th:text="${tool.usageProhibited} ? '不可' : '可能'">true</td>
-                <td th:text="${tool.availableForRent} ? '可能' : '不可'">true</td>
+                <td>
+                    <span th:if="${tool.serviceLife == '1'}">PC</span>
+                    <span th:if="${tool.serviceLife == '2'}">PC以外の電子計算機</span>
+                    <span th:if="${tool.serviceLife == '3'}">レジスター</span>
+                    <span th:if="${tool.serviceLife == '4'}">プリンター、ファクシミリ</span>
+                    <span th:if="${tool.serviceLife == '5'}">ソフトウェア（3年）</span>
+                    <span th:if="${tool.serviceLife == '6'}">ソフトウェア（5年）</span>
+                </td>
+                <td th:text="${tool.usageProhibited} ? '可能' : '不可'">1</td>
+                <td th:text="${tool.availableForRent} ? '可能' : '不可'">1</td>
                 <td>
                     <span th:each="location : ${tool.installationLocation}">
-                        <span th:text="${location}"></span>
-                        <span th:if="${!#strings.endsWith(iterator.index, #numbers.sequence('1', '4'))}">1</span>
+                        <span th:text="${location}">本社</span>
                     </span>
                 </td>
                 <td th:text="${tool.expirationDate}">2000-10-10</td>
-                <td th:text="${tool.specification}">a</td>
+                <td th:text="${tool.specification}">なし</td>
                 <td>
                     <form th:action="@{/tools/edit}" method="post">
                         <button type="submit" class="btn btn-primary" name="form" th:value="${tool.id}">編集</button>

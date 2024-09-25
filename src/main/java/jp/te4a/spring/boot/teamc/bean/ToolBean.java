@@ -20,47 +20,47 @@ import lombok.NoArgsConstructor;
 public class ToolBean {
 
     @Id // フィールドを主キーとしてマーク
-    @Column(name = "id") // カラム名を指定し、NOT NULL制約
+    @Column(name = "id") // NOT NULL制約
     @GeneratedValue(strategy = GenerationType.IDENTITY) // データベースによって自動インクリメント
     private int id;
     
-    @Column(name = "managementcode") // カラム名を指定し、NOT NULL制約
+    @Column(name = "managementcode") // NOT NULL制約
     private String managementcode;  //管理コード
     
     //@GeneratedValue(strategy = GenerationType.IDENTITY) // データベースによって自動インクリメント
-    @Column(name = "managementNo") // カラム名を指定し、NOT NULL制約
+    @Column(name = "managementNo") // NOT NULL制約
     private int managementNo; //管理番号
     
-    @Column(name = "productName") // カラム名を指定し、NOT NULL制約
+    @Column(name = "productName") // NOT NULL制約
     private String productName; //品名
     
-    @Column(name = "modelNumber") // カラム名を指定し、NOT NULL制約
+    @Column(name = "modelNumber") // NOT NULL制約
     private String modelNumber; //型番
     
-    @Column(name = "maker") // カラム名を指定し、NOT NULL制約
+    @Column(name = "maker") // NOT NULL制約
     private String maker; //メーカー
     
-    @Column(name = "purchaseDate") // カラム名を指定し、NOT NULL制約
+    @Column(name = "purchaseDate") // NOT NULL制約
     private Date purchaseDate; //購入日 yyyy-mm-dd
     
-    @Column(name = "serviceLife") // カラム名を指定し、NOT NULL制約
+    @Column(name = "serviceLife") // NOT NULL制約
     private int serviceLife; //耐用年数
     
-    @Column(name = "depreciation") // カラム名を指定し、NOT NULL制約
-    private int depreciation; //減価償却
+    //@Column(name = "depreciation")
+    //private String depreciation; //減価償却
     
-    @Column(name = "usageProhibited") // カラム名を指定し、NOT NULL制約
-    private boolean usageProhibited; //使用不可
+    @Column(name = "usageProhibited") //NOT NULL制約
+    private int usageProhibited; //使用不可
     
-    @Column(name = "availableForRent") // カラム名を指定し、NOT NULL制約
-    private boolean availableForRent; //貸出可能
+    @Column(name = "availableForRent") //NOT NULL制約
+    private int availableForRent; //貸出状況
     
-    @Column(name = "installationLocation") // カラム名を指定し、NOT NULL制約
-    private String installationLocation; //設置場所 0=本社 1=仙台 2=埼玉 3=新潟　4=大阪
+    @Column(name = "installationLocation") //NOT NULL制約
+    private String installationLocation; //設置場所 本社 仙台 埼玉 新潟 大阪
     
-    @Column(name = "expirationDate") // カラム名を指定し、NOT NULL制約
+    @Column(name = "expirationDate") // NOT NULL制約
     private Date expirationDate; //貸出期限
     
-    @Column(name = "specification") // カラム名を指定し、NOT NULL制約
+    @Column(name = "specification") 
     private String specification; //仕様
 }
