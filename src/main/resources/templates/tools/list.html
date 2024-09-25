@@ -71,7 +71,7 @@
                 <td th:text="${tool.availableForRent ? '可能' : '不可'}"></td>
 
                 <td th:text="${tool.installationLocation}">本社</td>
-                <td th:text="${#dates.format(tool.expirationDate, 'yyyy-MM-dd')}">2000-10-10</td>
+                <td th:text="${tool.expirationDate != null ? #dates.format(tool.expirationDate, 'yyyy-MM-dd') : ''}"></td>
                 <td th:text="${tool.specification}">なし</td>
                 <td>
                     <form th:action="@{/tools/edit}" method="post">

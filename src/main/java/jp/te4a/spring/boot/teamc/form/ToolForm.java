@@ -21,6 +21,6 @@ public class ToolForm {
     private boolean usageProhibited; //使用不可
     private boolean availableForRent; //貸出状況
     private String installationLocation; //設置場所 本社 仙台 埼玉 新潟 大阪
-    private Date exprationDate; //貸出期限
+    private Date expirationDate; //貸出期限
     private String specification; //仕様
 }
