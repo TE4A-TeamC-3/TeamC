@@ -42,8 +42,9 @@ public class ToolController {
         System.out.println("message_ToolController_toolsGet要求");
         return "tools/list";
     }
+
     // /tools/createにパラメータformを含むPOST要求
-    @PostMapping(path="create", params="form")
+    @GetMapping(path="create", params="form")
     String createForm(@RequestParam int id, ToolForm form){
         ToolForm toolForm = toolService.findOne(id);
         BeanUtils.copyProperties(toolForm, form);
@@ -59,7 +60,7 @@ public class ToolController {
     }
 
     // /tools/editにパラメータformを含むPOST要求
-    @PostMapping(path="edit", params="form")
+    @GetMapping(path="edit", params="form")
     String editForm(@RequestParam int id, ToolForm form){
         ToolForm toolForm = toolService.findOne(id);
         BeanUtils.copyProperties(toolForm, form);

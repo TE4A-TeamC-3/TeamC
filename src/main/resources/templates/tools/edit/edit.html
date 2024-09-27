@@ -79,12 +79,12 @@
                 <td>
                     <select name="serviceLife" th:field="*{serviceLife}" th:errorclass="error-input">
                         <option value="">機器の種類を選択してください</option> <!-- 初期の選択肢 -->
-                        <option value="1">PC</option> <!-- 耐用年数の候補1 -->
-                        <option value="2">PC以外の電子計算機</option> <!-- 耐用年数の候補2 -->
+                        <option value="4">PC</option> <!-- 耐用年数の候補1 -->
+                        <option value="5">PC以外の電子計算機</option> <!-- 耐用年数の候補2 -->
                         <option value="3">レジスター</option> <!-- 耐用年数の候補3 -->
-                        <option value="4">プリンター、ファクシミリ</option> <!-- 管理番号の候補4 -->
-                        <option value="5">ソフトウェア（3年）</option> <!-- 耐用年数の候補5 -->
-                        <option value="6">ソフトウェア（5年）</option> <!-- 耐用年数の候補6 -->
+                        <option value="5">プリンター、ファクシミリ</option> <!-- 管理番号の候補4 -->
+                        <option value="3">ソフトウェア（3年）</option> <!-- 耐用年数の候補5 -->
+                        <option value="5">ソフトウェア（5年）</option> <!-- 耐用年数の候補6 -->
                     </select>
                     <span th:if="${#fields.hasErrors('serviceLife')}" th:errors="*{serviceLife}" class="error-messages">error!</span>
                 </td>

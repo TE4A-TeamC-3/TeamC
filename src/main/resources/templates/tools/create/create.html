@@ -224,12 +224,12 @@
                 <td>
                     <select th:field="*{serviceLife}" class="form-control">
                         <option value="">機器の種類を選択してください</option>
-                        <option value="1">PC</option>
-                        <option value="2">PC以外の電子計算機</option>
+                        <option value="4">PC</option>
+                        <option value="5">PC以外の電子計算機</option>
                         <option value="3">レジスター</option>
-                        <option value="4">プリンター、ファクシミリ</option>
-                        <option value="5">ソフトウェア（3年）</option>
-                        <option value="6">ソフトウェア（5年）</option>
+                        <option value="5">プリンター、ファクシミリ</option>
+                        <option value="3">ソフトウェア（3年）</option>
+                        <option value="5">ソフトウェア（5年）</option>
                     </select>
                     <span th:if="${#fields.hasErrors('serviceLife')}" th:errors="*{serviceLife}" class="error-messages">error!</span>
                 </td>
