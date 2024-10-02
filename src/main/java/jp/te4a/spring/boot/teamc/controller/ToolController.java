@@ -58,7 +58,7 @@ public class ToolController {
     }
         System.out.println("message_ToolController_作成用form取得");
         return "tools/create/create";
-    }*/
+    }
 
     // /tools/createにPOST要求
     @PostMapping(path="create")
@@ -66,7 +66,7 @@ public class ToolController {
         toolService.create(form);
         System.out.println("message_ToolController_create");
         return "redirect:/tools";
-    }
+    }*/
 
     // /tools/editにパラメータformを含むPOST要求
     @GetMapping(path="edit", params="form")
