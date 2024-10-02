@@ -44,10 +44,7 @@ public class ToolController {
     }
 
     @PostMapping(path = "create")
-    String create(@Validated ToolForm form, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return list(model);
-        }
+    String create(ToolForm form, Model model) {
         toolService.create(form);
         return "redirect:/tools/list";
     }
