@@ -30,23 +30,6 @@ public class ToolService {
         return toolForm;
     }
 
-    public void addTool(ToolForm toolForm) {
-        toolForm.getManagementcode();
-        toolForm.getManagementNo();
-        toolForm.getProductName();
-        toolForm.getModelNumber();
-        toolForm.getMaker();
-        toolForm.getPurchaseDate();
-        toolForm.getServiceLife();
-        toolForm.getUsageProhibited();
-        toolForm.getAvailableForRent();
-        toolForm.getInstallationLocation();
-        toolForm.getExprationDate();
-        toolForm.getSpecification();
-
-        toolRepository.save(toolForm); // データベースに保存
-    }
-
     //更新処理
     public ToolForm update(ToolForm toolForm){
         ToolBean toolBean = new ToolBean();
