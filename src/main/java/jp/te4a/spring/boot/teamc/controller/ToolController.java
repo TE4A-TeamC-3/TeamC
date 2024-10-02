@@ -38,14 +38,22 @@ public class ToolController {
     @GetMapping
     String list(Model model){
         List<ToolForm> toolForms = toolService.findAll();
-        //List<ToolForm> toolForms = toolService.findOne(1);
         model.addAttribute("tools", toolForms);
         System.out.println("message_ToolController_toolsGet要求");
         return "tools/list";
     }
 
+    @PostMapping(path = "create")
+    String create(@Validated ToolForm form, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return list(model);
+        }
+        toolService.create(form);
+        return "redirect:/tools/list";
+    }
+
     // /tools/createにパラメータformを含むPOST要求
-    @GetMapping(path="create", params="form")
+    /*@GetMapping(path="create", params="form")
     String createForm(@RequestParam(value = "id", required = false) Integer id, ToolForm form){
     if (id != null) {
         ToolForm toolForm = toolService.findOne(id);
@@ -53,7 +61,7 @@ public class ToolController {
     }
         System.out.println("message_ToolController_作成用form取得");
         return "tools/create/create";
-    }
+    }*/
 
     // /tools/createにPOST要求
     @PostMapping(path="create")

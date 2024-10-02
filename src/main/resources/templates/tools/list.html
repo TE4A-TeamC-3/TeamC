@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>備品一覧画面</title>
-    <link rel="stylesheet" href="../../static/css/style.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
 </head>
 <body>
     <p>ログイン成功</p>
@@ -14,17 +14,17 @@
     </form>
     <h2>
         <form th:action="@{/users}" method="get">
-            <button type="submit" class="bbtn btn-info" name="form">ユーザー管理</button>
+            <button type="submit" class="btn btn-info" name="form">ユーザー管理</button>
         </form>
     </h2>
     <h2>
         <form th:action="@{/tools/create}" method="get">
-            <button type="submit" class="bbtn btn-info" name="form">新規登録</button>
+            <button type="submit" class="btn btn-info" name="form">新規登録</button>
         </form>
     </h2>
     <h2>
         <form th:action="@{/tools/search}" method="get">
-            <button type="submit" class="bbtn btn-info" name="form">備品検索</button>
+            <button type="submit" class="btn btn-info" name="form">備品検索</button>
             <!--th:value="${result.id}"-->
         </form>
     </h2>
@@ -74,10 +74,8 @@
                 <td th:text="${tool.expirationDate != null ? #dates.format(tool.expirationDate, 'yyyy-MM-dd') : ''}"></td>
                 <td th:text="${tool.specification}">なし</td>
                 <td>
-                    <form th:action="@{/tools/edit}" method="post">
-                        <button type="submit" class="btn btn-primary" name="id" th:value="${tool.id}">編集</button>
-                    </form>
                     <form th:action="@{/tools/delete(param.id=${tool.id})}" method="post">
+                        <input type="hidden" name="_method" value="delete" />
                         <button type="submit" class="btn btn-danger" onclick="return confirm('本当に削除しますか？');">削除</button>
                     </form>
                 </td>
