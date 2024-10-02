@@ -44,46 +44,20 @@ public class ToolService {
         System.out.println("ToolService_delete");
     }
 
-    //取得処理(全件)
-    /*public List<ToolForm> findAll() {//受け取り側がない
+
+    public List<ToolForm> findAll() {
         List<ToolBean> beanList = toolRepository.findAll();
-        List<ToolForm> formList = new ArrayList<ToolForm>();
-        for(ToolBean toolBean: beanList) {
+        System.out.println("message_ToolService_findAll_64:" + beanList.size());
+
+        List<ToolForm> formList = new ArrayList<>();
+        for (ToolBean toolBean : beanList) {
             ToolForm toolForm = new ToolForm();
             BeanUtils.copyProperties(toolBean, toolForm);
             formList.add(toolForm);
         }
-            return formList;
-        }*/
-        public List<ToolForm> findAll() {
-            List<ToolBean> beanList = toolRepository.findAll();
-            // 通常はfindAllがnullを返すことはないが、安全策としてチェックする
-            //if (beanList == null) {
-                //beanList = Collections.emptyList();
-            //}
-
-            // ToolBean bean = new ToolBean();
-            // bean.setManagementcode("MC");
-            // bean.setManagementNo(6);
-            // bean.setProductName("説明テスト登録A01");
-
-            // String strDate = "2018-6-29";
-            // java.sql.Date date = java.sql.Date.valueOf(strDate);
-            // bean.setExpirationDate(date);
-
-            // toolRepository.save(bean);
-
-            System.out.println("message_ToolService_findAll_64:" + beanList.size());
-
-            List<ToolForm> formList = new ArrayList<>();
-            for (ToolBean toolBean : beanList) {
-                ToolForm toolForm = new ToolForm();
-                BeanUtils.copyProperties(toolBean, toolForm);
-                formList.add(toolForm);
-            }
-            System.out.println("message_ToolService_findAll:" + formList.size());
-            return formList;
-        }
+        System.out.println("message_ToolService_findAll:" + formList.size());
+        return formList;
+    }
         
     
     //取得処理(1件)

@@ -7,8 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//import org.springframework.validation.BindingResult;
-//import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,30 +43,25 @@ public class ToolController {
         return "tools/list";
     }
 
-    @PostMapping(path = "create")
-    String create(ToolForm form, Model model) {
-        toolService.create(form);
-        return "redirect:/tools/list";
+     //tools/createにパラメータformを含むPOST要求
+    @GetMapping("/create")
+    public String createForm(Model model) {
+         // 新しい ToolForm オブジェクトをモデルに追加
+        model.addAttribute("toolForm", new ToolForm());
+         // create.html に遷移
+         return "tools/create/create"; // toolsフォルダ内のcreateフォルダにあるcreate.htmlを返す
     }
 
-    // /tools/createにパラメータformを含むPOST要求
-    /*@GetMapping(path="create", params="form")
-    String createForm(@RequestParam(value = "id", required = false) Integer id, ToolForm form){
-    if (id != null) {
-        ToolForm toolForm = toolService.findOne(id);
-        BeanUtils.copyProperties(toolForm, form);
+    // POSTリクエストで新規登録を処理するメソッド
+    @PostMapping("/create")
+    public String createTool(@Valid ToolForm toolForm, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "tools/create/create"; // エラーがあれば再度入力画面を表示
+        }
+        // ToolServiceを使って新しいツールを追加
+        toolService.addTool(toolForm);
+        return "redirect:/tools/create/create";
     }
-        System.out.println("message_ToolController_作成用form取得");
-        return "tools/create/create";
-    }
-
-    // /tools/createにPOST要求
-    @PostMapping(path="create")
-    String create(ToolForm form, Model model) {
-        toolService.create(form);
-        System.out.println("message_ToolController_create");
-        return "redirect:/tools";
-    }*/
 
     // /tools/editにパラメータformを含むPOST要求
     @GetMapping(path="edit", params="form")

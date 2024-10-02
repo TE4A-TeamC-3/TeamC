@@ -50,7 +50,7 @@ public class UserController {
     @PostMapping(path="users1",params="goToTop")
     String goToTop(){
         System.out.println("アカウント作成画面からmessage_ToolController_list.htmlに戻る");
-        return "redirect:/tools/list";
+        return "/tools/list";
     }
 }
 
