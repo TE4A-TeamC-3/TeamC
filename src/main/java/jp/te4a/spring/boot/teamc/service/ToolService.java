@@ -30,6 +30,26 @@ public class ToolService {
         return toolForm;
     }
 
+    public void addTool(ToolForm toolForm) {
+        // ToolFormのデータをエンティティに変換し、リポジトリを使って保存
+        // 必要に応じてToolEntityを作成し、toolFormのデータを設定する
+        ToolEntity toolEntity = new ToolEntity();
+        toolEntity.setManagementCode(toolForm.getManagementcode());
+        toolEntity.setManagementNo(toolForm.getManagementNo());
+        toolEntity.setProductName(toolForm.getProductName());
+        toolEntity.setModelNumber(toolForm.getModelNumber());
+        toolEntity.setMaker(toolForm.getMaker());
+        toolEntity.setPurchaseDate(toolForm.getPurchaseDate());
+        toolEntity.setServiceLife(toolForm.getServiceLife());
+        toolEntity.setUsageProhibited(toolForm.getUsageProhibited());
+        toolEntity.setAvailableForRent(toolForm.getAvailableForRent());
+        toolEntity.setInstallationLocation(toolForm.getInstallationLocation());
+        toolEntity.setExprationDate(toolForm.getExprationDate());
+        toolEntity.setSpecification(toolForm.getSpecification());
+
+        toolRepository.save(toolEntity); // データベースに保存
+    }
+
     //更新処理
     public ToolForm update(ToolForm toolForm){
         ToolBean toolBean = new ToolBean();
