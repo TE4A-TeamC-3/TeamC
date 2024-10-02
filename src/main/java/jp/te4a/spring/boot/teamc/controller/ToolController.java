@@ -24,6 +24,7 @@ import jp.te4a.spring.boot.teamc.service.ToolService;
 @Controller
 @RequestMapping("tools")// /toolsにアクセスされた時のコントローラ
 public class ToolController {
+
     @Autowired
     ToolService toolService;
 
@@ -45,12 +46,15 @@ public class ToolController {
 
     // /tools/createにパラメータformを含むPOST要求
     @GetMapping(path="create", params="form")
-    String createForm(@RequestParam int id, ToolForm form){
+    String createForm(@RequestParam(value = "id", required = false) Integer id, ToolForm form){
+    if (id != null) {
         ToolForm toolForm = toolService.findOne(id);
         BeanUtils.copyProperties(toolForm, form);
+    }
         System.out.println("message_ToolController_作成用form取得");
         return "tools/create/create";
     }
+
     // /tools/createにPOST要求
     @PostMapping(path="create")
     String create(ToolForm form, Model model) {
