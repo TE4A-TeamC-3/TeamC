@@ -41,11 +41,11 @@ public class UserController {
     }
 
     // /usersにパラメータformを含むPOST要求
-    @GetMapping(path="users", params="form")
+    /*@GetMapping(path="users", params="form")
     String User(){
         System.out.println("user作成画面に戻る");
         return "users/add";
-    }
+    }*/
     // /userにパラメータgoToTopを含むPOST要求
     @PostMapping(path="users",params="goToTop4")
     String goToTop4(){
