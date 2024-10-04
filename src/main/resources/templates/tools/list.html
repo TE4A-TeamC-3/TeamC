@@ -75,7 +75,7 @@
                 <td th:text="${tool.specification}">なし</td>
                 <td>
                     <form th:action="@{/tools/edit}" method="get">
-                        <button type="submit" class="btn btn-primary" name="form" th:value="${tool.id}">編集</button>
+                        <button type="submit" class="btn btn-primary" name="form">編集</button>
                     </form>
                     <form th:action="@{/tools/delete(param.id=${tool.id})}" method="post">
                         <input type="hidden" name="_method" value="delete" />

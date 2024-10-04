@@ -65,7 +65,7 @@ public class ToolController {
     }
 
     // /tools/editにパラメータformを含むPOST要求
-    @GetMapping(path="edit", params="form")
+    @GetMapping(path="edit")
     String editForm(@RequestParam int id, ToolForm form){
         System.out.println("message_ToolController_編集用form取得1");
         ToolForm toolForm = toolService.findOne(id);
