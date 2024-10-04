@@ -47,7 +47,7 @@ public class UserController {
         return "users/add";
     }*/
     // /userにパラメータgoToTopを含むPOST要求
-    @PostMapping(path="users",params="goToTop4")
+    @GetMapping(path="users",params="goToTop4")
     String goToTop4(){
         System.out.println("アカウント作成画面からmessage_ToolController_list.htmlに戻る");
         return "redirect:/tools/list";
