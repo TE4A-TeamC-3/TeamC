@@ -7,8 +7,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-//import org.springframework.validation.BindingResult;
-//import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import jp.te4a.spring.boot.teamc.form.ToolForm;
 import jp.te4a.spring.boot.teamc.service.ToolService;
+import jakarta.validation.Valid;
 
 
 
@@ -24,6 +25,7 @@ import jp.te4a.spring.boot.teamc.service.ToolService;
 @Controller
 @RequestMapping("tools")// /toolsにアクセスされた時のコントローラ
 public class ToolController {
+
     @Autowired
     ToolService toolService;
 
@@ -37,40 +39,43 @@ public class ToolController {
     @GetMapping
     String list(Model model){
         List<ToolForm> toolForms = toolService.findAll();
-        //List<ToolForm> toolForms = toolService.findOne(1);
         model.addAttribute("tools", toolForms);
         System.out.println("message_ToolController_toolsGet要求");
         return "tools/list";
     }
 
-    // /tools/createにパラメータformを含むPOST要求
-    @GetMapping(path="create", params="form")
-    String createForm(@RequestParam int id, ToolForm form){
-        ToolForm toolForm = toolService.findOne(id);
-        BeanUtils.copyProperties(toolForm, form);
-        System.out.println("message_ToolController_作成用form取得");
-        return "tools/create/create";
+     //tools/createにパラメータformを含むPOST要求
+    @GetMapping("/create")
+    public String createForm(Model model) {
+         // 新しい ToolForm オブジェクトをモデルに追加
+        model.addAttribute("toolForm", new ToolForm());
+         // create.html に遷移
+         return "tools/create/create"; // toolsフォルダ内のcreateフォルダにあるcreate.htmlを返す
     }
-    // /tools/createにPOST要求
-    @PostMapping(path="create")
-    String create(ToolForm form, Model model) {
-        toolService.create(form);
-        System.out.println("message_ToolController_create");
-        return "redirect:/tools";
+
+    // POSTリクエストで新規登録を処理するメソッド
+    @PostMapping("/create")
+    public String createTool(@Valid ToolForm form1, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+            return "tools/create/create"; // エラーがあれば再度入力画面を表示
+        }
+        // ToolServiceを使って新しいツールを追加
+        toolService.create(form1);
+        return "redirect:/tools/create/create";
     }
 
     // /tools/editにパラメータformを含むPOST要求
-    @GetMapping(path="edit", params="form")
-    String editForm(@RequestParam int id, ToolForm form){
+    @GetMapping(path="edit", params="form2")
+    String editForm(@RequestParam int id, ToolForm form2){
         ToolForm toolForm = toolService.findOne(id);
-        BeanUtils.copyProperties(toolForm, form);
+        BeanUtils.copyProperties(toolForm, form2);
         System.out.println("message_ToolController_編集用form取得");
         return "tools/edit/edit";
     }
     // /tools/にPOST要求
     @PostMapping(path="edit")
-    String edit(@RequestParam int id, ToolForm form, Model model) {
-        toolService.update(form);
+    String edit(@RequestParam int id, ToolForm form2, Model model) {
+        toolService.update(form2);
         System.out.println("message_ToolController_編集終了後toolsに返す");
         return "redirect:/tools";
     }
@@ -84,10 +89,10 @@ public class ToolController {
     }
 
     // /tools/searchにパラメータformを含むPOST要求
-    @PostMapping(path="search", params="form")
-    String searchForm(@RequestParam int id, ToolForm form){
+    @PostMapping(path="search", params="form3")
+    String searchForm(@RequestParam int id, ToolForm form3){
     ToolForm toolForm = toolService.findOne(id);
-    BeanUtils.copyProperties(toolForm, form);
+    BeanUtils.copyProperties(toolForm, form3);
     System.out.println("message_ToolController_検索用form取得");
     return "tools/search/search";
 }
