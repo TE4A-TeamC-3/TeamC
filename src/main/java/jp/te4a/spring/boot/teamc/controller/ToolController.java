@@ -45,7 +45,7 @@ public class ToolController {
     }
 
      //tools/createにパラメータformを含むPOST要求
-    @GetMapping("/tools/create")
+    @GetMapping(path="create")
     public String createForm(Model model) {
          // 新しい ToolForm オブジェクトをモデルに追加
         model.addAttribute("toolForm", new ToolForm());
@@ -54,14 +54,14 @@ public class ToolController {
     }
 
     // POSTリクエストで新規登録を処理するメソッド
-    @PostMapping("/tools/create")
+    @PostMapping(path="create")
     public String createTool(@Valid ToolForm form, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "tools/create/create"; // エラーがあれば再度入力画面を表示
         }
         // ToolServiceを使って新しいツールを追加
         toolService.create(form);
-        return "redirect:/tools/create/create";
+        return "redirect:/tools/create";
     }
 
     // /tools/editにパラメータformを含むPOST要求
