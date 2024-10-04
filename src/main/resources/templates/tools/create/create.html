@@ -98,9 +98,9 @@
             <tr>
                 <td>貸出状況:</td>
                 <td>
-                    <label><input type="radio" th:field="*{avaliableForRent}" value="false" /> 不可</label>
-                    <label><input type="radio" th:field="*{avaliableForRent}" value="true" /> 可能</label>
-                    <span th:if="${#fields.hasErrors('avaliableForRent')}" th:errors="*{avaliableForRent}" class="error-messages">error!</span>
+                    <label><input type="radio" th:field="*{availableForRent}" value="false" /> 不可</label>
+                    <label><input type="radio" th:field="*{availableForRent}" value="true" /> 可能</label>
+                    <span th:if="${#fields.hasErrors('availableForRent')}" th:errors="*{availableForRent}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>
