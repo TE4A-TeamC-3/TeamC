@@ -30,8 +30,8 @@
                 </tr>
             </table>
             <input type="submit" value="作成"/>
-            <form th:action="@{/users}" params="goToTop4" method="post">
-                <input type="hidden" name="goToTop4" value="true" />
+            <form th:action="@{/users}" method="post">
+                <input type="hidden" name="goToTop4" value="goToTop4" />
                 <button type="submit">戻る</button>
             </form>
         </form>
