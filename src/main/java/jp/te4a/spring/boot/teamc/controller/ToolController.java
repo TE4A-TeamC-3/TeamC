@@ -82,7 +82,7 @@ public class ToolController {
 
     // /tools/deleteにPOST要求
     @PostMapping(path="delete")
-    String edit(@RequestParam int id){
+    String delete(@RequestParam int id){
         toolService.delete(id);
         System.out.println("message_ToolController_delete");
         return "redirect:/tools";

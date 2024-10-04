@@ -13,29 +13,27 @@
             <tr>
                 <td>管理コード:</td>
                 <td>
-                <select name="managementcode" th:field="*{managementcode}" th:errorclass="error-input">
-                    <option value="">選択してください</option> <!-- 初期の選択肢 -->
-                    <option value="1">マウス</option> <!-- 管理番号の候補1 -->
-                    <option value="2">キーボード</option> <!-- 管理番号の候補2 -->
-                    <option value="3">モニター</option> <!-- 管理番号の候補3 -->
-                    <option value="4">プリンター</option> <!-- 管理番号の候補4 -->
-                    <option value="5">スキャナー</option> <!-- 管理番号の候補5 -->
-                    <option value="6">サーバー</option> <!-- 管理番号の候補6 -->
-                    <option value="7">外付けハードドライブ</option> <!-- 管理番号の候補7 -->
-                    <option value="8">USBハブ</option> <!-- 管理番号の候補8 -->
-                    <option value="9">webカメラ</option> <!-- 管理番号の候補9 -->
-                    <option value="10">ヘッドセット</option> <!-- 管理番号の候補10 -->
-                    <option value="11">ドッキングステーション</option> <!-- 管理番号の候補11 -->
-                    <option value="12">リーダー/ライター</option> <!-- 管理番号の候補12 -->
-                    <option value="13">電源タップ</option> <!-- 管理番号の候補13 -->
-                    <option value="14">モニターアーム</option> <!-- 管理番号の候補14 -->
-                    <option value="15">マウスパッド</option> <!-- 管理番号の候補15 -->
-                    <option value="16">ケーブル管理ツール</option> <!-- 管理番号の候補16 -->
-                    <option value="17">ソフトウェアⅠ</option> <!-- 管理番号の候補17 -->
-                    <option value="18">ソフトウェアⅡ</option> <!-- 管理番号の候補18 -->
-
-                    <!-- 必要に応じて他の管理番号の候補を追加 -->
-                </select>
+                    <select th:field="*{managementcode}" class="form-control">
+                        <option value="">選択してください</option>
+                        <option value="マウス">マウス</option>
+                        <option value="キーボード">キーボード</option>
+                        <option value="モニター">モニター</option>
+                        <option value="プリンター">プリンター</option>
+                        <option value="スキャナー">スキャナー</option>
+                        <option value="サーバー">サーバー</option>
+                        <option value="外付けハードドライブ">外付けハードドライブ</option>
+                        <option value="USBハブ">USBハブ</option>
+                        <option value="webカメラ">webカメラ</option>
+                        <option value="ヘッドセット">ヘッドセット</option>
+                        <option value="ドッキングステーション">ドッキングステーション</option>
+                        <option value="リーダー/ライター">リーダー/ライター</option>
+                        <option value="電源タップ">電源タップ</option>
+                        <option value="モニターアーム">モニターアーム</option>
+                        <option value="マウスパッド">マウスパッド</option>
+                        <option value="ケーブル管理ツール">ケーブル管理ツール</option>
+                        <option value="ソフトウェアⅠ">ソフトウェアⅠ</option>
+                        <option value="ソフトウェアⅡ">ソフトウェアⅡ</option>
+                    </select>
                 <span th:if="${#fields.hasErrors('managementcode')}" th:errors="*{managementcode}" class="error-messages">error!</span>
                 </td>
             </tr>
