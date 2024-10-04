@@ -55,12 +55,20 @@ public class ToolController {
 
     // POSTリクエストで新規登録を処理するメソッド
     @PostMapping("/create")
+<<<<<<< HEAD
     public String createTool(@Valid ToolForm form1, BindingResult bindingResult) {
+=======
+    public String createTool(@Valid ToolForm form, BindingResult bindingResult) {
+>>>>>>> 37caa287e1a41ef19644456af06ba6cb0ac2a134
         if (bindingResult.hasErrors()) {
             return "tools/create/create"; // エラーがあれば再度入力画面を表示
         }
         // ToolServiceを使って新しいツールを追加
+<<<<<<< HEAD
         toolService.create(form1);
+=======
+        toolService.create(form);
+>>>>>>> 37caa287e1a41ef19644456af06ba6cb0ac2a134
         return "redirect:/tools/create/create";
     }
 
