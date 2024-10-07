@@ -108,8 +108,8 @@ public class ToolController {
         List<ToolBean> searchResults = toolService.searchTools(
             form.getManagementcode(),
             form.getManagementNo(),
-            form.getProductName(),
-            form.getMaker()
+            form.getproductName(),
+            form.getmaker()
         );
 
         model.addAttribute("searchResults", searchResults);
