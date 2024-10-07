@@ -68,7 +68,7 @@ public class ToolController {
     // 編集
     // /tools/editにパラメータformを含むPOST要求
     @PostMapping(path="edit")
-    public String editForm(@RequestParam Integer id, ToolForm form){ //publicを追加した
+    public String editForm(@RequestParam int id, ToolForm form){ //publicを追加した
         System.out.println("message_ToolController_編集 取得ID" + id);
         ToolForm toolForm = toolService.findOne(id);
         BeanUtils.copyProperties(toolForm, form);
@@ -77,8 +77,8 @@ public class ToolController {
     }
 
     // /tools/にPOST要求
-    @PostMapping(path="edit")
-    public String edit(@RequestParam Integer id, ToolForm form, Model model) {
+    @PostMapping(path="editForm")
+    public String edit(@RequestParam int id, ToolForm form, Model model) {
         toolService.update(form);
         System.out.println("message_ToolController_編集終了後toolsに返す");
         return "redirect:/tools";
@@ -87,7 +87,7 @@ public class ToolController {
     // 削除
     // /tools/deleteにPOST要求
     @PostMapping(path="delete")
-    public String delete(@RequestParam Integer id){
+    public String delete(@RequestParam int id){
         toolService.delete(id);
         System.out.println("message_ToolController_delete");
         return "redirect:/tools";
@@ -134,6 +134,13 @@ public class ToolController {
     @PostMapping(path="search",params="goToTop3")
     String goToTop3(){
         System.out.println("編集画面からmessage_ToolController_list.htmlに戻る");
+        return "redirect:/tools";
+    }
+
+    //一覧画面へ戻ってくる処理
+    @GetMapping(path="gotop")
+    String goToTop4(){
+        System.out.println("アカウント作成画面からmessage_ToolController_list.htmlに戻る");
         return "redirect:/tools";
     }
 }
