@@ -70,16 +70,10 @@ public class ToolService {
     }
     
     // 検索機能
-    /*  public List<ToolForm> searchByProductName(String keyword) {
-        List<ToolBean> toolBeans = toolRepository.findByProductNameContainingIgnoreCase(keyword);
-        List<ToolForm> toolForms = new ArrayList<>();
-        for (ToolBean toolBean : toolBeans) {
-            ToolForm toolForm = new ToolForm();
-            BeanUtils.copyProperties(toolBean, toolForm);
-            toolForms.add(toolForm);
-        }
-        System.out.println("message_ToolService_searchByProductName");
-        return toolForms;
-    }*/
+    // 検索を行うメソッド
+    public List<ToolBean> searchTools(String managementCode, int managementNo, String productName, String maker) {
+        // 検索条件に基づいてリポジトリからデータを取得
+        return toolRepository.findByConditions(managementCode, managementNo, productName, maker);
+    }
     
 }
