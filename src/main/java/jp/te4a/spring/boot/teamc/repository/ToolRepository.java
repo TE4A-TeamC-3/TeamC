@@ -4,6 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import jp.te4a.spring.boot.teamc.bean.ToolBean;
+import java.util.List; // Listのインポート
+import org.springframework.data.jpa.repository.Query; // Queryのインポート
+import org.springframework.data.repository.query.Param; // Paramのインポート
 
 @Repository
 public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
