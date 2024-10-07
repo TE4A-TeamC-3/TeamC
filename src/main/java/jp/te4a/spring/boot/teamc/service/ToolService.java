@@ -71,9 +71,13 @@ public class ToolService {
     
     // 検索機能
     // 検索を行うメソッド
-    public List<ToolBean> searchTools(String managementCode, int managementNo, String productName, String maker) {
-        // 検索条件に基づいてリポジトリからデータを取得
-        return toolRepository.findByConditions(managementCode, managementNo, productName, maker);
+    public List<ToolBean> searchTools(
+            @RequestParam(value = "managementcode", required = false) String managementcode,
+            @RequestParam(value = "managementNo", required = false) Integer managementNo,
+            @RequestParam(value = "productName", required = false) String productName,
+            @RequestParam(value = "maker", required = false) String maker) {
+            return toolRepository.findByConditions(managementcode, managementNo, productName, maker);
     }
+
     
 }
