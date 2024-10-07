@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import jp.te4a.spring.boot.teamc.bean.ToolBean;
 import jp.te4a.spring.boot.teamc.form.ToolForm;
 import jp.te4a.spring.boot.teamc.repository.ToolRepository;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 //画面寄りとしてtoolFormでデータを扱う
