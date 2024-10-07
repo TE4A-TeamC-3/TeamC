@@ -32,4 +32,17 @@ public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
         @Param("expirationDate") LocalDate expirationDate,
         @Param("specification") String specification
     );*/
+
+
+    @Query("SELECT t FROM ToolBean t WHERE "
+            + "(:managementCode IS NULL OR t.managementCode = :managementCode) AND "
+            + "(:managementNo IS NULL OR t.managementNo = :managementNo) AND "
+            + "(:productName IS NULL OR t.productName LIKE %:productName%) AND "
+            + "(:maker IS NULL OR t.maker LIKE %:maker%)")
+    List<ToolBean> findByConditions(
+            @Param("managementCode") String managementCode,
+            @Param("managementNo") Integer managementNo,
+            @Param("productName") String productName,
+            @Param("maker") String maker
+    );
 }
