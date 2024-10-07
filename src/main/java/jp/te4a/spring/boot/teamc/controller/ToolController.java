@@ -72,7 +72,7 @@ public class ToolController {
         System.out.println("message_ToolController_編集 取得ID" + id);
         ToolForm toolForm = toolService.findOne(id);
         BeanUtils.copyProperties(toolForm, form);
-        System.out.println("message_ToolController_編集用form取得2");
+        System.out.println("message_ToolController_編集用form取得");
         return "tools/edit/edit";
     }
 
@@ -103,12 +103,20 @@ public class ToolController {
 
     //検索を行う処理
     @PostMapping(path="search", params="form")
-    public String searchForm(@RequestParam int id, ToolForm form){
-    ToolForm toolForm = toolService.findOne(id);
-    BeanUtils.copyProperties(toolForm, form);
-    System.out.println("message_ToolController_検索用form取得");
-    return "redirect:tools/search/search";
-}
+    public String searchForm(@ModelAttribute ToolForm form, Model model){
+
+        List<Tool> searchResults = toolService.searchTools(
+            form.getManagementCode(),
+            form.getManagementNo(),
+            form.getProductName(),
+            form.getMaker()
+        );
+
+        model.addAttribute("searchResults", searchResults);
+        System.out.println("message_ToolController_検索用form取得");
+        return "tools/search/search";
+    }
+
     // 検索機能の追加
    /*  @GetMapping("search")
     public String search(@RequestParam("keyword") String keyword, Model model) {
