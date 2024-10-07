@@ -43,7 +43,7 @@ public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
             + "(:productName IS NULL OR t.productName LIKE %:productName%) AND "
             + "(:maker IS NULL OR t.maker LIKE %:maker%)")
     List<ToolBean> findByConditions(
-            @Param("managementCode") String managementCode,
+            @Param("managementCode") String managementcode,
             @Param("managementNo") Integer managementNo,
             @Param("productName") String productName,
             @Param("maker") String maker
