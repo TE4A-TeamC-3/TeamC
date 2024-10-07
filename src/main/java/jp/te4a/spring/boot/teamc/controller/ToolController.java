@@ -100,7 +100,7 @@ public class ToolController {
         System.out.println("一覧画面（list.html）から検索画面(search.html)へ");
         return "tools/search/search"; // toolsフォルダ内のsearchフォルダにあるsearch.htmlを返す
     }
-/* 
+
     //検索を行う処理
     @PostMapping(path="search", params="form")
     public String searchForm(@ModelAttribute ToolForm form, Model model){
@@ -116,9 +116,9 @@ public class ToolController {
         System.out.println("message_ToolController_検索用form取得");
         return "tools/search/search";
     }
-*/
+
     // 検索機能の追加
-   /*  @GetMapping("search")
+    /*  @GetMapping("search")
     public String search(@RequestParam("keyword") String keyword, Model model) {
         List<ToolForm> tools = toolService.searchByProductName(keyword);
         model.addAttribute("tools", tools);

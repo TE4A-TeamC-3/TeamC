@@ -98,8 +98,8 @@
             <tr>
                 <td>貸出状況:</td>
                 <td>
-                    <label><input type="radio" th:field="*{availableForRent}" value="false" /> 不可</label>
-                    <label><input type="radio" th:field="*{availableForRent}" value="true" /> 可能</label>
+                    <input type="radio" th:field="*{availableForRent}" value="true"> 利用可能
+                    <input type="radio" th:field="*{availableForRent}" value="false"> 利用不可
                     <span th:if="${#fields.hasErrors('availableForRent')}" th:errors="*{availableForRent}" class="error-messages">error!</span>
                 </td>
             </tr>
