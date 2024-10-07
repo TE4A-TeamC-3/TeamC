@@ -67,10 +67,10 @@ public class ToolController {
 
     // 編集
     // /tools/editにパラメータformを含むPOST要求
-    @GetMapping(path="edit")
-    public String editForm(@RequestParam("id") int id, ToolForm form){ //publicを追加した
+    @PostMapping(path="edit")
+    public String editForm(@RequestParam Integer id, ToolForm form){ //publicを追加した
         System.out.println("message_ToolController_編集 取得ID" + id);
-        ToolForm toolForm = toolService.findOne(7);
+        ToolForm toolForm = toolService.findOne(id);
         BeanUtils.copyProperties(toolForm, form);
         System.out.println("message_ToolController_編集用form取得2");
         return "tools/edit/edit";
@@ -78,7 +78,7 @@ public class ToolController {
 
     // /tools/にPOST要求
     @PostMapping(path="edit")
-    public String edit(@RequestParam int id, ToolForm form, Model model) {
+    public String edit(@RequestParam Integer id, ToolForm form, Model model) {
         toolService.update(form);
         System.out.println("message_ToolController_編集終了後toolsに返す");
         return "redirect:/tools";
@@ -87,7 +87,7 @@ public class ToolController {
     // 削除
     // /tools/deleteにPOST要求
     @PostMapping(path="delete")
-    public String delete(@RequestParam int id){
+    public String delete(@RequestParam Integer id){
         toolService.delete(id);
         System.out.println("message_ToolController_delete");
         return "redirect:/tools";
