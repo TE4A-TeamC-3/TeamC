@@ -101,13 +101,13 @@ public class ToolController {
         return "tools/search/search"; // toolsフォルダ内のsearchフォルダにあるsearch.htmlを返す
     }
 
-    // /tools/searchにパラメータformを含むPOST要求
+    //検索を行う処理
     @PostMapping(path="search", params="form")
     public String searchForm(@RequestParam int id, ToolForm form){
     ToolForm toolForm = toolService.findOne(id);
     BeanUtils.copyProperties(toolForm, form);
     System.out.println("message_ToolController_検索用form取得");
-    return "tools/search/search";
+    return "redirect:tools/search/search";
 }
     // 検索機能の追加
    /*  @GetMapping("search")
@@ -139,8 +139,8 @@ public class ToolController {
 
     //一覧画面へ戻ってくる処理
     @GetMapping(path="gotop")
-    String goToTop4(){
-        System.out.println("アカウント作成画面からmessage_ToolController_list.htmlに戻る");
+    String goToTopM(){
+        System.out.println("一覧画面（list.html）に戻る");
         return "redirect:/tools";
     }
 }
