@@ -106,8 +106,8 @@ public class ToolController {
     public String searchForm(@ModelAttribute ToolForm form, Model model){
 
         List<ToolBean> searchResults = toolService.searchTools(
-            form.getManagementcode(),
-            form.getManagementNo(),
+            form.getmanagementcode(),
+            form.getmanagementNo(),
             form.getproductName(),
             form.getmaker()
         );
