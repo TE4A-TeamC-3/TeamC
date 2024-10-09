@@ -124,6 +124,7 @@ public class ToolService {
     }
 
     public List<Tool> findAllSorted(String sort) {
-    Sort sortOrder = Sort.by(sort).ascending(); // 昇順で並び替え
-    return toolRepository.findAll(sortOrder);
+        Sort sortOrder = Sort.by(sort).ascending(); // 昇順で並び替え
+        return toolRepository.findAll(sortOrder);
+    }
 }
