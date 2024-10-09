@@ -4,109 +4,102 @@
     <meta charset="UTF-8">
     <title>備品編集画面</title>
     <link rel="stylesheet" href="../../static/css/style.css">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
 </head>
 <body>
     <form th:action="@{/tools/edit}" th:object="${toolForm}" method="post">
-        <table class="table table-striped talbe-bordered table-condensed">
-            <h2>備品編集</h2>
+        <h2>備品編集</h2>
+        <table class="table table-striped table-bordered table-condensed">
             <tr>
                 <td>管理コード:</td>
                 <td>
                     <select th:field="*{managementcode}" class="form-control">
                         <option value="">選択してください</option>
-                        <option value="マウス">マウス</option>
-                        <option value="キーボード">キーボード</option>
-                        <option value="モニター">モニター</option>
-                        <option value="プリンター">プリンター</option>
-                        <option value="スキャナー">スキャナー</option>
-                        <option value="サーバー">サーバー</option>
-                        <option value="外付けハードドライブ">外付けハードドライブ</option>
-                        <option value="USBハブ">USBハブ</option>
-                        <option value="webカメラ">webカメラ</option>
-                        <option value="ヘッドセット">ヘッドセット</option>
-                        <option value="ドッキングステーション">ドッキングステーション</option>
-                        <option value="リーダー/ライター">リーダー/ライター</option>
-                        <option value="電源タップ">電源タップ</option>
-                        <option value="モニターアーム">モニターアーム</option>
-                        <option value="マウスパッド">マウスパッド</option>
-                        <option value="ケーブル管理ツール">ケーブル管理ツール</option>
-                        <option value="ソフトウェアⅠ">ソフトウェアⅠ</option>
-                        <option value="ソフトウェアⅡ">ソフトウェアⅡ</option>
+                        <option value="マウス" th:selected="${toolForm.managementcode == 'マウス'}">マウス</option>
+                        <option value="キーボード" th:selected="${toolForm.managementcode == 'キーボード'}">キーボード</option>
+                        <option value="モニター" th:selected="${toolForm.managementcode == 'モニター'}">モニター</option>
+                        <option value="プリンター" th:selected="${toolForm.managementcode == 'プリンター'}">プリンター</option>
+                        <option value="スキャナー" th:selected="${toolForm.managementcode == 'スキャナー'}">スキャナー</option>
+                        <option value="サーバー" th:selected="${toolForm.managementcode == 'サーバー'}">サーバー</option>
+                        <option value="外付けハードドライブ" th:selected="${toolForm.managementcode == '外付けハードドライブ'}">外付けハードドライブ</option>
+                        <option value="USBハブ" th:selected="${toolForm.managementcode == 'USBハブ'}">USBハブ</option>
+                        <option value="webカメラ" th:selected="${toolForm.managementcode == 'webカメラ'}">webカメラ</option>
+                        <option value="ヘッドセット" th:selected="${toolForm.managementcode == 'ヘッドセット'}">ヘッドセット</option>
+                        <option value="ドッキングステーション" th:selected="${toolForm.managementcode == 'ドッキングステーション'}">ドッキングステーション</option>
+                        <option value="リーダー/ライター" th:selected="${toolForm.managementcode == 'リーダー/ライター'}">リーダー/ライター</option>
+                        <option value="電源タップ" th:selected="${toolForm.managementcode == '電源タップ'}">電源タップ</option>
+                        <option value="モニターアーム" th:selected="${toolForm.managementcode == 'モニターアーム'}">モニターアーム</option>
+                        <option value="マウスパッド" th:selected="${toolForm.managementcode == 'マウスパッド'}">マウスパッド</option>
+                        <option value="ケーブル管理ツール" th:selected="${toolForm.managementcode == 'ケーブル管理ツール'}">ケーブル管理ツール</option>
+                        <option value="ソフトウェアⅠ" th:selected="${toolForm.managementcode == 'ソフトウェアⅠ'}">ソフトウェアⅠ</option>
+                        <option value="ソフトウェアⅡ" th:selected="${toolForm.managementcode == 'ソフトウェアⅡ'}">ソフトウェアⅡ</option>
                     </select>
-                <span th:if="${#fields.hasErrors('managementcode')}" th:errors="*{managementcode}" class="error-messages">error!</span>
+                    <span th:if="${#fields.hasErrors('managementcode')}" th:errors="*{managementcode}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>
                 <td>管理番号:</td>
                 <td>
-                    <input type="text" name="managementNo" th:field="*{managementNo}" th:errorclass="error-input" />
+                    <input type="text" th:field="*{managementNo}" class="form-control" />
                     <span th:if="${#fields.hasErrors('managementNo')}" th:errors="*{managementNo}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>
                 <td>品名:</td>
                 <td>
-                    <input type="text" name="productName" th:field="*{productName}" th:errorclass="error-input" />
+                    <input type="text" th:field="*{productName}" class="form-control" />
                     <span th:if="${#fields.hasErrors('productName')}" th:errors="*{productName}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>
                 <td>型番:</td>
                 <td>
-                    <input type="text" name="modelNumber" th:field="*{modelNumber}" th:errorclass="error-input" />
+                    <input type="text" th:field="*{modelNumber}" class="form-control" />
                     <span th:if="${#fields.hasErrors('modelNumber')}" th:errors="*{modelNumber}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>
                 <td>メーカー:</td>
                 <td>
-                    <input type="text" name="maker" th:field="*{maker}" th:errorclass="error-input" />
+                    <input type="text" th:field="*{maker}" class="form-control" />
                     <span th:if="${#fields.hasErrors('maker')}" th:errors="*{maker}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>
                 <td>購入日:</td>
                 <td>
-                    <input type="date" name="purchaseDate" th:field="*{purchaseDate}" th:errorclass="error-input" />
+                    <input type="date" th:field="*{purchaseDate}" class="form-control" />
                     <span th:if="${#fields.hasErrors('purchaseDate')}" th:errors="*{purchaseDate}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>
                 <td>耐用年数:</td>
                 <td>
-                    <select name="serviceLife" th:field="*{serviceLife}" th:errorclass="error-input">
-                        <option value="">機器の種類を選択してください</option> <!-- 初期の選択肢 -->
-                        <option value="4">PC</option> <!-- 耐用年数の候補1 -->
-                        <option value="5">PC以外の電子計算機</option> <!-- 耐用年数の候補2 -->
-                        <option value="3">レジスター</option> <!-- 耐用年数の候補3 -->
-                        <option value="5">プリンター、ファクシミリ</option> <!-- 管理番号の候補4 -->
-                        <option value="3">ソフトウェア（3年）</option> <!-- 耐用年数の候補5 -->
-                        <option value="5">ソフトウェア（5年）</option> <!-- 耐用年数の候補6 -->
+                    <select th:field="*{serviceLife}" class="form-control">
+                        <option value="">機器の種類を選択してください</option>
+                        <option value="4" th:selected="${toolForm.serviceLife == 4}">PC</option>
+                        <option value="5" th:selected="${toolForm.serviceLife == 5}">PC以外の電子計算機</option>
+                        <option value="3" th:selected="${toolForm.serviceLife == 3}">レジスター</option>
+                        <option value="5" th:selected="${toolForm.serviceLife == 5}">プリンター、ファクシミリ</option>
+                        <option value="3" th:selected="${toolForm.serviceLife == 3}">ソフトウェア（3年）</option>
+                        <option value="5" th:selected="${toolForm.serviceLife == 5}">ソフトウェア（5年）</option>
                     </select>
                     <span th:if="${#fields.hasErrors('serviceLife')}" th:errors="*{serviceLife}" class="error-messages">error!</span>
                 </td>
             </tr>
-            <!--<tr>
-                <td>減価償却:</td>
-                <td>
-                    <input type="text" name="depreciation" th:field="*{depreciation}" th:errorclass="error-input" />
-                    <span th:if="${#fields.hasErrors('depreciation')}" th:errors="*{depreciation}" class="error-messages">error!</span>
-                </td>
-            </tr>-->
             <tr>
                 <td>使用不可:</td>
                 <td>
-                    <label><input type="radio" name="usageProhibited" th:field="*{usageProhibited}" th:errorclass="error-input" /> 不可</label>
-                    <label><input type="radio" name="usageProhibited" th:field="*{usageProhibited}" th:errorclass="error-input" /> 可能</label>
+                    <label><input type="radio" th:field="*{usageProhibited}" value="可能" /> 可能</label>
+                    <label><input type="radio" th:field="*{usageProhibited}" value="不可" /> 不可</label>
                     <span th:if="${#fields.hasErrors('usageProhibited')}" th:errors="*{usageProhibited}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>
                 <td>貸出状況:</td>
                 <td>
-                    <label><input type="radio" name="availableForRent" th:field="*{availableForRent}" th:errorclass="error-input" />不可</label>
-                    <label><input type="radio" name="availableForRent" th:field="*{availableForRent}" th:errorclass="error-input" />可能</label>
+                    <label><input type="radio" th:field="*{availableForRent}" value="可能" /> 可能</label>
+                    <label><input type="radio" th:field="*{availableForRent}" value="不可" /> 不可</label>
                     <span th:if="${#fields.hasErrors('availableForRent')}" th:errors="*{availableForRent}" class="error-messages">error!</span>
                 </td>
             </tr>
@@ -120,26 +113,25 @@
                     <label><input type="radio" th:field="*{installationLocation}" value="大阪" /> 大阪</label>
                     <span th:if="${#fields.hasErrors('installationLocation')}" th:errors="*{installationLocation}" class="error-messages">error!</span>
                 </td>
-                
             </tr>
             <tr>
                 <td>貸出期限:</td>
                 <td>
-                    <input type="date" name="expirationDate" th:field="*{expirationDate}" th:errorclass="error-input" />
+                    <input type="date" th:field="*{expirationDate}" class="form-control" />
                     <span th:if="${#fields.hasErrors('expirationDate')}" th:errors="*{expirationDate}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>
                 <td>仕様:</td>
                 <td>
-                    <input type="text" name="specification" th:field="*{specification}" th:errorclass="error-input" />
+                    <input type="text" th:field="*{specification}" class="form-control" />
                     <span th:if="${#fields.hasErrors('specification')}" th:errors="*{specification}" class="error-messages">error!</span>
                 </td>
             </tr>
         </table>
-        <input type="hidden" name="id" th:value="${param.id[0]}" />
+        <input type="hidden" name="id" th:value="${toolForm.id}" />
         <input type="submit" name="goToTop2" value="戻る" class="btn btn-default"/>
-        <button type="submit" value="更新" class="btn btn-primary">更新</button>
+        <button type="submit" class="btn btn-primary">更新</button>
     </form>
 </body>
 </html>
