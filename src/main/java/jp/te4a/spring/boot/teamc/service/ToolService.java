@@ -3,6 +3,7 @@ package jp.te4a.spring.boot.teamc.service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Date;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import jp.te4a.spring.boot.teamc.bean.ToolBean;
 import jp.te4a.spring.boot.teamc.form.ToolForm;
 import jp.te4a.spring.boot.teamc.repository.ToolRepository;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.scheduling.annotation.Scheduled;
 
 
 
@@ -22,6 +24,10 @@ public class ToolService {
 
     @Autowired
     ToolRepository toolRepository;
+
+    @Autowired
+    private DeleteListRepository deleteListRepository;
+
 
     //追加処理 データはtoolFormで扱う　Repositoryを使うときはtoolBeanに入れる
     public ToolForm create(ToolForm toolForm) {
@@ -84,4 +90,36 @@ public class ToolService {
         return toolRepository.findByConditions(managementcode, managementNo, productName, maker);
     }
 
+    @Scheduled(cron = "0 0 0 * * ?") // 毎日午前0時に実行
+    public void deleteExpiredItems() {
+        List<ListDisplay> allItems = listDisplayRepository.findAll();
+        List<ListDisplay> expiredItems = new ArrayList<>();
+
+        for (ListDisplay item : allItems) {
+            LocalDate expirationDate = item.calculateExpirationDate();
+            if (expirationDate.isBefore(LocalDate.now())) {
+                expiredItems.add(item);
+                
+                // 削除するレコードを delete_list に追加
+                DeleteList deletedItem = new DeleteList();
+                deletedItem.setManagementcode(item.getManagementcode());
+                deletedItem.setManagementNo(item.getManagementNo());
+                deletedItem.setProductName(item.getProductName());
+                deletedItem.setModelNumber(item.getModelNumber());
+                deletedItem.setMaker(item.getMaker());
+                deletedItem.setPurchaseDate(item.getPurchaseDate());
+                deletedItem.setServiceLife(item.getServiceLife());
+                deletedItem.setUsageProhibited(item.getUsageProhibited());
+                deletedItem.setAvailableForRent(item.getAvailableForRent());
+                deletedItem.setInstallationLocation(item.getInstallationLocation());
+                deletedItem.setExprationDate(item.getExprationDate());
+                deletedItem.setSpecification(item.getSpecification());
+
+                deleteListRepository.save(deletedItem);
+            }
+        }
+
+        // 耐用年数を超えたアイテムを削除
+        listDisplayRepository.deleteAll(expiredItems);
+    }
 }

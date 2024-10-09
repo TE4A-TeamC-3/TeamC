@@ -58,10 +58,16 @@ public class ToolBean {
     @Column(name = "installation_location") //NOT NULL制約
     private String installationLocation; //設置場所 本社 仙台 埼玉 新潟 大阪
     
-    @Column(name = "expiration_date") // NOT NULL制約
+    @Column(name = "expiration_date")
     private Date expirationDate; // 貸出期限
 
     
-    @Column(name = "specification") 
+    @Column(name = "specification")
     private String specification; //仕様
+
+    public LocalDate calculateExpirationDate() {
+        int serviceLifeInMonths = Integer.parseInt(serviceLife.substring(serviceLife.length() - 2, serviceLife.length() - 1)) * 12;
+        LocalDate purchaseDate = LocalDate.parse(purchaseDateString, DateTimeFormatter.ofPattern("yyyy-MM-dd")); // 購入日が String の場合
+        return purchaseDate.plusMonths(serviceLifeInMonths);
+    }
 }

@@ -5,6 +5,24 @@
     <title>備品編集画面</title>
     <link rel="stylesheet" href="../../static/css/style.css">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+
+    <script>
+        function toggleExpirationDate() {//貸出状況で貸出期限がいらないときの処理の追加
+            const availableForRent = document.querySelector('input[name="availableForRent"]:checked');
+            const expirationDateField = document.getElementById("expirationDate");
+
+            if (availableForRent && availableForRent.value === "false") {
+                expirationDateField.disabled = true; // // 貸出状況が「利用不可」のとき
+                expirationDateField.value = ""; // // 値をクリア
+            } else {
+                expirationDateField.disabled = false; // // 貸出状況が「利用可能」のとき
+            }
+        }
+
+        window.onload = function() {
+            toggleExpirationDate(); // // 初期状態を設定
+        };
+    </script>
 </head>
 <body>
     <form th:action="@{/tools/edit}" th:object="${toolForm}" method="post">
@@ -15,6 +33,7 @@
                 <td>
                     <select th:field="*{managementcode}" class="form-control">
                         <option value="">選択してください</option>
+                        <option value="PC" th:selected="${toolForm.managementcode == 'PC'}">PC</option>
                         <option value="マウス" th:selected="${toolForm.managementcode == 'マウス'}">マウス</option>
                         <option value="キーボード" th:selected="${toolForm.managementcode == 'キーボード'}">キーボード</option>
                         <option value="モニター" th:selected="${toolForm.managementcode == 'モニター'}">モニター</option>
@@ -41,7 +60,7 @@
                 <td>管理番号:</td>
                 <td>
                     <input type="text" th:field="*{managementNo}" class="form-control" />
-                    <span th:if="${#fields.hasErrors('managementNo')}" th:errors="*{managementNo}" class="error-messages">error!</span>
+                    <span th:if="${error}" th:text="${error}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>

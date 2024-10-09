@@ -68,7 +68,7 @@ public class ToolController {
     }
 
     // 編集
-    // /tools/editにパラメータformを含むPOST要求
+    // /tools/editにパラメータformを含むGET要求
     @GetMapping(path="edit")
     public String editForm(@RequestParam("id") int id, ToolForm form) { //publicを追加した
         System.out.println("message_ToolController_編集 取得ID" + id);
@@ -80,11 +80,20 @@ public class ToolController {
 
     // /tools/にPOST要求
     @PostMapping(path="edit")
-    public String edit(@RequestParam("id") int id, ToolForm form, Model model) {
-        toolService.update(form);
-        System.out.println("message_ToolController_編集終了後toolsに返す");
-        return "redirect:/tools";
+    public String editTool(@ModelAttribute("toolForm") ToolForm form, Model model) {
+    // バリデーションチェック（必要に応じて実装）
+    if (form.getManagementNo() == null || form.getManagementNo().isEmpty()) {
+        model.addAttribute("error", "管理番号は必須です。");
+        return "tools/edit/edit"; // エラーがあれば編集画面に戻る
     }
+    // その他のバリデーションもここで行うことができます
+
+    toolService.update(form);
+    System.out.println("message_ToolController_編集終了後toolsに返す");
+    return "redirect:/tools";
+    }
+
+
 
     // 削除
     // /tools/deleteにPOST要求
@@ -152,4 +161,9 @@ public class ToolController {
         System.out.println("一覧画面（list.html）に戻る");
         return "redirect:/tools";
     }
+    @GetMapping("/tools")
+    public String getTools(@RequestParam(defaultValue = "id") String sort, Model model) {
+    List<Tool> tools = toolService.findAllSorted(sort);
+    model.addAttribute("tools", tools);
+    return "tools/list";
 }
