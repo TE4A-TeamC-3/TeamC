@@ -34,7 +34,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-            // 全ユーザアクセス可能パス
             .authorizeHttpRequests((authz) -> authz
                 .requestMatchers("/webjars/**", "/css/**").permitAll()
                 .requestMatchers("/loginForm").permitAll()
@@ -44,30 +43,25 @@ public class SecurityConfig {
                 .requestMatchers("/tools/create").hasRole("ADMIN")
                 .requestMatchers("/tools/delete").hasRole("ADMIN")
                 .requestMatchers("/tools/edit").hasRole("ADMIN")
-                .requestMatchers("/tools/search/search").hasRole("ADMIN")
-                .requestMatchers("/tools/create/create").hasRole("ADMIN")
-                .requestMatchers("/tools/delete/delete").hasRole("ADMIN")
-                .requestMatchers("/tools/edit/edit").hasRole("ADMIN")
                 .anyRequest().authenticated() // 上記以外は認証が必要
             )
             .formLogin((login) -> login
-                // ログイン処理URL
                 .loginProcessingUrl("/login")
-                // ログインページURL
                 .loginPage("/loginForm")
-                // ログイン失敗時URL
                 .failureUrl("/loginForm?error")
-                // ログイン成功時URL
                 .defaultSuccessUrl("/tools", true)
                 .usernameParameter("username")
                 .passwordParameter("password")
                 .permitAll()
             )
-            // ログアウト時
             .logout((logout) -> logout
                 .logoutSuccessUrl("/loginForm")
-            );
-
+            )
+            // アクセス拒否時にエラーページを表示
+            .exceptionHandling()
+                .accessDeniedPage("/access-denied");  // 管理者権限がないユーザーがアクセスした場合のリダイレクト先
+            
         return http.build();
     }
+    
 }

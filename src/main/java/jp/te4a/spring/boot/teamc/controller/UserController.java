@@ -2,6 +2,7 @@ package jp.te4a.spring.boot.teamc.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import java.security.Principal;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -40,17 +41,18 @@ public class UserController {
         return "redirect:/users";
     }
 
-    // /usersにパラメータformを含むPOST要求
-    /*@GetMapping(path="users", params="form")
-    String User(){
-        System.out.println("user作成画面に戻る");
-        return "users/add";
-    }*/
-    // /userにパラメータgoToTopを含むPOST要求
     @GetMapping(path="gotop")
     String goToTop4(){
         System.out.println("アカウント作成画面からmessage_ToolController_list.htmlに戻る");
         return "redirect:/tools";
+    }
+
+    @GetMapping("/user")
+    public String getUser(Principal principal, Model model) {
+        // 認証されたユーザーのユーザー名を取得
+        String username = principal.getName();
+        model.addAttribute("username", username);
+        return "user";  // ビュー名
     }
 }
 

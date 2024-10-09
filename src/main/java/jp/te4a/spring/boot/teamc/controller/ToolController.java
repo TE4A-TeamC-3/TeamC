@@ -70,7 +70,7 @@ public class ToolController {
     // 編集
     // /tools/editにパラメータformを含むPOST要求
     @GetMapping(path="edit")
-    public String editForm(@RequestParam int id, ToolForm form){ //publicを追加した
+    public String editForm(@RequestParam("id") int id, ToolForm form) { //publicを追加した
         System.out.println("message_ToolController_編集 取得ID" + id);
         ToolForm toolForm = toolService.findOne(id);
         BeanUtils.copyProperties(toolForm, form);
