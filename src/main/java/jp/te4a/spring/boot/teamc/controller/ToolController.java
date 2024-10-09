@@ -109,8 +109,8 @@ public class ToolController {
         List<ToolBean> searchResults = toolService.searchTools(
             form.getManagementcode(),
             form.getManagementNo() != 0 ? form.getManagementNo() : null, // 0の場合はnull
-            form.getProductName(),
-            form.getMaker()
+            form.getProductName() != null && !form.getProductName().isEmpty() ? form.getProductName() : null,
+            form.getMaker() != null && !form.getMaker().isEmpty() ? form.getMaker() : null
         );
         model.addAttribute("searchResults", searchResults);
         System.out.println("message_ToolController_検索用form取得");
