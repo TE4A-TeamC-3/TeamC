@@ -161,9 +161,11 @@ public class ToolController {
         System.out.println("一覧画面（list.html）に戻る");
         return "redirect:/tools";
     }
+
     @GetMapping("/tools")
     public String getTools(@RequestParam(defaultValue = "id") String sort, Model model) {
-    List<Tool> tools = toolService.findAllSorted(sort);
-    model.addAttribute("tools", tools);
-    return "tools/list";
+        List<Tool> tools = toolService.findAllSorted(sort);
+        model.addAttribute("tools", tools);
+        return "tools/list";
+    }
 }

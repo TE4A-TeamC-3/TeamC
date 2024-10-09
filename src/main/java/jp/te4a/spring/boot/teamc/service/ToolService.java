@@ -122,4 +122,8 @@ public class ToolService {
         // 耐用年数を超えたアイテムを削除
         listDisplayRepository.deleteAll(expiredItems);
     }
+
+    public List<Tool> findAllSorted(String sort) {
+    Sort sortOrder = Sort.by(sort).ascending(); // 昇順で並び替え
+    return toolRepository.findAll(sortOrder);
 }
