@@ -13,4 +13,5 @@ public class ErrorController {
     @ExceptionHandler(Exception.class)
     public String handleGlobalException() {
         return "error";
+    }
 }
