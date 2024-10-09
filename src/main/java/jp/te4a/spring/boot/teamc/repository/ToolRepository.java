@@ -38,14 +38,12 @@ public interface ToolRepository extends JpaRepository<ToolBean, Integer> {
 
 
     @Query("SELECT t FROM ToolBean t WHERE "
-            + "(:managementcode IS NULL OR t.managementcode = :managementcode) AND "
-            + "(:managementNo IS NULL OR t.managementNo = :managementNo) AND "
-            + "(:productName IS NULL OR t.productName LIKE %:productName%) AND "
-            + "(:maker IS NULL OR t.maker LIKE %:maker%)")
-    List<ToolBean> findByConditions(
-            @Param("managementcode") String managementcode,
-            @Param("managementNo") Integer managementNo,
-            @Param("productName") String productName,
-            @Param("maker") String maker
-    );
+        + "(:managementcode IS NULL OR t.managementcode = :managementcode) AND "
+        + "(:managementNo IS NULL OR t.managementNo = :managementNo) AND "
+        + "(:productName IS NULL OR t.productName LIKE %:productName%) AND "
+        + "(:maker IS NULL OR t.maker LIKE %:maker%)")List<ToolBean> findByConditions(
+        @Param("managementcode") String managementcode,
+        @Param("managementNo") Integer managementNo,
+        @Param("productName") String productName,
+        @Param("maker") String maker);
 }

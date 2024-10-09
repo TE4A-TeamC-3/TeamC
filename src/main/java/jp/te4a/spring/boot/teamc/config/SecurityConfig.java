@@ -38,23 +38,16 @@ public class SecurityConfig {
             .authorizeHttpRequests((authz) -> authz
                 .requestMatchers("/webjars/**", "/css/**").permitAll()
                 .requestMatchers("/loginForm").permitAll()
-                .requestMatchers("/users").permitAll()
-                //.requestMatchers("/users/create").permitAll()
-                //.requestMatchers("/admin/**").hasRole("ADMIN") // ADMINロールのみアクセス可
-                //.requestMatchers("/user/**").hasRole("USER") // USERロールのみアクセス可
-                //toolsの権限を付与して
+                .requestMatchers("/users").hasRole("ADMIN")
                 .requestMatchers("/tools").permitAll()
                 .requestMatchers("/tools/search").permitAll()
-                .requestMatchers("/tools/create").permitAll()
-                .requestMatchers("/tools/delete").permitAll()
-                .requestMatchers("/tools/edit").permitAll()
-                .requestMatchers("/tools/search/search").permitAll()
-                .requestMatchers("/tools/create/create").permitAll()
-                .requestMatchers("/tools/delete/delete").permitAll()
-                .requestMatchers("/tools/edit/edit").permitAll()
-                //.requestMatchers(HttpMethod.POST, "/tools/create").hasRole("ADMIN") // POSTメソッドの/tools/createに対してADMINロールを要求
-                //.requestMatchers(HttpMethod.POST, "/tools/delete").hasRole("ADMIN") // POSTメソッドの/tools/deleteに対してADMINロールを要求
-                //.requestMatchers(HttpMethod.POST, "/tools/edit").hasRole("ADMIN") // POSTメソッドの/tools/editに対してADMINロールを要求
+                .requestMatchers("/tools/create").hasRole("ADMIN")
+                .requestMatchers("/tools/delete").hasRole("ADMIN")
+                .requestMatchers("/tools/edit").hasRole("ADMIN")
+                .requestMatchers("/tools/search/search").hasRole("ADMIN")
+                .requestMatchers("/tools/create/create").hasRole("ADMIN")
+                .requestMatchers("/tools/delete/delete").hasRole("ADMIN")
+                .requestMatchers("/tools/edit/edit").hasRole("ADMIN")
                 .anyRequest().authenticated() // 上記以外は認証が必要
             )
             .formLogin((login) -> login

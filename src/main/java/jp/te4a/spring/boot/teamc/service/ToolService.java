@@ -78,8 +78,13 @@ public class ToolService {
             @RequestParam(value = "managementNo", required = false) Integer managementNo,
             @RequestParam(value = "productName", required = false) String productName,
             @RequestParam(value = "maker", required = false) String maker) {
+            // 空の文字列をNULLに変換
+            if (productName != null && productName.isEmpty()) {
+                    productName = null;
+                }    
+            if (maker != null && maker.isEmpty()) {
+                    maker = null;
+                }
             return toolRepository.findByConditions(managementcode, managementNo, productName, maker);
     }
-
-    
 }
