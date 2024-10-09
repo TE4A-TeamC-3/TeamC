@@ -104,20 +104,19 @@ public class ToolController {
     }
 
     //検索を行う処理
-    @PostMapping(path="search", params="form")
-    public String searchForm(@ModelAttribute ToolForm form, Model model){
-
+    @PostMapping(path = "search", params = "form")
+    public String searchForm(@ModelAttribute ToolForm form, Model model) {
         List<ToolBean> searchResults = toolService.searchTools(
             form.getManagementcode(),
-            form.getManagementNo(),
+            form.getManagementNo() != 0 ? form.getManagementNo() : null, // 0の場合はnull
             form.getProductName(),
             form.getMaker()
         );
-
         model.addAttribute("searchResults", searchResults);
         System.out.println("message_ToolController_検索用form取得");
-        return "tools/search/search";
+        return "tools/search/search"; // HTMLファイルの名前
     }
+
 
     // 検索機能の追加
     /*  @GetMapping("search")

@@ -73,18 +73,15 @@ public class ToolService {
     
     // 検索機能
     // 検索を行うメソッド
-    public List<ToolBean> searchTools(
-            @RequestParam(value = "managementcode", required = false) String managementcode,
-            @RequestParam(value = "managementNo", required = false) Integer managementNo,
-            @RequestParam(value = "productName", required = false) String productName,
-            @RequestParam(value = "maker", required = false) String maker) {
-            // 空の文字列をNULLに変換
-            if (productName != null && productName.isEmpty()) {
-                    productName = null;
-                }    
-            if (maker != null && maker.isEmpty()) {
-                    maker = null;
-                }
-            return toolRepository.findByConditions(managementcode, managementNo, productName, maker);
+    public List<ToolBean> searchTools(String managementcode, Integer managementNo, String productName, String maker) {
+        // 空の文字列をNULLに変換
+        if (productName != null && productName.isEmpty()) {
+            productName = null;
+        }
+        if (maker != null && maker.isEmpty()) {
+            maker = null;
+        }
+        return toolRepository.findByConditions(managementcode, managementNo, productName, maker);
     }
+
 }

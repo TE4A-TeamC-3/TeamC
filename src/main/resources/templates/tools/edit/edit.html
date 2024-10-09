@@ -90,16 +90,16 @@
             <tr>
                 <td>使用不可:</td>
                 <td>
-                    <label><input type="radio" th:field="*{usageProhibited}" value="可能" /> 可能</label>
-                    <label><input type="radio" th:field="*{usageProhibited}" value="不可" /> 不可</label>
+                    <label><input type="radio" th:field="*{usageProhibited}" value="true" /> 可能</label>
+                    <label><input type="radio" th:field="*{usageProhibited}" value="false" /> 不可</label>
                     <span th:if="${#fields.hasErrors('usageProhibited')}" th:errors="*{usageProhibited}" class="error-messages">error!</span>
                 </td>
             </tr>
             <tr>
                 <td>貸出状況:</td>
                 <td>
-                    <label><input type="radio" th:field="*{availableForRent}" value="可能" /> 可能</label>
-                    <label><input type="radio" th:field="*{availableForRent}" value="不可" /> 不可</label>
+                    <label><input type="radio" th:field="*{availableForRent}" value="true" /> 可能</label>
+                    <label><input type="radio" th:field="*{availableForRent}" value="false" /> 不可</label>
                     <span th:if="${#fields.hasErrors('availableForRent')}" th:errors="*{availableForRent}" class="error-messages">error!</span>
                 </td>
             </tr>
