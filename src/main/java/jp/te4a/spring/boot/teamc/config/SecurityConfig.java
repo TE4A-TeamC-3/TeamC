@@ -56,7 +56,7 @@ public class SecurityConfig {
             )
             .logout((logout) -> logout
                 .logoutSuccessUrl("/loginForm")
-            )
+            );
             
         return http.build();
     }
