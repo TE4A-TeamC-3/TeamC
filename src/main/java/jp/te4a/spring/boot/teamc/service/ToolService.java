@@ -128,8 +128,9 @@ public class ToolService {
         listDisplayRepository.deleteAll(expiredItems);
     }
 
-    public List<Tool> findAllSorted(String sort) {
-        Sort sortOrder = Sort.by(sort).ascending(); // 昇順で並び替え
-        return toolRepository.findAll(sortOrder);
-    }
+    public List<Tool> findAllSorted(String sort, boolean ascending) {
+    Sort sortOrder = ascending ? Sort.by(sort).ascending() : Sort.by(sort).descending();
+    return toolRepository.findAll(sortOrder);
+}
+
 }
