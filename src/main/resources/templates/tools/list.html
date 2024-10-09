@@ -14,12 +14,12 @@
     <form th:action="@{/logout}" method="post">
         <input type="submit" class="btn btn-default btn-xs" value="ログアウト" />
     </form>
-    <h2>
+    <h2 th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
         <form th:action="@{/users}" method="get">
             <button type="submit" class="btn btn-info" name="form">ユーザー管理</button>
         </form>
     </h2>
-    <h2>
+    <h2 th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
         <form th:action="@{/tools/create}" method="get">
             <button type="submit" class="btn btn-info" name="form">新規登録</button>
         </form>
@@ -49,7 +49,7 @@
                 <th>設置場所</th>
                 <th>貸出期限</th>
                 <th>仕様</th>
-                <th>操作</th>
+                <th th:if="${#authorization.expression('hasRole(''ADMIN'')')}">操作</th>
             </tr>
         </thead>
         <tbody>
@@ -69,7 +69,7 @@
                 <td th:text="${tool.installationLocation}">本社</td>
                 <td th:text="${tool.expirationDate != null ? #dates.format(tool.expirationDate, 'yyyy-MM-dd') : ''}"></td>
                 <td th:text="${tool.specification}">なし</td>
-                <td>
+                <td th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
                     <form th:action="@{/tools/edit(id=${tool.id})}" method="get">
                         <input type="hidden" name="id" th:value="${tool.id}" />
                         <button type="submit" class="btn btn-primary" name="form">編集</button>

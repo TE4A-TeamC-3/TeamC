@@ -90,8 +90,8 @@
             <tr>
                 <td>使用不可:</td>
                 <td>
-                    <label><input type="radio" th:field="*{usageProhibited}" value="true" /> 可能</label>
                     <label><input type="radio" th:field="*{usageProhibited}" value="false" /> 不可</label>
+                    <label><input type="radio" th:field="*{usageProhibited}" value="true" /> 可能</label>
                     <span th:if="${#fields.hasErrors('usageProhibited')}" th:errors="*{usageProhibited}" class="error-messages">error!</span>
                 </td>
             </tr>
