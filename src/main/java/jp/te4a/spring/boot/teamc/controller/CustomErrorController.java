@@ -12,11 +12,6 @@ public class CustomErrorController implements ErrorController { // ErrorControll
         return "access-denied";  // access-denied.htmlを返す
     }
 
-    @ExceptionHandler(Exception.class)
-    public String handleGlobalException() {
-        return "error";  // error.htmlを返す
-    }
-
     @Override
     public String getErrorPath() {
         return "/error"; // これをオーバーライドしてエラーハンドリングのパスを指定
