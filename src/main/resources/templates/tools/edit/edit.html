@@ -90,8 +90,8 @@
             <tr>
                 <td>使用不可:</td>
                 <td>
-                    <label><input type="radio" th:field="*{usageProhibited}" value="false" /> 不可</label>
                     <label><input type="radio" th:field="*{usageProhibited}" value="true" /> 可能</label>
+                    <label><input type="radio" th:field="*{usageProhibited}" value="false" /> 不可</label>
                     <span th:if="${#fields.hasErrors('usageProhibited')}" th:errors="*{usageProhibited}" class="error-messages">error!</span>
                 </td>
             </tr>
@@ -131,7 +131,7 @@
         </table>
         <input type="hidden" name="id" th:value="${toolForm.id}" />
         <input type="submit" name="goToTop2" value="戻る" class="btn btn-default"/>
-        <button type="submit" class="btn btn-primary">更新</button>
+        <button type="submit" value="更新"class="btn btn-primary">更新</button>
     </form>
 </body>
 </html>
