@@ -163,9 +163,12 @@ public class ToolController {
     }
 
     @GetMapping("/tools")
-    public String getTools(@RequestParam(defaultValue = "id") String sort, Model model) {
-        List<Tool> tools = toolService.findAllSorted(sort);
-        model.addAttribute("tools", tools);
-        return "tools/list";
-    }
+    public String getTools(@RequestParam(defaultValue = "id") String sort,
+                       @RequestParam(defaultValue = "true") boolean sortOrder,
+                       Model model) {
+    List<Tool> tools = toolService.findAllSorted(sort, sortOrder);
+    model.addAttribute("tools", tools);
+    return "tools/list";
+}
+
 }

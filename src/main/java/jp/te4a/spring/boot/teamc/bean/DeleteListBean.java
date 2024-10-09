@@ -1,6 +1,9 @@
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
 @Data
 @Entity
 @Table(name = "delete_list")
@@ -30,9 +33,6 @@ public class DeleteListBean {
     
     @Column(name = "service_life")
     private String serviceLife; //耐用年数
-    
-    //@Column(name = "depreciation")
-    //private String depreciation; //減価償却
     
     @Column(name = "usage_prohibited")
     private boolean usageProhibited; //使用不可
