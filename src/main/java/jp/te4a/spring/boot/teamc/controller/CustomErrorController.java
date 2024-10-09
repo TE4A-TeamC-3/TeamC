@@ -1,17 +1,24 @@
-import org.springframework.boot.web.servlet.error.ErrorController;
+import org.springframework.boot.web.servlet.error.ErrorController; // ErrorControllerをインポート
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class CustomErrorController implements ErrorController {
+public class CustomErrorController implements ErrorController { // ErrorControllerを実装
 
     @GetMapping("/error")
-    public String handleError() {
+    public String accessDenied() {
+        System.out.println("ErrorController");
+        return "access-denied";  // access-denied.htmlを返す
+    }
+
+    @ExceptionHandler(Exception.class)
+    public String handleGlobalException() {
         return "error";  // error.htmlを返す
     }
 
     @Override
     public String getErrorPath() {
-        return "/error";
+        return "/error"; // これをオーバーライドしてエラーハンドリングのパスを指定
     }
 }
