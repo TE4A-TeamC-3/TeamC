@@ -77,12 +77,12 @@
                 <td>
                     <select th:field="*{serviceLife}" class="form-control">
                         <option value="">機器の種類を選択してください</option>
-                        <option value="4" th:selected="${toolForm.serviceLife == 4}">PC</option>
-                        <option value="5" th:selected="${toolForm.serviceLife == 5}">PC以外の電子計算機</option>
-                        <option value="3" th:selected="${toolForm.serviceLife == 3}">レジスター</option>
-                        <option value="5" th:selected="${toolForm.serviceLife == 5}">プリンター、ファクシミリ</option>
-                        <option value="3" th:selected="${toolForm.serviceLife == 3}">ソフトウェア（3年）</option>
-                        <option value="5" th:selected="${toolForm.serviceLife == 5}">ソフトウェア（5年）</option>
+                        <option value="PC4年" th:selected="${toolForm.serviceLife == PC4年}">PC</option>
+                        <option value="PC以外5年" th:selected="${toolForm.serviceLife == PC以外5年}">PC以外の電子計算機</option>
+                        <option value="レジスター3年" th:selected="${toolForm.serviceLife == レジスター3年}">レジスター</option>
+                        <option value="プリンター等5年" th:selected="${toolForm.serviceLife == プリンター等5年}">プリンター、ファクシミリ</option>
+                        <option value="ソフトウェア3年" th:selected="${toolForm.serviceLife == ソフトウェア3年}">ソフトウェア（3年）</option>
+                        <option value="ソフトウェア5年" th:selected="${toolForm.serviceLife == ソフトウェア5年}">ソフトウェア（5年）</option>
                     </select>
                     <span th:if="${#fields.hasErrors('serviceLife')}" th:errors="*{serviceLife}" class="error-messages">error!</span>
                 </td>
