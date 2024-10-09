@@ -79,8 +79,8 @@ public class ToolController {
     }
 
     // /tools/にPOST要求
-    @PostMapping(path="editForm")
-    public String edit(@RequestParam int id, ToolForm form, Model model) {
+    @PostMapping(path="edit")
+    public String edit(@RequestParam("id") int id, ToolForm form, Model model) {
         toolService.update(form);
         System.out.println("message_ToolController_編集終了後toolsに返す");
         return "redirect:/tools";
