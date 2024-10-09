@@ -57,9 +57,6 @@ public class SecurityConfig {
             .logout((logout) -> logout
                 .logoutSuccessUrl("/loginForm")
             )
-            // アクセス拒否時にエラーページを表示
-            .exceptionHandling()
-                .accessDeniedPage("/tools/access-denied");  // 管理者権限がないユーザーがアクセスした場合のリダイレクト先
             
         return http.build();
     }
