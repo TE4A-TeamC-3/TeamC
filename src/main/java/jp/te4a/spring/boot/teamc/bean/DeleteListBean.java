@@ -1,6 +1,7 @@
 package jp.te4a.spring.boot.teamc.bean;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
