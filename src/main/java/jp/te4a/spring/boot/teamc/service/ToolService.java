@@ -1,23 +1,23 @@
-package jp.te4a.spring.boot.teamc.service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import jp.te4a.spring.boot.teamc.bean.ToolBean;
-import jp.te4a.spring.boot.teamc.form.ToolForm;
-import jp.te4a.spring.boot.teamc.repository.ToolRepository;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.scheduling.annotation.Scheduled;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import org.springframework.data.domain.Sort;
+
+import jp.te4a.spring.boot.teamc.bean.ToolBean;
+import jp.te4a.spring.boot.teamc.bean.ToolForm;
+import jp.te4a.spring.boot.teamc.bean.DeleteList;
+import jp.te4a.spring.boot.teamc.repository.ToolRepository;
+import jp.te4a.spring.boot.teamc.repository.DeleteListRepository;
+
 
 
 
@@ -95,18 +95,33 @@ public class ToolService {
         return toolRepository.findByConditions(managementcode, managementNo, productName, maker);
     }
 
+    // 期限切れアイテムを毎日削除する処理
     @Scheduled(cron = "0 0 0 * * ?") // 毎日午前0時に実行
     public void deleteExpiredItems() {
-        List<ListDisplay> allItems = listDisplayRepository.findAll();
-        List<ListDisplay> expiredItems = new ArrayList<>();
+    List<ToolBean> allItems = toolRepository.findAll();
+    List<ToolBean> expiredItems = new ArrayList<>();
 
-        for (ListDisplay item : allItems) {
-            LocalDate expirationDate = item.calculateExpirationDate();
+    System.out.println("耐用年数切れ開始");
+    for (ToolBean item : allItems) {
+        // ServiceLifeの後ろから2文字目を取得
+        String serviceLife = item.getServiceLife();
+        if (serviceLife != null && serviceLife.length() >= 2) {
+            char monthChar = serviceLife.charAt(serviceLife.length() - 2);
+            int monthsToAdd;
+
+            // 2文字目を整数に変換し、12を掛ける
+            monthsToAdd = Character.getNumericValue(monthChar) * 12;
+
+            // purchaseDateに月数を足す
+            LocalDate purchaseDate = item.getPurchaseDate();
+            LocalDate expirationDate = purchaseDate.plusMonths(monthsToAdd);
+
+            // 期限切れかどうかをチェック
             if (expirationDate.isBefore(LocalDate.now())) {
                 expiredItems.add(item);
-                
+
                 // 削除するレコードを delete_list に追加
-                DeleteList deletedItem = new DeleteList();
+                DeleteListBean deletedItem = new DeleteListBean();
                 deletedItem.setManagementcode(item.getManagementcode());
                 deletedItem.setManagementNo(item.getManagementNo());
                 deletedItem.setProductName(item.getProductName());
@@ -117,18 +132,22 @@ public class ToolService {
                 deletedItem.setUsageProhibited(item.getUsageProhibited());
                 deletedItem.setAvailableForRent(item.getAvailableForRent());
                 deletedItem.setInstallationLocation(item.getInstallationLocation());
-                deletedItem.setExprationDate(item.getExprationDate());
+                deletedItem.setExpirationDate(item.getExpirationDate());
                 deletedItem.setSpecification(item.getSpecification());
 
                 deleteListRepository.save(deletedItem);
             }
+        } else {
+            System.out.println("無効なServiceLifeの値: " + serviceLife);
         }
-
-        // 耐用年数を超えたアイテムを削除
-        listDisplayRepository.deleteAll(expiredItems);
     }
 
-    public List<Tool> findAllSorted(String sort, boolean ascending) {
+    // 期限切れアイテムを削除
+    toolRepository.deleteAll(expiredItems);
+}
+
+
+    public List<Tool> findAllSorted(String sort, boolean ascending) {//並び替えの処理
     Sort sortOrder = ascending ? Sort.by(sort).ascending() : Sort.by(sort).descending();
     return toolRepository.findAll(sortOrder);
 }

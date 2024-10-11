@@ -6,21 +6,43 @@
     <link rel="stylesheet" href="../../static/css/style.css">
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
 
-    <script>
-        function toggleExpirationDate() {//貸出状況で貸出期限がいらないときの処理の追加
+    <script>//使用不可の時に貸出期限と貸出状況が入力できなくする処理と貸出状況が不可の時に貸出期限が入力できなくする処理
+        function toggleFields() {
+            // 使用不可のラジオボタンを取得
+            const usageProhibited = document.querySelector('input[name="usageProhibited"]:checked');
+            // 貸出状況のラジオボタンを取得
             const availableForRent = document.querySelector('input[name="availableForRent"]:checked');
-            const expirationDateField = document.getElementById("expirationDate");
+            const expirationDateField = document.getElementById("expirationDate"); // 貸出期限フィールドを取得
+            const rentalStatusFields = document.querySelectorAll('input[name="availableForRent"]'); // 貸出状況フィールドを取得
 
-            if (availableForRent && availableForRent.value === "false") {
-                expirationDateField.disabled = true; // // 貸出状況が「利用不可」のとき
-                expirationDateField.value = ""; // // 値をクリア
+            // 使用不可が「不可」のとき
+            if (usageProhibited && usageProhibited.value === "false") {
+                rentalStatusFields.forEach(field => field.disabled = true); // 貸出状況を無効化
+                expirationDateField.disabled = true; // 貸出期限を無効化
+                expirationDateField.value = ""; // 値をクリア
             } else {
-                expirationDateField.disabled = false; // // 貸出状況が「利用可能」のとき
+                rentalStatusFields.forEach(field => field.disabled = false); // 貸出状況を有効化
+            }
+
+            // 貸出状況が「利用不可」のとき
+            if (availableForRent && availableForRent.value === "false") {
+                expirationDateField.disabled = true; // 貸出期限を無効化
+                expirationDateField.value = ""; // 値をクリア
+            } else {
+                expirationDateField.disabled = false; // 貸出期限を有効化
             }
         }
 
         window.onload = function() {
-            toggleExpirationDate(); // // 初期状態を設定
+            toggleFields(); // 初期状態を設定
+
+            // イベントリスナーを追加
+            document.querySelectorAll('input[name="usageProhibited"]').forEach(function(radio) {
+                radio.addEventListener('change', toggleFields); // 使用不可が変更されたとき
+            });
+            document.querySelectorAll('input[name="availableForRent"]').forEach(function(radio) {
+                radio.addEventListener('change', toggleFields); // 貸出状況が変更されたとき
+            });
         };
     </script>
 </head>
@@ -136,7 +158,7 @@
             <tr>
                 <td>貸出期限:</td>
                 <td>
-                    <input type="date" th:field="*{expirationDate}" class="form-control" />
+                    <input type="date" id="expirationDate" th:field="*{expirationDate}" class="form-control" />
                     <span th:if="${#fields.hasErrors('expirationDate')}" th:errors="*{expirationDate}" class="error-messages">error!</span>
                 </td>
             </tr>

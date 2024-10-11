@@ -1,9 +1,17 @@
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.sql.Date;
+
 import java.time.LocalDateTime;
 import java.util.Date;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+i
 @Data
 @Entity
 @Table(name = "delete_list")

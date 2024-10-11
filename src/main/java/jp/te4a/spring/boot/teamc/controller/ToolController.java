@@ -162,6 +162,7 @@ public class ToolController {
         return "redirect:/tools";
     }
 
+    //並び替えの処理
     @GetMapping("/tools")
     public String getTools(@RequestParam(defaultValue = "id") String sort,
                        @RequestParam(defaultValue = "true") boolean sortOrder,
