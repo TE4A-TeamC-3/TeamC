@@ -167,7 +167,7 @@ public class ToolController {
     public String getTools(@RequestParam(defaultValue = "id") String sort,
                        @RequestParam(defaultValue = "true") boolean sortOrder,
                        Model model) {
-    List<Tool> tools = toolService.findAllSorted(sort, sortOrder);
+    List<ToolBean> tools = toolService.findAllSorted(sort, sortOrder);
     model.addAttribute("tools", tools);
     return "tools/list";
 }

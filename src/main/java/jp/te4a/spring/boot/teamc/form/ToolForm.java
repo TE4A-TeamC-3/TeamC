@@ -11,7 +11,7 @@ public class ToolForm {
 
     private int id;//主キー
     private String managementcode;  //管理コード
-    private Integer managementNo; //管理番号
+    private int managementNo; //管理番号
     private String productName; //品名
     private String modelNumber; //型番
     private String maker; //メーカー
