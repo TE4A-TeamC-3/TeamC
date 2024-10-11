@@ -96,7 +96,7 @@ public class ToolService {
     }
 
     // 期限切れアイテムを毎日削除する処理
-    @Scheduled(cron = "0 0 0 * * ?") // 毎日午前0時に実行
+    /*@Scheduled(cron = "0 0 0 * * ?") // 毎日午前0時に実行
     public void deleteExpiredItems() {
         List<ToolBean> allItems = toolRepository.findAll();
         List<ToolBean> expiredItems = new ArrayList<>();
@@ -138,15 +138,47 @@ public class ToolService {
             } else {
                 System.out.println("無効なServiceLifeの値: " + serviceLife);
             }
+        }*/
+        @Scheduled(cron = "0 0 0 * * ?") // 毎日午前0時に実行
+        public void deleteExpiredItems() {
+            List<ToolBean> allItems = toolRepository.findAll();
+            List<ToolBean> expiredItems = new ArrayList<>();
+
+            for (ToolBean item : allItems) {
+                LocalDate expirationDate = item.calculateExpirationDate();
+                if (expirationDate.isBefore(LocalDate.now())) {
+                    expiredItems.add(item);
+                    
+                    // 削除するレコードを delete_list に追加
+                    DeleteList deletedItem = new DeleteList();
+                    deletedItem.setManagementcode(item.getManagementcode());
+                    deletedItem.setManagementNo(item.getManagementNo());
+                    deletedItem.setProductName(item.getProductName());
+                    deletedItem.setModelNumber(item.getModelNumber());
+                    deletedItem.setMaker(item.getMaker());
+                    deletedItem.setPurchaseDate(item.getPurchaseDate());
+                    deletedItem.setServiceLife(item.getServiceLife());
+                    deletedItem.setUsageProhibited(item.getUsageProhibited());
+                    deletedItem.setAvailableForRent(item.getAvailableForRent());
+                    deletedItem.setInstallationLocation(item.getInstallationLocation());
+                    deletedItem.setExprationDate(item.getExprationDate());
+                    deletedItem.setSpecification(item.getSpecification());
+
+                    deleteListRepository.save(deletedItem);
+                }
+            }
+
+            // 耐用年数を超えたアイテムを削除
+            toolRepository.deleteAll(expiredItems);
+        
         }
-    }
 
 
 
 
     public List<ToolBean> findAllSorted(String sort, boolean ascending) {//並び替えの処理
-    Sort sortOrder = ascending ? Sort.by(sort).ascending() : Sort.by(sort).descending();
-    return toolRepository.findAll(sortOrder);
-}
+        Sort sortOrder = ascending ? Sort.by(sort).ascending() : Sort.by(sort).descending();
+        return toolRepository.findAll(sortOrder);
+    }
 
 }
