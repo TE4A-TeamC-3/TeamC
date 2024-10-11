@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Sort;
 
 import jp.te4a.spring.boot.teamc.bean.ToolBean;
-import jp.te4a.spring.boot.teamc.bean.ToolForm;
 import jp.te4a.spring.boot.teamc.bean.DeleteListBean;
+import jp.te4a.spring.boot.teamc.form.ToolForm;
 import jp.te4a.spring.boot.teamc.repository.ToolRepository;
 import jp.te4a.spring.boot.teamc.repository.DeleteListRepository;
 
