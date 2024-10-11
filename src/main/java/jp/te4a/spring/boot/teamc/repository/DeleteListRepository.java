@@ -1,12 +1,10 @@
 package jp.te4a.spring.boot.teamc.repository;
 
+import jp.te4a.spring.boot.teamc.bean.DeleteListBean;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import jp.te4a.spring.boot.teamc.bean.ToolBean;
+import org.springframework.stereotype.Repository;
 
-import java.util.Date;
-import java.util.List;
-
+@Repository
 public interface DeleteListRepository extends JpaRepository<DeleteListBean, Integer> {
     
 }
