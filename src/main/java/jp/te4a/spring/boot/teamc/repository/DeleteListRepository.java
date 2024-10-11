@@ -7,6 +7,6 @@ import jp.te4a.spring.boot.teamc.bean.ToolBean;
 import java.util.Date;
 import java.util.List;
 
-public interface DeleteListRepository extends JpaRepository<ToolBean, Integer> {
+public interface DeleteListRepository extends JpaRepository<DeleteListBean, Integer> {
     
 }

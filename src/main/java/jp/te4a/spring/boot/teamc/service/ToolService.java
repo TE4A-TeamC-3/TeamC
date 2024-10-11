@@ -85,7 +85,7 @@ public class ToolService {
     // 検索を行うメソッド
     public List<ToolBean> searchTools(String managementcode, Integer managementNo, String productName, String maker) {
         // 空の文字列をNULLに変換
-        if (productName != null && productName.isEmpty()) {
+        if (productName != null && productName == null) {
             productName = null;
         }
         if (maker != null && maker.isEmpty()) {
@@ -97,53 +97,50 @@ public class ToolService {
     // 期限切れアイテムを毎日削除する処理
     @Scheduled(cron = "0 0 0 * * ?") // 毎日午前0時に実行
     public void deleteExpiredItems() {
-    List<ToolBean> allItems = toolRepository.findAll();
-    List<ToolBean> expiredItems = new ArrayList<>();
+        List<ToolBean> allItems = toolRepository.findAll();
+        List<ToolBean> expiredItems = new ArrayList<>();
 
-    System.out.println("耐用年数切れ開始");
-    for (ToolBean item : allItems) {
-        // ServiceLifeの後ろから2文字目を取得
-        String serviceLife = item.getServiceLife();
-        if (serviceLife != null && serviceLife.length() >= 2) {
-            char monthChar = serviceLife.charAt(serviceLife.length() - 2);
-            int monthsToAdd;
+        System.out.println("耐用年数切れ開始");
+        for (ToolBean item : allItems) {
+            // ServiceLifeの後ろから2文字目を取得
+            String serviceLife = item.getServiceLife();
+            if (serviceLife != null && serviceLife.length() >= 2) {
+                // サービスライフの値を取得
+                int monthsToAdd = Character.getNumericValue(serviceLife.charAt(serviceLife.length() - 2)) * 12;
 
-            // 2文字目を整数に変換し、12を掛ける
-            monthsToAdd = Character.getNumericValue(monthChar) * 12;
+                // purchaseDateをLocalDateに変換
+                LocalDate purchaseDate = item.getPurchaseDate().toLocalDate();
+                // 期限日を計算
+                LocalDate expirationDate = purchaseDate.plusMonths(monthsToAdd);
 
-            // purchaseDateに月数を足す
-            LocalDate purchaseDate = item.getPurchaseDate();
-            LocalDate expirationDate = purchaseDate.plusMonths(monthsToAdd);
+                // 期限切れかどうかをチェック
+                if (expirationDate.isBefore(LocalDate.now())) {
+                    expiredItems.add(item);
 
-            // 期限切れかどうかをチェック
-            if (expirationDate.isBefore(LocalDate.now())) {
-                expiredItems.add(item);
+                    // 削除するレコードを delete_list に追加
+                    DeleteListBean deletedItem = new DeleteListBean();
+                    deletedItem.setManagementcode(item.getManagementcode());
+                    deletedItem.setManagementNo(item.getManagementNo());
+                    deletedItem.setProductName(item.getProductName());
+                    deletedItem.setModelNumber(item.getModelNumber());
+                    deletedItem.setMaker(item.getMaker());
+                    deletedItem.setPurchaseDate(Date.valueOf(purchaseDate)); // LocalDateをjava.sql.Dateに変換して保存
+                    deletedItem.setServiceLife(item.getServiceLife());
+                    deletedItem.setUsageProhibited(item.getUsageProhibited());
+                    deletedItem.setAvailableForRent(item.getAvailableForRent());
+                    deletedItem.setInstallationLocation(item.getInstallationLocation());
+                    deletedItem.setExpirationDate(item.getExpirationDate());
+                    deletedItem.setSpecification(item.getSpecification());
 
-                // 削除するレコードを delete_list に追加
-                DeleteListBean deletedItem = new DeleteListBean();
-                deletedItem.setManagementcode(item.getManagementcode());
-                deletedItem.setManagementNo(item.getManagementNo());
-                deletedItem.setProductName(item.getProductName());
-                deletedItem.setModelNumber(item.getModelNumber());
-                deletedItem.setMaker(item.getMaker());
-                deletedItem.setPurchaseDate(item.getPurchaseDate());
-                deletedItem.setServiceLife(item.getServiceLife());
-                deletedItem.setUsageProhibited(item.getUsageProhibited());
-                deletedItem.setAvailableForRent(item.getAvailableForRent());
-                deletedItem.setInstallationLocation(item.getInstallationLocation());
-                deletedItem.setExpirationDate(item.getExpirationDate());
-                deletedItem.setSpecification(item.getSpecification());
-
-                deleteListRepository.save(deletedItem);
+                    deleteListRepository.save(deletedItem);
+                }
+            } else {
+                System.out.println("無効なServiceLifeの値: " + serviceLife);
             }
-        } else {
-            System.out.println("無効なServiceLifeの値: " + serviceLife);
         }
     }
 
-    // 期限切れアイテムを削除
-    toolRepository.deleteAll(expiredItems);
-}
+
 
 
     public List<ToolBean> findAllSorted(String sort, boolean ascending) {//並び替えの処理
