@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.Date;
 import java.util.List;
 
-public interface DeleteListRepository extends JpaRepository<ListDisplay, Integer> {
+public interface DeleteListRepository extends JpaRepository<ToolBean, Integer> {
     
 }
