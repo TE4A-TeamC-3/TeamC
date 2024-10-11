@@ -1,23 +1,14 @@
 import jakarta.persistence.*;
 import lombok.Data;
-
-import java.sql.Date;
-
 import java.time.LocalDateTime;
-import java.util.Date;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-i
+
 @Data
 @Entity
 @Table(name = "delete_list")
 public class DeleteListBean {
 
     @Id // フィールドを主キーとしてマーク
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 自動生成を指定
     @Column(name = "id")
     private int id;
     
@@ -37,7 +28,7 @@ public class DeleteListBean {
     private String maker; //メーカー
     
     @Column(name = "purchase_date")
-    private Date purchaseDate; //購入日 yyyy-mm-dd
+    private java.util.Date purchaseDate; //購入日 yyyy-mm-dd
     
     @Column(name = "service_life")
     private String serviceLife; //耐用年数
@@ -52,9 +43,8 @@ public class DeleteListBean {
     private String installationLocation; //設置場所 本社 仙台 埼玉 新潟 大阪
     
     @Column(name = "expiration_date")
-    private Date expirationDate; // 貸出期限
+    private java.util.Date expirationDate; // 貸出期限
 
-    
     @Column(name = "specification")
     private String specification; //仕様
 
