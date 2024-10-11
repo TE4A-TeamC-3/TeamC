@@ -1,16 +1,24 @@
 package jp.te4a.spring.boot.teamc.bean;
 
-import jakarta.persistence.*;
+import java.sql.Date;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import java.time.LocalDateTime;
+import lombok.NoArgsConstructor;
 
-@Data
 @Entity
-@Table(name = "delete_list")
+@Table(name = "delete_list") // 対応するDBのテーブル名を指定
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class DeleteListBean {
 
     @Id // フィールドを主キーとしてマーク
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 自動生成を指定
     @Column(name = "id")
     private int id;
     
