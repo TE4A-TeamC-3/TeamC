@@ -146,7 +146,7 @@ public class ToolService {
 }
 
 
-    public List<Tool> findAllSorted(String sort, boolean ascending) {//並び替えの処理
+    public List<ToolBean> findAllSorted(String sort, boolean ascending) {//並び替えの処理
     Sort sortOrder = ascending ? Sort.by(sort).ascending() : Sort.by(sort).descending();
     return toolRepository.findAll(sortOrder);
 }
