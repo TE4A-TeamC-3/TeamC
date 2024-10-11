@@ -1,3 +1,5 @@
+package jp.te4a.spring.boot.teamc.repository;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

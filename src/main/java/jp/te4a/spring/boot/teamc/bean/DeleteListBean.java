@@ -1,3 +1,5 @@
+package jp.te4a.spring.boot.teamc.bean;
+
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDateTime;
