@@ -19,6 +19,7 @@ import jp.te4a.spring.boot.teamc.form.ToolForm;
 import jp.te4a.spring.boot.teamc.service.ToolService;
 import jakarta.validation.Valid;
 import jp.te4a.spring.boot.teamc.bean.ToolBean;
+import jp.te4a.spring.boot.teamc..DeleteList;
 
 
 
@@ -82,7 +83,7 @@ public class ToolController {
     @PostMapping(path="edit")
     public String editTool(@ModelAttribute("toolForm") ToolForm form, Model model) {
     // バリデーションチェック（必要に応じて実装）
-    if (form.getManagementNo() == null || form.getManagementNo().isEmpty()) {
+    if (form.getManagementNo() == 0 || form.getManagementNo().isEmpty()) {
         model.addAttribute("error", "管理番号は必須です。");
         return "tools/edit/edit"; // エラーがあれば編集画面に戻る
     }

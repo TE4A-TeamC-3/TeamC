@@ -139,18 +139,19 @@ public class ToolService {
                 System.out.println("無効なServiceLifeの値: " + serviceLife);
             }
         }*/
+        // 期限切れアイテムを毎日削除する処理
         @Scheduled(cron = "0 0 0 * * ?") // 毎日午前0時に実行
         public void deleteExpiredItems() {
             List<ToolBean> allItems = toolRepository.findAll();
             List<ToolBean> expiredItems = new ArrayList<>();
 
             for (ToolBean item : allItems) {
-                LocalDate expirationDate = item.calculateExpirationDate();
+                LocalDate expirationDate = item.calculateExpirationDate(); // calculateExpirationDate() メソッドが必要
                 if (expirationDate.isBefore(LocalDate.now())) {
                     expiredItems.add(item);
                     
                     // 削除するレコードを delete_list に追加
-                    DeleteList deletedItem = new DeleteList();
+                    DeleteListBean deletedItem = new DeleteListBean(); // Beanを正しくインスタンス化
                     deletedItem.setManagementcode(item.getManagementcode());
                     deletedItem.setManagementNo(item.getManagementNo());
                     deletedItem.setProductName(item.getProductName());
@@ -161,7 +162,7 @@ public class ToolService {
                     deletedItem.setUsageProhibited(item.getUsageProhibited());
                     deletedItem.setAvailableForRent(item.getAvailableForRent());
                     deletedItem.setInstallationLocation(item.getInstallationLocation());
-                    deletedItem.setExprationDate(item.getExprationDate());
+                    deletedItem.setExpirationDate(item.getExpirationDate()); // メソッド名を修正
                     deletedItem.setSpecification(item.getSpecification());
 
                     deleteListRepository.save(deletedItem);
@@ -170,9 +171,7 @@ public class ToolService {
 
             // 耐用年数を超えたアイテムを削除
             toolRepository.deleteAll(expiredItems);
-        
         }
-
 
 
 
